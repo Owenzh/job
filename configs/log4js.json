@@ -1,0 +1,28 @@
+{
+  "appenders": [
+    {
+      "type": "console",
+      "category": "console"
+    },
+    {
+      "category":"log_info",
+      "type": "file",
+      "filename": "./logs/log_info.log",
+      "maxLogSize": 1048576,
+      "backups": 10
+    },
+    {
+      "category": "log_date",
+      "type": "dateFile",
+      "filename": "./logs/log_date.txt",
+      "alwaysIncludePatten": true,
+      "patten": "-yyyy-MM-dd"
+    }
+  ],
+  "replaceConsole": true,
+  "levels": {
+    "console": "ALL",
+    "log_date": "ALL",
+    "log_info": "INFO"
+  }
+}

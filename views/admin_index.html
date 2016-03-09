@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>后台管理</title>
+    <%include contents.html%>
+</head>
+
+<body ng-app="mainApp">
+
+<nav ng-include="'templates/admin/admin_header.html'" class="navbar navbar-inverse navbar-fixed-top">
+
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div ng-include="'templates/admin/admin_sidebar.html'" ng-controller="mainController"
+             class="col-sm-3 col-md-2 sidebar">
+
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <div ng-view></div>
+            <!--<div ng-include="'templates/admin/admin_user.html'"></div>-->
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+
+
+<!--系统js
+<script src="/js/classes/user.js"></script>
+-->
+<script src="/js/admin.js"></script>
+<script src="/js/admin_user_controller.js"></script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!--新增用户-->
+<script src="/js/libs/bootstrap-datetimepicker.min.js"></script>
+<script src="/js/libs/bootstrap-datetimepicker.zh-CN.js"></script>
+<div ng-controller="AddUserController">
+    <h2 class="page-header"><span data-ng-bind-html="title|trusted"></span></h2>
+    <div class="row placeholders">
+        <div class="col-md-8" id="div_add_user">
+            <form class="form-horizontal" method="post" action="/admin/user/add">
+                <div class="form-group">
+                    <label for="u_email" class="col-md-2 control-label">邮箱</label>
+
+                    <div class="col-md-6">
+                        <input type="email" class="form-control" id="u_email" name="u_email" value="" placeholder="邮箱">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="u_pwd" class="col-md-2 control-label">密码</label>
+
+                    <div class="col-md-6">
+                        <input type="password" class="form-control" id="u_pwd" name="u_pwd" placeholder="密码">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="u_name" class="col-md-2 control-label">姓名</label>
+
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" id="u_name" name="u_name" value="" placeholder="姓名">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="department" class="col-md-2 control-label">部门</label>
+
+                    <div class="col-md-6">
+                        <select class="form-control" id="department" name="department" >
+                            <option>
+                                技术部
+                            </option>
+                            <option>
+                                市场部
+                            </option>
+                            人事部
+                            </option>
+                            <option>
+                                销售部
+                            </option>
+                            <option>
+                                运营部
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="u_title" class="col-md-2 control-label">职务</label>
+
+                    <div class="col-md-6">
+                        <input type="email" class="form-control" id="u_title" value="" name="u_title" placeholder="职务">
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="authority" class="col-md-2 control-label">权限</label>
+
+                    <div class="col-md-6">
+                        <select class="form-control" id="authority" name="authority">
+                            <option value="u">
+                                普通员工
+                            </option>
+                            <option value="hr">
+                                人事专员
+                            </option>
+                            <option value="interviewer">
+                                面试官
+                            </option>
+                            <option value="recommend">
+                                推荐人
+                            </option>
+                            <option value="admin">
+                                管理员
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="onboard" class="col-md-2 control-label">入职时间</label>
+
+                    <div class="col-md-6">
+                        <input type="text" class="form-control form_datetime" id="onboard" name="onboard" readonly
+                               placeholder="入职时间">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="u_sfz" class="col-sm-2 control-label">身份证</label>
+
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="u_sfz" name="u_sfz" value="" placeholder="身份证">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="u_phone" class="col-sm-2 control-label">电话</label>
+
+                    <div class="col-sm-6">
+                        <input type="number" class="form-control" id="u_phone" name="u_phone" value="" placeholder="电话">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="u_address" class="col-sm-2 control-label">常住地址</label>
+
+                    <div class="col-sm-6">
+                        <textarea class="form-control" id="u_address" name="u_address" value="" placeholder="常住地址" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary" id="btn_add_user">添加</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(".form_datetime").datetimepicker({
+        language: 'zh-CN',
+        minView: 2,
+        autoclose: true,
+        format: 'yyyy-mm-dd'
+    });
+</script>
+<!--新增用户-->

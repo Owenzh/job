@@ -1,0 +1,218 @@
+@charset "utf-8";
+
+body, html {
+	color: #333;
+	font-family: arial,tahoma,宋体;
+	font-size: 14px;
+	line-height: 27px;
+	background-image: url(../img/abg.jpg);
+	background-repeat: repeat;
+	background-attachment: fixed;
+}
+ul, ol, body, html, p {
+    margin: 0;
+    padding: 0;
+}
+ul, ol, li {
+    list-style-type: none;
+}
+img, iframe {
+    border: 0 none;
+}
+img {
+    display: block;
+}
+table {
+	border-collapse: collapse;
+	width: 960px;
+}
+
+table tr {
+	border: 1px solid #CCC;
+}
+table td {
+	border: 1px solid #CCC;
+}
+.hotTable tr{
+	border: 0px; 
+}
+.hotTable td{
+	border: 0px; 
+}
+iframe, input, select {
+	outline: 0 none;
+	background-color: #FFF;
+}
+#abody {
+	margin:0 auto; /* 居中 这个是必须的，，其它的属性非必须 */
+    width:990px; /* 给个宽度 顶到浏览器的两边就看不出居中效果了 */
+	}
+a {
+	color: #000;
+	cursor: pointer;
+	text-decoration: none;
+}
+a:hover{
+	color:#666;
+	cursor: pointer;
+	}
+sup {
+    color: red;
+    font-size: 12px;
+    line-height: 12px;
+}
+input, input::-moz-focus-inner, .weather-info-set .btn::-moz-focus-inner {
+    border: 0 none;
+    padding: 0;
+}
+.clear {  clear: both;  }
+#header {
+	margin-top: 10px;
+}
+.logo_right {
+	float: right;
+}
+
+
+.logo {
+	float: left;
+}
+.logo_txt {
+	float: left;
+	padding-left: 10px;
+}
+
+
+#content {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.bmenu {
+	float: left;
+	background-image: url(../img/xuanxiangka/menu2.jpg);
+	background-repeat: no-repeat;
+	height: 32px;
+	width: 115px;
+	padding-top: 5px;
+	padding-left: 50px;
+	font-size: 16px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.amenu {
+	float: left;
+	background-image: url(../img/xuanxiangka/menu1.jpg);
+	background-repeat: no-repeat;
+	height: 32px;
+	width: 115px;
+	font-size: 16px;
+	font-weight: bold;
+	padding-top: 5px;
+	padding-left: 50px;
+	cursor: pointer;
+}
+.lmenu {
+}
+.abanner {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.rz {
+	padding: 5px;
+	border: 1px solid #0E5CC7;
+	margin-bottom: 10px;
+}
+.rz_txt {
+	padding-top: 10px;
+	padding-right: 10px;
+	padding-bottom: 5px;
+	padding-left: 10px;
+}
+
+.rz_title {
+	background-image: url(../img/title_bg.gif);
+	height: 29px;
+	width: 945px;
+	padding-left: 35px;
+	padding-top: 1px;
+	background-repeat: no-repeat;
+}
+.srk {
+	border: 1px solid #DE5102;
+	height: 30px;
+	width: 590px;
+	float: left;
+	padding-left: 10px;
+}
+.ss {
+	margin-bottom: 10px;
+}
+.sr {
+	padding-right: 10px;
+	display: inline;
+}
+.imgg {
+	float: left;
+	padding-left: 10px;
+}
+.wh_pic {
+	float: left;
+	width: 220px;
+	margin-right: 22px;
+}
+.rz_pic {
+	padding-top: 10px;
+	padding-right: 0px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+}
+#xx1 {
+	background-image: url(../img/x2.png);
+	background-repeat: no-repeat;
+	height: 15px;
+	width: 15px;
+	position: absolute;
+	left: 1045px;
+	top: 271px;
+}
+#xx2 {
+	background-image: url(../img/x1.png);
+	background-repeat: no-repeat;
+	position: absolute;
+	height: 15px;
+	width: 15px;
+	left: 1078px;
+	top: 270px;
+}
+#xx3 {
+	background-image: url(../img/x1.png);
+	background-repeat: no-repeat;
+	position: absolute;
+	height: 15px;
+	width: 15px;
+	left: 1111px;
+	top: 270px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+#footer {
+}
+.shengming {
+	text-align: center;
+	font-size: 12px;
+	padding-top: 10px;
+	padding-right: 100px;
+	padding-bottom: 10px;
+	padding-left: 100px;
+}

@@ -1,0 +1,45 @@
+
+<ul class="nav nav-sidebar">
+    <li ng-repeat="u in sideYb" ng-class="{'active':u.active}" ng-click="changeActive(u.id)">
+        <a href="{{u.link}}" id="{{u.id}}">
+            <i class="icon iconfont" data-ng-bind-html="u.icon|trusted"></i>
+            {{u.text}}
+        </a>
+    </li>
+</ul>
+
+<ul class="nav nav-sidebar">
+    <li ng-repeat="u in sideUser" ng-class="{'active':u.active}" ng-click="changeActive(u.id)">
+        <a href="{{u.link}}" id="{{u.id}}">
+            <i class="icon iconfont" data-ng-bind-html="u.icon|trusted"></i>
+            {{u.text}}
+        </a>
+    </li>
+</ul>
+
+<ul class="nav nav-sidebar">
+    <li ng-repeat="u in sideCat" ng-class="{'active':u.active}" ng-click="changeActive(u.id)">
+        <a href="{{u.link}}" id="{{u.id}}">
+            <i class="icon iconfont" data-ng-bind-html="u.icon|trusted"></i>
+            {{u.text}}
+        </a>
+    </li>
+</ul>
+
+<ul class="nav nav-sidebar">
+    <li ng-repeat="u in sidePos" ng-class="{'active':u.active}" ng-click="changeActive(u.id)">
+        <a href="{{u.link}}" id="{{u.id}}">
+            <i class="icon iconfont" data-ng-bind-html="u.icon|trusted"></i>
+            {{u.text}}
+        </a>
+    </li>
+</ul>
+
+<ul class="nav nav-sidebar">
+    <li ng-repeat="u in sideApy" ng-class="{'active':u.active}" ng-click="changeActive(u.id)">
+        <a href="{{u.link}}" id="{{u.id}}">
+            <i class="icon iconfont" data-ng-bind-html="u.icon|trusted"></i>
+            {{u.text}}
+        </a>
+    </li>
+</ul>

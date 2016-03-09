@@ -1,0 +1,2 @@
+b80108e5685accfcc81e48d5d3c68db4
+http://apis.baidu.com/heweather/weather/free
