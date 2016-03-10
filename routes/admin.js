@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var DB = require("../DBUtils/config.js");
-var DBU = require("../DBUtils/DBAPI.js").DBU;
+var MGDAO = require("../DBUtils/DBAPI.js").MGDAO;
 var util = require("util");
 
 /* GET users listing. */
@@ -23,13 +22,41 @@ router.post('/user/add', function (req, res) {
     //    db.close();
     //});
 
-    var dbObj = new DBU(DB);
-    dbObj.close();
+    var dbObj = new MGDAO();
+    dbObj.forceClose();
     //dbObj.insertDocument()
     console.log(req.body.u_name);
-    console.log(util.inspect(req.body));
-    console.log(DB);
+    //console.log(util.inspect(req.body));
     res.send("add User...");
+});
+
+/* GET for debug. */
+router.get('/debug', function (req, res, next) {
+    var tb = 'tb_test';
+    var testData = [
+        {
+            timeTick: new Date().getTime(),
+            debug: 'y',
+            author: 'owen'
+        },
+        {
+            timeTick: new Date().getTime(),
+            debug: 'y',
+            author: 'tester'
+        }
+    ];
+    var dao = new MGDAO();
+    dao.insertDocuments(tb, [testData[1]], function (r) {
+        //console.log(util.inspect(r));
+        dao.findDocuments(tb, {}, function (err, docs) {
+            console.log(docs.length);
+            dao.closeDB();
+            res.send("debug");
+        })
+
+    });
+
+
 });
 
 module.exports = router;

@@ -3,4 +3,4 @@ var db = {
     user:'',
     pwd:''
 }
-module.exports = db;
+module.exports = db.url;

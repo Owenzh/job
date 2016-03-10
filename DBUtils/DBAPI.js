@@ -1,39 +1,55 @@
 /**
- * Created by admin on 2016/2/21.
+ * MongoDB DAO Interfaces[MGDAO]
+ * Author:owen
+ * Date: 2016-03-10
  */
-var MongoClient = require('mongodb').MongoClient;
-var API = {};
-API.insertDocument = function (db, collectionName, dataArr, callback) {
-    if (dataArr instanceof Array) {
-        db.collection(collectionName).insertMany(dataArr, function (err, result) {
-            console.log('Insert one document into ' + collectionName);
-            callback();
-        });
-    } else {
-        throw 'dataArr must be array!';
-    }
-};
 
-function DBU(dbconfig) {
-    this.url = dbconfig.url || "";
-    this.db = MongoClient.connect(this.url);//Promise Object
-    console.log("Init DB ...." + this.db);
+var url = require("../DBUtils/config.js");
+var MongoClient = require('mongodb').MongoClient;
+
+var msgPreFix = "[MGDAO]***";
+
+function MGDAO() {
+    this.db = MongoClient.connect(url);
+    console.info(msgPreFix + "MongoDB Instance created!");
 }
-DBU.prototype.insertDocument = function (collectionName, dataArr, callback) {
-    this.db.then(function (_db) {
-        var col = _db.collection(collectionName)
-        col.insertMany(dataArr).then(function (r) {
-            callback(r);
-        });
-    });
-};
-DBU.prototype.close = function () {
+//closeDB
+MGDAO.prototype.closeDB = function () {
     if (this.db) {
         this.db.then(function (_db) {
             _db.close();
-            console.log("close DB...");
+            console.info(msgPreFix + "MongoDB Instance close!");
         });
+    } else {
+        console.error(msgPreFix + "MongoDB Instance null!");
     }
-}
+};
+//findDocuments
+//filters {} will return all documents
+MGDAO.prototype.findDocuments = function (collectionName, filters, callback) {
+    this.db.then(function (_db) {
+        var cursor = _db.collection(collectionName).find(filters);
+        cursor.toArray(function (err, docs) {
+            if (err) {
+                console.info(msgPreFix + "Query documents error>>> " + err.toString());
+            } else {
+                callback(err, docs);
+                console.info(msgPreFix + "Query documents from " + collectionName);
+            }
+        });
+    });
+};
 
-module.exports.DBU = DBU;
+//insertDocuments
+MGDAO.prototype.insertDocuments = function (collectionName, dataArr, callback) {
+    this.db.then(function (_db) {
+        var col = _db.collection(collectionName);
+        col.insertMany(dataArr).then(function (r) {
+            callback(r);
+            console.info(msgPreFix + "Insert documents into " + collectionName);
+        });
+    });
+};
+
+
+module.exports.MGDAO = MGDAO;
