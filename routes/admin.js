@@ -46,16 +46,40 @@ router.get('/debug', function (req, res, next) {
         }
     ];
     var dao = new MGDAO();
-    dao.insertDocuments(tb, [testData[1]], function (r) {
-        //console.log(util.inspect(r));
-        dao.findDocuments(tb, {}, function (err, docs) {
-            console.log(docs.length);
-            dao.closeDB();
-            res.send("debug");
-        })
 
+    //dao.insertDocuments(tb, testData, function (r) {
+    //    //console.log(util.inspect(r));
+    //    dao.findDocuments(tb, {}, function (err, docs) {
+    //        console.log(docs.length);
+    //        dao.closeDB();
+    //        res.send("debug");
+    //    })
+    //
+    //});
+
+    //dao.deleteOneDocument(tb, {author: 'tester'}, null, function (err, r) {
+    //    console.log(r);
+    //    dao.closeDB();
+    //    res.send("debug");
+    //});
+
+    //dao.deleteManyDocuments(tb, {author: 'tester'}, null, function (err, r) {
+    //    console.log(r);
+    //    dao.closeDB();
+    //    res.send("debug");
+    //});
+
+    //dao.updateOneDocument(tb, {author: 'owen'}, {$set:{debug:'LALA'}}, null, function (err, r) {
+    //    console.log(r);
+    //    dao.closeDB();
+    //    res.send("debug");
+    //});
+
+    dao.updateManyDocuments(tb, {author: 'owen'}, {$set:{debug:'LALA'}}, null, function (err, r) {
+        console.log(r);
+        dao.closeDB();
+        res.send("debug");
     });
-
 
 });
 

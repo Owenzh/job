@@ -51,5 +51,48 @@ MGDAO.prototype.insertDocuments = function (collectionName, dataArr, callback) {
     });
 };
 
+//updateOneDocument
+MGDAO.prototype.updateOneDocument = function (collectionName, filter, update, options, callback) {
+    this.db.then(function (_db) {
+        var col = _db.collection(collectionName);
+        col.updateOne(filter, update, options, function (err, r) {
+            callback(err, r);
+            console.info(msgPreFix + "Update one document from " + collectionName);
+        });
+    });
+};
+
+//updateManyDocuments
+MGDAO.prototype.updateManyDocuments = function (collectionName, filter, update, options, callback) {
+    this.db.then(function (_db) {
+        var col = _db.collection(collectionName);
+        col.updateMany(filter, update, options, function (err, r) {
+            callback(err, r);
+            console.info(msgPreFix + "Update many documents from " + collectionName);
+        });
+    });
+};
+
+//deleteOneDocument
+MGDAO.prototype.deleteOneDocument = function (collectionName, filter, options, callback) {
+    this.db.then(function (_db) {
+        var col = _db.collection(collectionName);
+        col.deleteOne(filter, options, function (err, r) {
+            callback(err, r);
+            console.info(msgPreFix + "Delete one document from " + collectionName);
+        })
+    });
+};
+
+//deleteManyDocuments
+MGDAO.prototype.deleteManyDocuments = function (collectionName, filter, options, callback) {
+    this.db.then(function (_db) {
+        var col = _db.collection(collectionName);
+        col.deleteMany(filter, options, function (err, r) {
+            callback(err, r);
+            console.info(msgPreFix + "Delete many documents from " + collectionName);
+        })
+    });
+};
 
 module.exports.MGDAO = MGDAO;
