@@ -4,7 +4,8 @@
  * Date: 2016-03-10
  */
 
-var url = require("../DBUtils/config.js");
+//var url = require("../DBUtils/config.js");
+var url = "mongodb://localhost:27017/job";
 var MongoClient = require('mongodb').MongoClient;
 
 var msgPreFix = "[MGDAO]***";
