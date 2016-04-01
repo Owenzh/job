@@ -43,7 +43,7 @@
             /*background: #00BB00;*/
             color: #333;
             /*border-top: 1px solid #00DB00;*/
-            border-bottom: 1px solid #00DB00;
+            border-bottom: 1px solid #398439;
             /*background: -webkit-linear-gradient( bottom, #A6FFA6, #006000); /!* Safari 5.1 - 6.0 *!/*/
             /*background: -o-linear-gradient( bottom, #A6FFA6, #006000); /!* Opera 11.1 - 12.0 *!/*/
             /*background: -moz-linear-gradient( bottom, #A6FFA6, #006000); /!* Firefox 3.6 - 15 *!/*/
@@ -56,19 +56,56 @@
         }
 
         .logo > a {
-            color: #00A600;
+            color: #398439;
+            /*color: #00A600;*/
+            /*5cb85c*/
         }
 
         .main, .category {
             margin-top: 0.4em;
         }
+        .menu{
+            padding-top: 5px;
+            padding-bottom: 10px;
+            /*padding-left: 2px;*/
+            border: solid 1px #e5e5e5;
+        }
+        .sub-menu {
+            background: #e5e5e5;
+            border: solid 1px #398439;
+            margin-bottom: 0.2em;
+        }
+        .menu-item {
+            display: none;
+            border: solid 1px #398439;
+        }
+        .cg-key{
+            background: #e5e5e5;
+            border: solid 1px #398439;
+            display: block;
+        }
+        .item{
+            border-right: solid 2px #A3A3A3;
+            background: #ffffff;
+        }
+        .item:last-child{
+            border-right:none;
+        }
+        .sub-menu:hover > .menu-item {
+            display: block;
+
+        }
 
         .footer {
-            background: #00A600;
+            background: #398439;
             border: solid 2px #e5e5e5;
             line-height: 3.2em;
             text-align: center;
             color: #FFFFFF;
+        }
+
+        .search .form-control {
+            border: 1px solid #398439;
         }
 
         @media (max-width: 768px) {
@@ -130,7 +167,7 @@
                     <input type="text" name='key' class="form-control" placeholder="职位/公司/地区">
                     <span class="input-group-btn">
                     <button class="btn btn-default btn-success" type="button">
-                        搜索
+                        搜 索
                     </button>
                    </span>
                 </div>
@@ -138,12 +175,36 @@
             </div>
             <!--职位分类-->
             <div class="category">
-                <ul class="list-group">
-                    <li class="list-group-item">技术</li>
-                    <li class="list-group-item">设计</li>
-                    <li class="list-group-item">产品运营</li>
-                    <li class="list-group-item">市场和营销</li>
-                    <li class="list-group-item">职能</li>
+                <ul class="list-group menu">
+                    <li class="list-group-item sub-menu">
+                        <span class="cg-key">技术</span>
+                        <div class="menu-item">
+                            <span class="item">后台开发</span>
+                            <span class="item">前端开发</span>
+                            <span class="item">架构师</span>
+                            <span class="item">架构师</span>
+                            <span class="item">架构师</span>
+                            <span class="item">架构师</span>
+                            <span class="item">架构师</span>
+                            <span class="item">架构师</span>
+                            <span class="item">架构师</span>
+                            <span class="item">架构师</span>
+                            <span class="item">架构师</span>
+                            <span class="item">架构师</span>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item sub-menu">
+                        <span>技术</span>
+                        <div class="menu-item">
+                            <span class="item">后台开发</span>
+                            <span class="item">前端开发</span>
+                            <span class="item">架构师</span>
+                        </div>
+                    </li>
+                    <!--<li class="list-group-item">产品运营</li>-->
+                    <!--<li class="list-group-item">市场和营销</li>-->
+                    <!--<li class="list-group-item">职能</li>-->
                 </ul>
             </div>
 
