@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-ng-app="MainApp">
 <head>
     <title><%= title %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,35 +10,38 @@
     <!--index style-->
     <link href="/main/css/index.css" rel="stylesheet">
 
-    <script src="/base/js/libs/jquery-2.1.4.min.js"/>
-    <script src="/base/js/libs/bootstrap.min.js"></script>
+    <script src="/base/js/jquery-2.1.4.min.js"/>
+    <script src="/base/js/bootstrap.min.js"></script>
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-    <script src="/base/js/libs/holder.min.js"></script>
+    <script src="/base/js/holder.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="/base/js/libs/ie10-viewport-bug-workaround.js"></script>
+    <script src="/base/js/ie10-viewport-bug-workaround.js"></script>
+    <!--angular framework-->
+    <script src="/base/js/angular.min.js"></script>
+    <!--Main framework-->
+    <script src="/main/js/mainApp.js"></script>
 
 </head>
 <body>
 <div class="container-fluid">
     <!-- Stack the columns on mobile by making one full-width and the other half-width -->
-    <div class="row header">
+    <div data-ng-controller="NavCtrl" class="row header">
         <div class="col-xs-12 col-sm-4 col-md-4 logo">
-            <a href="#">ERS系统</a>
+            <a href="#">{{headerText.sys}}</a>
         </div>
         <div class="col-xs-3 col-sm-2 col-md-2 home">
-            <a href="#">首页</a>
+            <a href="#">{{headerText.index}}</a>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 com">
-            <a href="#">公司</a>
+            <a href="#">{{headerText.enterprise}}</a>
         </div>
         <div class="col-xs-3 col-sm-1 col-md-1 col-sm-offset-1 col-md-offset-1">
-            <a href="#">登录</a>
+            <a href="#">{{headerText.login}}</a>
         </div>
         <div class="col-xs-3 col-sm-1 col-md-1">
-            <a href="#">注册</a>
+            <a href="#">{{headerText.register}}</a>
         </div>
     </div>
-
     <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
     <div class="row main">
         <div class="col-xs-12 col-sm-4 col-md-4 category-sec">
