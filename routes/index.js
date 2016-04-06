@@ -2,13 +2,13 @@ var express = require('express');
 var router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('job', { title: 'YYYYYYY' });
-});
+//router.get('/', function(req, res, next) {
+//  res.render('job', { title: 'YYYYYYY' });
+//});
 
 /* GET home page. */
-router.get('/design', function(req, res, next) {
-  res.render('design', { title: 'design' });
+router.get('/', function(req, res, next) {
+  res.render('index', { title: 'ERS-Home' });
 });
 
 module.exports = router;

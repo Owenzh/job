@@ -1,11 +1,264 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap core CSS -->
+    <link href="/base/css/bootstrap.min.css" rel="stylesheet">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="/base/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <!--index style-->
+    <link href="/main/css/index.css" rel="stylesheet">
+
+    <script src="/base/js/libs/jquery-2.1.4.min.js"/>
+    <script src="/base/js/libs/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="/base/js/libs/holder.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/base/js/libs/ie10-viewport-bug-workaround.js"></script>
+
+</head>
+<body>
+<div class="container-fluid">
+    <!-- Stack the columns on mobile by making one full-width and the other half-width -->
+    <div class="row header">
+        <div class="col-xs-12 col-sm-4 col-md-4 logo">
+            <a href="#">ERS系统</a>
+        </div>
+        <div class="col-xs-3 col-sm-2 col-md-2 home">
+            <a href="#">首页</a>
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 com">
+            <a href="#">公司</a>
+        </div>
+        <div class="col-xs-3 col-sm-1 col-md-1 col-sm-offset-1 col-md-offset-1">
+            <a href="#">登录</a>
+        </div>
+        <div class="col-xs-3 col-sm-1 col-md-1">
+            <a href="#">注册</a>
+        </div>
+    </div>
+
+    <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
+    <div class="row main">
+        <div class="col-xs-12 col-sm-4 col-md-4 category-sec">
+            <!--职位搜索-->
+            <div class="search">
+                <div class="input-group">
+                    <input type="text" name='key' class="form-control" placeholder="职位/公司/地区">
+                    <span class="input-group-btn">
+                    <button class="btn btn-default btn-success" type="button">
+                        搜 索
+                    </button>
+                   </span>
+                </div>
+                <!-- /input-group -->
+            </div>
+            <!--热门职位-->
+            <div class="hot-job">
+                <span class="hot-text">热门职位：</span>
+                <span class="hot-item"><a href="#">Java</a></span>
+                <span class="hot-item"><a href="#">大数据工程师</a></span>
+                <span class="hot-item"><a href="#">web前端</a></span>
+                <span class="hot-item"><a href="#">NodeJS</a></span>
+            </div>
+            <!--职位分类-->
+            <div class="category">
+                <ul class="list-group menu">
+                    <li class="list-group-item sub-menu">
+                        <span class="cg-key">技术</span>
+
+                        <div class="menu-item">
+                            <span class="item"><a href="#">后台开发</a></span>
+                            <span class="item"><a href="#">前端开发</a></span>
+                            <span class="item"><a href="#">架构师</a></span>
+                        </div>
+                    </li>
+                    <li class="list-group-item sub-menu">
+                        <span class="cg-key">产品运营</span>
+
+                        <div class="menu-item">
+                            <span class="item"><a href="#">后台开发</a></span>
+                            <span class="item"><a href="#">前端开发</a></span>
+                            <span class="item"><a href="#">架构师</a></span>
+                        </div>
+                    </li>
+                    <li class="list-group-item sub-menu">
+                        <span class="cg-key">市场和营销</span>
+
+                        <div class="menu-item">
+                            <span class="item"><a href="#">后台开发</a></span>
+                            <span class="item"><a href="#">前端开发</a></span>
+                            <span class="item"><a href="#">架构师</a></span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!--职位信息列表-->
+        <div class="col-xs-12 col-sm-8 col-md-8 content-sec">
+            <div class="row job-item">
+                <div class="col-xs-6 col-sm-4 col-md-4">
+                    <span class="job-title"><a href="#">系统架构师[厦门]</a></span><span class="job-date">2016-03-11</span>
+                    <span class="job-salary">12k-24k</span><span class="job-req">经验3-5年 / 本科</span>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-4 col-sm-offset-2">
+                    <span class="job-company"><a href="#">咪咕动漫</a></span>
+                    <span class="job-company-type">移动互联网 / 成熟型(不需要融资)</span>
+                </div>
+            </div>
+            <div class="row job-item">
+                <div class="col-xs-6 col-sm-4 col-md-4">
+                    <span class="job-title"><a href="#">web前端高级工程师[北京]</a></span><span
+                        class="job-date">2016-03-11</span>
+                    <span class="job-salary">20k-24k</span><span class="job-req">经验3-5年 / 本科</span>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-4 col-sm-offset-2">
+                    <span class="job-company"><a href="#">百度贴吧</a></span>
+                    <span class="job-company-type">移动互联网 / 成熟型</span>
+                </div>
+            </div>
+            <div class="row job-item">
+                <div class="col-xs-6 col-sm-4 col-md-4">
+                    <span class="job-title"><a href="#">系统架构师[厦门]</a></span><span class="job-date">2016-03-11</span>
+                    <span class="job-salary">12k-24k</span><span class="job-req">经验3-5年 / 本科</span>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-4 col-sm-offset-2">
+                    <span class="job-company"><a href="#">咪咕动漫</a></span>
+                    <span class="job-company-type">移动互联网 / 成熟型(不需要融资)</span>
+                </div>
+            </div>
+            <div class="row job-item">
+                <div class="col-xs-6 col-sm-4 col-md-4">
+                    <span class="job-title"><a href="#">web前端高级工程师[北京]</a></span><span
+                        class="job-date">2016-03-11</span>
+                    <span class="job-salary">20k-24k</span><span class="job-req">经验3-5年 / 本科</span>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-4 col-sm-offset-2">
+                    <span class="job-company"><a href="#">百度贴吧</a></span>
+                    <span class="job-company-type">移动互联网 / 成熟型</span>
+                </div>
+            </div>
+            <div class="row job-item">
+                <div class="col-xs-6 col-sm-4 col-md-4">
+                    <span class="job-title"><a href="#">系统架构师[厦门]</a></span><span class="job-date">2016-03-11</span>
+                    <span class="job-salary">12k-24k</span><span class="job-req">经验3-5年 / 本科</span>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-4 col-sm-offset-2">
+                    <span class="job-company"><a href="#">咪咕动漫</a></span>
+                    <span class="job-company-type">移动互联网 / 成熟型(不需要融资)</span>
+                </div>
+            </div>
+            <div class="row job-item">
+                <div class="col-xs-6 col-sm-4 col-md-4">
+                    <span class="job-title"><a href="#">web前端高级工程师[北京]</a></span><span
+                        class="job-date">2016-03-11</span>
+                    <span class="job-salary">20k-24k</span><span class="job-req">经验3-5年 / 本科</span>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-4 col-sm-offset-2">
+                    <span class="job-company"><a href="#">百度贴吧</a></span>
+                    <span class="job-company-type">移动互联网 / 成熟型</span>
+                </div>
+            </div>
+            <div class="row job-item">
+                <div class="col-xs-6 col-sm-4 col-md-4">
+                    <span class="job-title"><a href="#">系统架构师[厦门]</a></span><span class="job-date">2016-03-11</span>
+                    <span class="job-salary">12k-24k</span><span class="job-req">经验3-5年 / 本科</span>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-4 col-sm-offset-2">
+                    <span class="job-company"><a href="#">咪咕动漫</a></span>
+                    <span class="job-company-type">移动互联网 / 成熟型(不需要融资)</span>
+                </div>
+            </div>
+            <div class="row job-item">
+                <div class="col-xs-6 col-sm-4 col-md-4">
+                    <span class="job-title"><a href="#">web前端高级工程师[北京]</a></span><span
+                        class="job-date">2016-03-11</span>
+                    <span class="job-salary">20k-24k</span><span class="job-req">经验3-5年 / 本科</span>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-4 col-sm-offset-2">
+                    <span class="job-company"><a href="#">百度贴吧</a></span>
+                    <span class="job-company-type">移动互联网 / 成熟型</span>
+                </div>
+            </div>
+            <div class="row job-item">
+                <div class="col-xs-6 col-sm-4 col-md-4">
+                    <span class="job-title"><a href="#">人类工程师1111[北京]</a></span><span
+                        class="job-date">2016-03-11</span>
+                    <span class="job-salary">20k-24k</span><span class="job-req">经验30-50年 / 本科</span>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-4 col-sm-offset-2">
+                    <span class="job-company"><a href="#">天朝</a></span>
+                    <span class="job-company-type">移动互联网</span>
+                </div>
+            </div>
+            <div class="row job-item">
+                <div class="col-xs-6 col-sm-4 col-md-4">
+                    <span class="job-title"><a href="#">人类工程师1111[北京]</a></span><span
+                        class="job-date">2016-03-11</span>
+                    <span class="job-salary">20k-24k</span><span class="job-req">经验30-50年 / 本科</span>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-4 col-sm-offset-2">
+                    <span class="job-company"><a href="#">天朝</a></span>
+                    <span class="job-company-type">移动互联网</span>
+                </div>
+            </div>
+            <div class="row job-item">
+                <div class="col-xs-6 col-sm-4 col-md-4">
+                    <span class="job-title"><a href="#">人类工程师1111[北京]</a></span><span
+                        class="job-date">2016-03-11</span>
+                    <span class="job-salary">20k-24k</span><span class="job-req">经验30-50年 / 本科</span>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-4 col-sm-offset-2">
+                    <span class="job-company"><a href="#">天朝</a></span>
+                    <span class="job-company-type">移动互联网</span>
+                </div>
+            </div>
+            <div class="row job-item">
+                <div class="col-xs-6 col-sm-4 col-md-4">
+                    <span class="job-title"><a href="#">人类工程师1111[北京]</a></span><span
+                        class="job-date">2016-03-11</span>
+                    <span class="job-salary">20k-24k</span><span class="job-req">经验30-50年 / 本科</span>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-4 col-sm-offset-2">
+                    <span class="job-company"><a href="#">天朝</a></span>
+                    <span class="job-company-type">移动互联网</span>
+                </div>
+            </div>
+            <div class="row job-item">
+                <div class="col-xs-6 col-sm-4 col-md-4">
+                    <span class="job-title"><a href="#">人类工程师1111[北京]</a></span><span
+                        class="job-date">2016-03-11</span>
+                    <span class="job-salary">20k-24k</span><span class="job-req">经验30-50年 / 本科</span>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-4 col-sm-offset-2">
+                    <span class="job-company"><a href="#">天朝</a></span>
+                    <span class="job-company-type">移动互联网</span>
+                </div>
+            </div>
+            <div class="row job-item">
+                <div class="col-xs-6 col-sm-4 col-md-4">
+                    <span class="job-title"><a href="#">人类工程师*8888[北京]</a></span><span
+                        class="job-date">2016-03-11</span>
+                    <span class="job-salary">20k-24k</span><span class="job-req">经验30-50年 / 本科</span>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-4 col-sm-offset-2">
+                    <span class="job-company"><a href="#">天朝</a></span>
+                    <span class="job-company-type">移动互联网</span>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <!-- Columns are always 50% wide, on mobile and desktop -->
+    <div class="navbar-fixed-bottom row footer">
+        <div class="col-xs-12">中国最高效的企业招聘平台</div>
+    </div>
+</div>
+</body>
 </html>

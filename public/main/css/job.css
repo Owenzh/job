@@ -5,7 +5,7 @@ body, html {
 	font-family: arial,tahoma,宋体;
 	font-size: 14px;
 	line-height: 27px;
-	background-image: url(../img/abg.jpg);
+	background-image: url(../../base/img/abg.jpg);
 	background-repeat: repeat;
 	background-attachment: fixed;
 }
@@ -89,7 +89,7 @@ input, input::-moz-focus-inner, .weather-info-set .btn::-moz-focus-inner {
 }
 .bmenu {
 	float: left;
-	background-image: url(../img/xuanxiangka/menu2.jpg);
+	background-image: url(../../base/img/xuanxiangka/menu2.jpg);
 	background-repeat: no-repeat;
 	height: 32px;
 	width: 115px;
@@ -102,7 +102,7 @@ input, input::-moz-focus-inner, .weather-info-set .btn::-moz-focus-inner {
 
 .amenu {
 	float: left;
-	background-image: url(../img/xuanxiangka/menu1.jpg);
+	background-image: url(../../base/img/xuanxiangka/menu1.jpg);
 	background-repeat: no-repeat;
 	height: 32px;
 	width: 115px;
@@ -131,7 +131,7 @@ input, input::-moz-focus-inner, .weather-info-set .btn::-moz-focus-inner {
 }
 
 .rz_title {
-	background-image: url(../img/title_bg.gif);
+	background-image: url(../../base/img/title_bg.gif);
 	height: 29px;
 	width: 945px;
 	padding-left: 35px;
@@ -168,7 +168,7 @@ input, input::-moz-focus-inner, .weather-info-set .btn::-moz-focus-inner {
 	padding-left: 10px;
 }
 #xx1 {
-	background-image: url(../img/x2.png);
+	background-image: url(../../base/img/x2.png);
 	background-repeat: no-repeat;
 	height: 15px;
 	width: 15px;
@@ -177,7 +177,7 @@ input, input::-moz-focus-inner, .weather-info-set .btn::-moz-focus-inner {
 	top: 271px;
 }
 #xx2 {
-	background-image: url(../img/x1.png);
+	background-image: url(../../base/img/x1.png);
 	background-repeat: no-repeat;
 	position: absolute;
 	height: 15px;
@@ -186,7 +186,7 @@ input, input::-moz-focus-inner, .weather-info-set .btn::-moz-focus-inner {
 	top: 270px;
 }
 #xx3 {
-	background-image: url(../img/x1.png);
+	background-image: url(../../base/img/x1.png);
 	background-repeat: no-repeat;
 	position: absolute;
 	height: 15px;
