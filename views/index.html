@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-ng-app="MainApp">
+<html data-ng-app="mainModel">
 <head>
     <title><%= title %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,28 +19,29 @@
     <!--angular framework-->
     <script src="/base/js/angular.min.js"></script>
     <!--Main framework-->
-    <script src="/main/js/mainApp.js"></script>
+    <script src="/main/js/mainModel.js"></script>
 
 </head>
 <body>
 <div class="container-fluid">
     <!-- Stack the columns on mobile by making one full-width and the other half-width -->
-    <div data-ng-controller="NavCtrl" class="row header">
+    <div data-ng-controller="NavController" class="row header">
         <div class="col-xs-12 col-sm-4 col-md-4 logo">
-            <a href="#">{{headerText.sys}}</a>
+            <a href="#" data-ng-bind="headerText.sys"></a>
         </div>
         <div class="col-xs-3 col-sm-2 col-md-2 home">
-            <a href="#">{{headerText.index}}</a>
+            <a href="#" data-ng-bind="headerText.index"></a>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 com">
-            <a href="#">{{headerText.enterprise}}</a>
+            <a href="#" data-ng-bind="headerText.enterprise"></a>
         </div>
         <div class="col-xs-3 col-sm-1 col-md-1 col-sm-offset-1 col-md-offset-1">
-            <a href="#">{{headerText.login}}</a>
+            <a href="#" data-ng-bind="headerText.login"></a>
         </div>
         <div class="col-xs-3 col-sm-1 col-md-1">
-            <a href="#">{{headerText.register}}</a>
+            <a href="#" data-ng-bind="headerText.register"></a>
         </div>
+        <!--<input type="text" data-ng-model="headerText.sys"/>-->
     </div>
     <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
     <div class="row main">

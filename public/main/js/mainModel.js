@@ -1,10 +1,10 @@
 /**
  * Created by Owen on 4/6/2016.
  */
-var mainApp = angular.module('MainApp',[]);
+var mainModel = angular.module('mainModel',[]);
 
 //
-mainApp.controller('NavCtrl',function($scope){
+mainModel.controller('NavController',function($scope){
     $scope.headerText = {
         sys:'ERS系统',
         index:'首页',
