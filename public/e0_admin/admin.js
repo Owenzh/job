@@ -7,9 +7,7 @@ mainApp.config(['$routeProvider',
                 templateUrl: 'templates/admin/admin_user.html',
                 controller: 'AddUserController'
             })
-    }]);
-
-mainApp.controller('mainController', function ($scope, $location) {
+    }]).controller('mainController', function ($scope, $location) {
         var sidebar_yb = [
             {id: "a_yb", link: "#", icon: "&#xe601;", text: "仪表", active: true},
             {id: "a_tj", link: "#/any", icon: "&#xe63c;", text: "统计分析", active: false},
