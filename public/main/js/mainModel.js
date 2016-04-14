@@ -9,9 +9,11 @@ angular.module('mainModel', ['ngRoute']).config(function ($routeProvider, $locat
     $routeProvider.when('/index', {
         templateUrl: '/main/htmlviews/main.html'
     }).when('/enterprise', {
-        templateUrl: '/main/htmlviews/enterprise.html'
+        templateUrl: '/main/htmlviews/enterprise.html',
+        controller:'EnterpriseController'
     }).when('/login', {
-        templateUrl: '/main/htmlviews/login.html'
+        templateUrl: '/main/htmlviews/login.html',
+        controller:'LoginController'
     }).when('/register', {
         templateUrl: '/main/htmlviews/register.html',
         controller:'RegisterController'
@@ -32,4 +34,10 @@ angular.module('mainModel', ['ngRoute']).config(function ($routeProvider, $locat
     $scope.register = function(){
         console.log("RegisterUser");
     }
+}).controller('LoginController', function ($scope, $location) {
+    $scope.login = function(){
+        console.log("LoginUser");
+    }
+}).controller('EnterpriseController', function ($scope, $location) {
+
 });
