@@ -1,7 +1,18 @@
 <style>
     .enterprise-category {
-        line-height: 5em;
-        border: solid 1px #0000ff;
+        line-height: 4em;
+        border: solid 1px #fbf9ff;
+    }
+
+    .cat_tab {
+        margin-right: 0.5em;
+        padding: 0.8em;
+        white-space: nowrap;
+        background-color: #fff7db;
+        border-radius: 1em;
+        cursor: pointer;
+        color: #23ec4b;
+        font-weight: 800;
     }
 
     .small-tab {
@@ -10,28 +21,130 @@
     }
 
     .tab-block {
+        position: relative;
         margin: 0.3em 0;
         line-height: 5em;
-        border: solid 1px #008800;
+    }
+
+    .tab-block .small-logo {
+        width: 5em;
+        height: 5em;
+    }
+
+    .tab-block > table {
+        border: 1px solid #bdaa4b;
+    }
+
+    .table > tbody > tr > td {
+        border-top: 0px solid #bdaa4b;
+        padding: 4px;
+    }
+
+    .etp-logo {
+        width: 7em;
+    }
+
+    .etp-title {
+        color: #38aa5c;
+        font-weight: 900;
+        font-size: 1.5em;
+    }
+
+    .etp-type {
+        color: #000000;
+        font-size: 0.6em;
+    }
+
+    .etp-status {
+        font-size: 1.2em;
+    }
+    .etp-status-count{
+        color: #ff3248;
+
+    }
+    .job-item:last-child {
+        border-bottom: none;
+        margin-bottom: 6em;
     }
 </style>
 <div class="enterprise">
     <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 enterprise-category">category</div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 enterprise-category">
+            <span class="cat_tab">北京</span>
+            <span class="cat_tab">上海</span>
+            <span class="cat_tab">广州</span>
+            <span class="cat_tab">深圳</span>
+            <span class="cat_tab">杭州</span>
+            <span class="cat_tab">大连</span>
+            <span class="cat_tab">无锡</span>
+        </div>
     </div>
     <div class="row small-tab">
         <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12 tab-block">
-            enterprise
+            <table class="table">
+                <tbody>
+                <tr>
+                    <td rowspan="3" class="etp-logo"><img class="small-logo" src="/main/imgs/logo.png"/></td>
+                    <td class="etp-title">大连天天科技</td>
+                </tr>
+                <tr>
+                    <td class="etp-type">互联网金融/民营</td>
+                </tr>
+                <tr>
+                    <td class="etp-status">已经发布了<span class="etp-status-count">15</span>个职位</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
         <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12 tab-block">
-            enterprise
+            <table class="table">
+                <tbody>
+                <tr>
+                    <td rowspan="3" class="etp-logo"><img class="small-logo" src="/main/imgs/logo.png"/></td>
+                    <td class="etp-title">大连天天科技</td>
+                </tr>
+                <tr>
+                    <td class="etp-type">互联网金融/民营</td>
+                </tr>
+                <tr>
+                    <td class="etp-status">已经发布了<span class="etp-status-count">15</span>个职位</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
         <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12 tab-block">
-            enterprise
+            <table class="table">
+                <tbody>
+                <tr>
+                    <td rowspan="3" class="etp-logo"><img class="small-logo" src="/main/imgs/logo.png"/></td>
+                    <td class="etp-title">大连天天科技</td>
+                </tr>
+                <tr>
+                    <td class="etp-type">互联网金融/民营</td>
+                </tr>
+                <tr>
+                    <td class="etp-status">已经发布了<span class="etp-status-count">15</span>个职位</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
         <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12 tab-block">
-            enterprise
+            <table class="table">
+                <tbody>
+                <tr>
+                    <td rowspan="3" class="etp-logo"><img class="small-logo" src="/main/imgs/logo.png"/></td>
+                    <td class="etp-title">大连天天科技</td>
+                </tr>
+                <tr>
+                    <td class="etp-type">互联网金融/民营</td>
+                </tr>
+                <tr>
+                    <td class="etp-status">已经发布了<span class="etp-status-count">15</span>个职位</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
+
 
     </div>
     <div class="row page"></div>

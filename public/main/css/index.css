@@ -131,7 +131,7 @@ a:link, a:visited {
 
 .job-item:last-child {
     border-bottom: none;
-    margin-bottom: 6em;
+    margin-bottom: 1em;
 }
 
 .job-title > a {
@@ -167,6 +167,9 @@ a:link, a:visited {
 }
 
 /*????*/
+.footer-span{
+    margin-bottom: 6em;
+}
 .footer {
     background: #398439;
     border: solid 0.1em #e5e5e5;
