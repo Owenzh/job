@@ -8,6 +8,9 @@ angular.module('mainModel', ['ngRoute']).config(function ($routeProvider, $locat
     });
     $routeProvider.when('/index', {
         templateUrl: '/main/htmlviews/main.html'
+    }).when('/job_item', {
+        templateUrl: '/main/htmlviews/job_item.html',
+        controller:'JobItemController'
     }).when('/enterprise', {
         templateUrl: '/main/htmlviews/enterprise.html',
         controller:'EnterpriseController'
@@ -39,5 +42,7 @@ angular.module('mainModel', ['ngRoute']).config(function ($routeProvider, $locat
         console.log("LoginUser");
     }
 }).controller('EnterpriseController', function ($scope, $location) {
+
+}).controller('JobItemController', function ($scope, $location) {
 
 });
