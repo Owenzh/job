@@ -178,6 +178,13 @@ a:link, a:visited {
     color: #FFFFFF;
 }
 
+/*enterprise list page */
+.enterprise-category {
+    line-height: 4em;
+    border: solid 1px #fbf9ff;
+}
+/*enterprise list page */
+
 @media (max-width: 768px) {
     /*xs*/
     .category {
