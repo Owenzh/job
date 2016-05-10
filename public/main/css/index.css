@@ -2,14 +2,12 @@ a:link, a:visited {
     text-decoration: none;
 }
 
-/*????*/
+/*header*/
 .header {
     background: #fafafa;
-    /*background: #82D900;*/
     border-bottom: solid 2px #e5e5e5;
     line-height: 3.2em;
     font-size: 1.1em;
-    /*font-weight: bold;*/
     margin-top: 2px;
 }
 
@@ -41,12 +39,12 @@ a:link, a:visited {
     border-bottom: none;
 }
 
-/*?????*/
+/*search*/
 .search .form-control {
     border: 1px solid #398439;
 }
 
-/*????*/
+/*hot term*/
 .hot-job {
     /*border: solid 1px #5cb85c;*/
     border-top: none;
@@ -68,7 +66,7 @@ a:link, a:visited {
     display: inline-block;
 }
 
-/*???????*/
+/*main page*/
 .main, .category {
     margin-top: 0.4em;
 }
@@ -166,7 +164,7 @@ a:link, a:visited {
     display: inline-block;
 }
 
-/*????*/
+/*footer*/
 .footer-span{
     margin-bottom: 6em;
 }
