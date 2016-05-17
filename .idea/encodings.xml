@@ -8,6 +8,7 @@
     <file url="file://$PROJECT_DIR$/public/main/htmlviews/register.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/public/main/js/mainModel.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/public/scripts/app.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/public/scripts/controller/job_controller.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/public/scripts/controller/nav_controller.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/public/styles/index.css" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/public/ui/index/enterprise.html" charset="UTF-8" />
