@@ -9,20 +9,105 @@
     <meta name="author" content="">
 
     <title>后台管理</title>
-    <%include contents.html%>
+    <!-- Bootstrap core CSS -->
+    <link href="/styles/vendor/bootstrap.min.css" rel="stylesheet">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="/styles/vendor/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/styles/vendor/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="/styles/vendor/iconfont.css" rel="stylesheet">
+    <link href="/styles/dashboard.css" rel="stylesheet">
+
+    <script src="/scripts/vendor/jquery-2.1.4.min.js"/>
+    <script src="/scripts/vendor/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="/scripts/vendor/holder.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/scripts/vendor/ie10-viewport-bug-workaround.js"></script>
+
+    <script src="/scripts/vendor/angular.min.js"></script>
+    <script src="/scripts/vendor/angular-route.min.js"></script>
 </head>
 
 <body ng-app="mainApp">
 
-<nav ng-include="'templates/admin/admin_header.html'" class="navbar navbar-inverse navbar-fixed-top">
-
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">企业人才招聘后台管理系统</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><i class="icon iconfont">&#xe669; </i>个人</a></li>
+                <li><a href="#"><i class="icon iconfont">&#xe66c; </i>退出</a></li>
+                <li><a href="#"><i class="icon iconfont">&#xe66b; </i>帮助</a></li>
+            </ul>
+            <!--
+            <form class="navbar-form navbar-right">
+                <input type="text" class="form-control" placeholder="Search...">
+            </form>
+            -->
+        </div>
+    </div>
 </nav>
 
 <div class="container-fluid">
     <div class="row">
-        <div ng-include="'templates/admin/admin_sidebar.html'" ng-controller="mainController"
+        <div ng-controller="mainController"
              class="col-sm-3 col-md-2 sidebar">
 
+            <ul class="nav nav-sidebar">
+                <li ng-repeat="u in sideYb" ng-class="{'active':u.active}" ng-click="changeActive(u.id)">
+                    <a href="{{u.link}}" id="{{u.id}}">
+                        <i class="icon iconfont" data-ng-bind-html="u.icon|trusted"></i>
+                        {{u.text}}
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="nav nav-sidebar">
+                <li ng-repeat="u in sideUser" ng-class="{'active':u.active}" ng-click="changeActive(u.id)">
+                    <a href="{{u.link}}" id="{{u.id}}">
+                        <i class="icon iconfont" data-ng-bind-html="u.icon|trusted"></i>
+                        {{u.text}}
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="nav nav-sidebar">
+                <li ng-repeat="u in sideCat" ng-class="{'active':u.active}" ng-click="changeActive(u.id)">
+                    <a href="{{u.link}}" id="{{u.id}}">
+                        <i class="icon iconfont" data-ng-bind-html="u.icon|trusted"></i>
+                        {{u.text}}
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="nav nav-sidebar">
+                <li ng-repeat="u in sidePos" ng-class="{'active':u.active}" ng-click="changeActive(u.id)">
+                    <a href="{{u.link}}" id="{{u.id}}">
+                        <i class="icon iconfont" data-ng-bind-html="u.icon|trusted"></i>
+                        {{u.text}}
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="nav nav-sidebar">
+                <li ng-repeat="u in sideApy" ng-class="{'active':u.active}" ng-click="changeActive(u.id)">
+                    <a href="{{u.link}}" id="{{u.id}}">
+                        <i class="icon iconfont" data-ng-bind-html="u.icon|trusted"></i>
+                        {{u.text}}
+                    </a>
+                </li>
+            </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <div ng-view></div>
@@ -39,7 +124,7 @@
 <!--系统js
 <script src="/js/classes/user.js"></script>
 -->
-<script src="/js/admin.js"></script>
-<script src="/js/admin_user_controller.js"></script>
+<script src="/scripts/admin.js"></script>
+<script src="/scripts/admin_user_controller.js"></script>
 </body>
 </html>

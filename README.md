@@ -1,17 +1,25 @@
 #企业人才招聘系统
 ##项目说明书
 ###1.目录结构
+>DBUtils
+
+>>config.js  --- *数据库配置文件*
+
+>>DBAPI.js --- *数据库操作接口*
+
 >public
 
->>base  --- *基础工具*
+>>fonts  --- *web字体*
 
->>e0_admin --- *后台管理*
+>>images --- *静态图片*
 
->>e1_enterprise --- *企业会员*
+>>scripts --- *JS脚本目录*
 
->>e2_user --- *求职者*
+>>styles --- *CSS脚本目录*
 
->>main --- *公共功能*
+>>ui --- *html模板*
+
+>>TEMP --- *临时目录*
 
 
 

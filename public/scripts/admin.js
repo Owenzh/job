@@ -4,7 +4,7 @@ mainApp.config(['$routeProvider',
     function ($routeProvider) {
         $routeProvider.
             when('/adduser', {
-                templateUrl: 'templates/admin/admin_user.html',
+                templateUrl: '/ui/admin/admin_user.html',
                 controller: 'AddUserController'
             })
     }]).controller('mainController', function ($scope, $location) {
