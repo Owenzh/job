@@ -10,16 +10,16 @@ angular.module('jobApp', ['ngRoute','jobController']).config(function ($routePro
         templateUrl: '/ui/index/main.html'
     }).when('/job_item', {
         templateUrl: '/ui/index/job_item.html',
-        controller: 'JobItemController'
+        controller: 'JobItemController as jobItem'
     }).when('/enterprise', {
         templateUrl: '/ui/index/enterprise.html',
-        controller: 'EnterpriseController'
+        controller: 'EnterpriseController as enterprise'
     }).when('/login', {
         templateUrl: '/ui/index/login.html',
-        controller: 'LoginController'
+        controller: 'LoginController as login'
     }).when('/register', {
         templateUrl: '/ui/index/register.html',
-        controller: 'RegisterController'
+        controller: 'RegisterController as register'
     }).when('/privacy', {
         templateUrl: '/ui/index/privacy.html'
     }).otherwise({
