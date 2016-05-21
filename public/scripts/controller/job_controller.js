@@ -19,7 +19,7 @@ angular.module('jobController', []).controller('NavController', function ($scope
     };
 
     $scope.registerAction = function () {
-        console.log("RegisterUser");
+        console.log("RegisterUser"+$scope.user.email);
     };
     $scope.init();
 

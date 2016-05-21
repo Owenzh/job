@@ -12,9 +12,9 @@
         &nbsp;
     </div>
     <div class="row er">
-        <form role="form" name="registerForm" method="post" novalidate ng-submit="registerAction()">
+        <form role="form" name="registerForm" method="post">
             <div class="form-group">
-                <input type="email" class="form-control" ng-model = "user.email"
+                <input type="email" class="form-control" ng-model="user.email"
                        placeholder="请输入邮箱" required>
             </div>
             <div class="form-group">
@@ -32,10 +32,11 @@
 
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" ng-model="user.policy" required> 我已阅读并同意<a href="#/privacy">&nbsp;网站协议&nbsp;</a>
+                    <input type="checkbox" ng-model="user.policy" required> 我已阅读并同意<a href="#/privacy">
+                    &nbsp;网站协议&nbsp;</a>
                 </label>
             </div>
-            <input type="submit" class="btn btn-success" value="快速注册" />
+            <input type="submit" class="btn btn-success" value="快速注册" ng-click="registerAction()"/>
         </form>
         <pre>
             {{user|json}}
