@@ -12,7 +12,7 @@
         &nbsp;
     </div>
     <div class="row er">
-        <form role="form" name="registerForm" method="post">
+        <form role="form" name="registerForm" method="post" novalidate ng-submit="registerAction()">
             <div class="form-group">
                 <input type="email" class="form-control" ng-model = "user.email"
                        placeholder="请输入邮箱" required>
@@ -35,7 +35,7 @@
                     <input type="checkbox" ng-model="user.policy" required> 我已阅读并同意<a href="#/privacy">&nbsp;网站协议&nbsp;</a>
                 </label>
             </div>
-            <button type="submit" class="btn btn-success" ng-submit="registerAction()">快速注册</button>
+            <input type="submit" class="btn btn-success" value="快速注册" />
         </form>
         <pre>
             {{user|json}}
