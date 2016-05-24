@@ -19,7 +19,12 @@ angular.module('jobController', []).controller('NavController', function ($scope
     };
 
     $scope.registerAction = function () {
-        console.log("RegisterUser"+$scope.user.email);
+        if (angular.isUndefined($scope.user.email) || angular.isUndefined($scope.user.password) || angular.isUndefined($scope.user.type)|| angular.isUndefined($scope.user.policy)){
+            console.log("Need fill all inputs");
+        }else{
+            console.log("RegisterUser");
+        }
+
     };
     $scope.init();
 
