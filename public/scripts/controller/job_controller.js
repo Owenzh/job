@@ -1,7 +1,7 @@
 /**
  * Created by XZhang21 on 5/17/2016.
  */
-angular.module('jobController', []).controller('NavController', function ($scope) {
+angular.module('jobController', ['jobService']).controller('NavController', function ($scope) {
     $scope.headerText = {
         sys: 'ERS系统',
         index: '首页',
@@ -11,7 +11,7 @@ angular.module('jobController', []).controller('NavController', function ($scope
     }
 }).controller('LoginController', function ($scope, $location) {
 
-}).controller('RegisterController', ['$scope', function ($scope) {
+}).controller('RegisterController', ['$scope','userSvc', function ($scope,userSvc) {
 
     $scope.init = function () {
         $scope.user = {};
@@ -24,6 +24,7 @@ angular.module('jobController', []).controller('NavController', function ($scope
         } else {
             //Need register service to handle it.
             console.log("RegisterUser");
+            userSvc.registerUser($scope.user);
         }
 
     };
