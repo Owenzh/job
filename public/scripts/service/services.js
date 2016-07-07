@@ -9,9 +9,9 @@ svc.factory('userSvc', ['$http', function ($http) {
             method: 'POST',
             url: '/api/user',
             headers: {
-                'Content-type': undefined
+                'Content-type': 'application/json'
             },
-            data: {d: user}
+            data: JSON.stringify([user])
         };
         $http(req).then(function successCallback(res) {
             console.log(res);

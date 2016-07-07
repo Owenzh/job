@@ -3,6 +3,8 @@
  */
 var ObjectId = require('mongodb').ObjectId;
 var DB = require('../DBUtils/DBAPI').MGDAO;
+var dbObj = new DB('tb_user');
 exports.createUser = function(data, callback){
-    console.log("createUser***");
+    dbObj.insertDocuments(data, callback);
+    //console.log("createUser***"+data);
 };
