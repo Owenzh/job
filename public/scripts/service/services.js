@@ -5,7 +5,20 @@
 var svc = angular.module('jobService', []);
 svc.factory('userSvc', ['$http', function ($http) {
     function registerUser(user) {
-        console.log('registerUser SVC '+user.email);
+        var req = {
+            method: 'POST',
+            url: '/api/user',
+            headers: {
+                'Content-type': undefined
+            },
+            data: {d: user}
+        };
+        $http(req).then(function successCallback(res) {
+            console.log(res);
+        }, function errorCallback(res) {
+            console.log("@Error@");
+        });
+        console.log('registerUser SVC ' + user.email);
     }
 
     return {registerUser: registerUser};

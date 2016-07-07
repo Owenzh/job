@@ -13,7 +13,7 @@ var msgPreFix = "[MGDAO]***";
 function MGDAO() {
     this.db = MongoClient.connect(url);
     this.collectionName = null;
-    this.setCollectionName(arguments[0]||'');
+    this.setCollectionName(arguments[0] || '');
     console.info(msgPreFix + "MongoDB Instance created!");
 }
 //closeDB
@@ -63,7 +63,7 @@ MGDAO.prototype.findDocuments = function () {
 };
 
 //insertDocuments
-MGDAO.prototype.insertDocuments = function (collectionName, dataArr, callback) {
+MGDAO.prototype.insertDocuments = function () {
     var collectionName, dataArr, callback;
     if (arguments.length == 3) {
         collectionName = arguments[0];
@@ -86,7 +86,24 @@ MGDAO.prototype.insertDocuments = function (collectionName, dataArr, callback) {
 };
 
 //updateOneDocument
-MGDAO.prototype.updateOneDocument = function (collectionName, filter, update, options, callback) {
+MGDAO.prototype.updateOneDocument = function () {
+    var collectionName, filter, update, options, callback;
+    if (arguments.length == 5) {
+        collectionName = arguments[0];
+        filter = arguments[1];
+        update = arguments[2];
+        options = arguments[3];
+        callback = arguments[4];
+
+    } else if (arguments.length == 4) {
+        collectionName = this.collectionName;
+        filter = arguments[0];
+        update = arguments[1];
+        options = arguments[2];
+        callback = arguments[3];
+    } else {
+        throw 'DBAPI arguments error.';
+    }
     this.db.then(function (_db) {
         var col = _db.collection(collectionName);
         col.updateOne(filter, update, options, function (err, r) {
@@ -97,7 +114,24 @@ MGDAO.prototype.updateOneDocument = function (collectionName, filter, update, op
 };
 
 //updateManyDocuments
-MGDAO.prototype.updateManyDocuments = function (collectionName, filter, update, options, callback) {
+MGDAO.prototype.updateManyDocuments = function () {
+    var collectionName, filter, update, options, callback;
+    if (arguments.length == 5) {
+        collectionName = arguments[0];
+        filter = arguments[1];
+        update = arguments[2];
+        options = arguments[3];
+        callback = arguments[4];
+
+    } else if (arguments.length == 4) {
+        collectionName = this.collectionName;
+        filter = arguments[0];
+        update = arguments[1];
+        options = arguments[2];
+        callback = arguments[3];
+    } else {
+        throw 'DBAPI arguments error.';
+    }
     this.db.then(function (_db) {
         var col = _db.collection(collectionName);
         col.updateMany(filter, update, options, function (err, r) {
@@ -108,7 +142,22 @@ MGDAO.prototype.updateManyDocuments = function (collectionName, filter, update, 
 };
 
 //deleteOneDocument
-MGDAO.prototype.deleteOneDocument = function (collectionName, filter, options, callback) {
+MGDAO.prototype.deleteOneDocument = function () {
+    var collectionName, filter, options, callback;
+    if (arguments.length == 4) {
+        collectionName = arguments[0];
+        filter = arguments[1];
+        options = arguments[2];
+        callback = arguments[3];
+
+    } else if (arguments.length == 3) {
+        collectionName = this.collectionName;
+        filter = arguments[0];
+        options = arguments[1];
+        callback = arguments[2];
+    } else {
+        throw 'DBAPI arguments error.';
+    }
     this.db.then(function (_db) {
         var col = _db.collection(collectionName);
         col.deleteOne(filter, options, function (err, r) {
@@ -119,7 +168,22 @@ MGDAO.prototype.deleteOneDocument = function (collectionName, filter, options, c
 };
 
 //deleteManyDocuments
-MGDAO.prototype.deleteManyDocuments = function (collectionName, filter, options, callback) {
+MGDAO.prototype.deleteManyDocuments = function () {
+    var collectionName, filter, options, callback;
+    if (arguments.length == 4) {
+        collectionName = arguments[0];
+        filter = arguments[1];
+        options = arguments[2];
+        callback = arguments[3];
+
+    } else if (arguments.length == 3) {
+        collectionName = this.collectionName;
+        filter = arguments[0];
+        options = arguments[1];
+        callback = arguments[2];
+    } else {
+        throw 'DBAPI arguments error.';
+    }
     this.db.then(function (_db) {
         var col = _db.collection(collectionName);
         col.deleteMany(filter, options, function (err, r) {

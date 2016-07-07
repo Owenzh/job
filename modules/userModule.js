@@ -4,5 +4,5 @@
 var ObjectId = require('mongodb').ObjectId;
 var DB = require('../DBUtils/DBAPI').MGDAO;
 exports.createUser = function(data, callback){
-    console.log("createUser");
+    console.log("createUser***");
 };
