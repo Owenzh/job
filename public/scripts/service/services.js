@@ -29,7 +29,7 @@ svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location,
             method: 'GET',
             url: '/api/v1/user/' + user.email + '/' + md5.createHash(user.password)+'/'+user.key
         };
-        $http(req).then(function successCallback(res) {
+        return $http(req).then(function successCallback(res) {
             console.log("login success :: " + res.data.s);
             console.dir(res);
             //go to index page
@@ -39,11 +39,11 @@ svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location,
             } else {
                 $location.path("/login");
             }
+            return {ST:"OK"};
         }, function errorCallback(res) {
             $location.path("/login");
             console.log("@Error@");
         });
-        console.log('login SVC ' + user.email);
     }
 
     return {

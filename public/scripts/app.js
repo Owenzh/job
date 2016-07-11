@@ -27,5 +27,10 @@ angular.module('jobApp', ['ngRoute', 'jobController']).config(function ($routePr
     });
 }).controller('appController', ['$scope', '$timeout', function ($scope, $timeout) {
     $scope.appKey = document.getElementById("appkey").value;
+    $scope.isUserLogin = false;
     console.log("$scope.appKey==" + $scope.appKey);
+    $scope.$on('loginSuccess', function (args) {
+        console.dir(args);
+        $scope.isUserLogin = true;
+    });
 }]);

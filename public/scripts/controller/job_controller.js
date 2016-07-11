@@ -7,8 +7,11 @@ angular.module('jobController', ['jobService']).controller('NavController', func
         index: '首页',
         enterprise: '公司',
         login: '登录',
-        register: '注册'
-    }
+        register: '注册',
+        logout: '登出',
+        setting: '个人中心'
+    };
+
 }).controller('LoginController', function ($scope, userSvc) {
     $scope.init = function () {
         $scope.user = {};
@@ -18,13 +21,17 @@ angular.module('jobController', ['jobService']).controller('NavController', func
     $scope.loginAction = function () {
         var key = $scope.appKey;
         //console.dir(key);
-        console.log('appkey == '+key);
+        console.log('appkey == ' + key);
         $scope.user.key = key;
         if (angular.isUndefined($scope.user.email) || angular.isUndefined($scope.user.password)) {
             console.log("Need fill all inputs");
         } else {
             //Need register service to handle it.
-            userSvc.loginUser($scope.user);
+            userSvc.loginUser($scope.user).then(function (result) {
+                console.dir(result);
+                $scope.$emit('loginSuccess', result)
+                //$scope.isUserLogin = true;
+            });
         }
 
     };
@@ -35,7 +42,7 @@ angular.module('jobController', ['jobService']).controller('NavController', func
 
     $scope.init = function () {
         $scope.user = {};
-        console.log('init register '+$scope.TestApp +"##"+$scope.APPK);
+        console.log('init register ' + $scope.TestApp + "##" + $scope.APPK);
     };
 
     $scope.registerAction = function () {
