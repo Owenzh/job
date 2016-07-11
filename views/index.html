@@ -19,13 +19,12 @@
     <!--angular framework-->
     <script src="/scripts/vendor/angular.min.js"></script>
     <script src="/scripts/vendor/angular-route.min.js"></script>
-    <!--Main framework-->
-    <script src="/scripts/app.js"></script>
-    <script src="/scripts/controller/job_controller.js"></script>
-    <script src="/scripts/service/services.js"></script>
+    <script src="/scripts/vendor/angular-md5.min.js"></script>
+
 
 </head>
-<body>
+<body data-ng-controller="appController">
+<input type="text" name="appkey" id="appkey" value='<%=Appkey %>' hidden>
 <div class="container-fluid">
     <!-- Stack the columns on mobile by making one full-width and the other half-width -->
     <div data-ng-controller="NavController" class="row header">
@@ -55,5 +54,11 @@
         <div class="col-xs-12">中国最高效的企业招聘平台</div>
     </div>
 </div>
+
+
+<!--Main framework-->
+<script src="/scripts/app.js"></script>
+<script src="/scripts/controller/job_controller.js"></script>
+<script src="/scripts/service/services.js"></script>
 </body>
 </html>

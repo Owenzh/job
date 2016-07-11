@@ -1,7 +1,7 @@
 /**
  * Created by Owen on 4/6/2016.
  */
-angular.module('jobApp', ['ngRoute','jobController']).config(function ($routeProvider, $locationProvider) {
+angular.module('jobApp', ['ngRoute', 'jobController']).config(function ($routeProvider, $locationProvider) {
     $locationProvider.html5Mode({
         enable: true,
         requireBase: false
@@ -25,4 +25,7 @@ angular.module('jobApp', ['ngRoute','jobController']).config(function ($routePro
     }).otherwise({
         templateUrl: '/ui/index/main.html'
     });
-});
+}).controller('appController', ['$scope', '$timeout', function ($scope, $timeout) {
+    $scope.appKey = document.getElementById("appkey").value;
+    console.log("$scope.appKey==" + $scope.appKey);
+}]);

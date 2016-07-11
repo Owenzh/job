@@ -2,9 +2,10 @@
  * Created by Owen on 5/24/2016.
  */
 
-var svc = angular.module('jobService', []);
-svc.factory('userSvc', ['$http', '$location', function ($http, $location) {
+var svc = angular.module('jobService', ['angular-md5']);
+svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location, md5) {
     function registerUser(user) {
+        user.password = md5.createHash(user.password);
         var req = {
             method: 'POST',
             url: '/api/v1/user',
@@ -26,15 +27,15 @@ svc.factory('userSvc', ['$http', '$location', function ($http, $location) {
     function loginUser(user) {
         var req = {
             method: 'GET',
-            url: '/api/v1/user/' + user.email + '/' + user.password
+            url: '/api/v1/user/' + user.email + '/' + md5.createHash(user.password)+'/'+user.key
         };
         $http(req).then(function successCallback(res) {
-            console.log("login success :: "+res.data.s);
+            console.log("login success :: " + res.data.s);
             console.dir(res);
             //go to index page
             if (res.data.s) {
                 $location.path("/index");
-                console.log("user: "+res.data.d);
+                console.log("user: " + res.data.d);
             } else {
                 $location.path("/login");
             }

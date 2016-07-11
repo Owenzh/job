@@ -12,10 +12,14 @@ angular.module('jobController', ['jobService']).controller('NavController', func
 }).controller('LoginController', function ($scope, userSvc) {
     $scope.init = function () {
         $scope.user = {};
-        console.log('init login');
+        console.log('init login ');
     };
 
     $scope.loginAction = function () {
+        var key = $scope.appKey;
+        //console.dir(key);
+        console.log('appkey == '+key);
+        $scope.user.key = key;
         if (angular.isUndefined($scope.user.email) || angular.isUndefined($scope.user.password)) {
             console.log("Need fill all inputs");
         } else {
@@ -31,7 +35,7 @@ angular.module('jobController', ['jobService']).controller('NavController', func
 
     $scope.init = function () {
         $scope.user = {};
-        console.log('init register');
+        console.log('init register '+$scope.TestApp +"##"+$scope.APPK);
     };
 
     $scope.registerAction = function () {

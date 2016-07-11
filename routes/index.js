@@ -1,10 +1,15 @@
 var express = require('express');
 var router = express.Router();
+var uuid = require("node-uuid");
 var userModule = require('../modules/userModule');
+var appKey = '';
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    res.render('index', {title: 'ERS-Home'});
+    appKey = uuid.v1();
+    res.render('index', {title: 'ERS-Home', Appkey: appKey});
 });
+
+
 /* ???? */
 router.post('/api/v1/user', function (req, res, next) {
     userModule.createUser(req.body, function (err, result) {
@@ -17,10 +22,16 @@ router.post('/api/v1/user', function (req, res, next) {
 });
 
 /*????*/
-router.get('/api/v1/user/:email/:pwd', function (req, res, next) {
+router.get('/api/v1/user/:email/:pwd/:keyID', function (req, res, next) {
     var email = req.params.email;
     var password = req.params.pwd;
+    var keyID = req.params.keyID;
     console.log(email + "#" + password);
+    console.log("#" + keyID);
+    console.log("#" + appKey);
+    if (keyID != appKey) {
+        return;
+    }
     userModule.searchUser({email: email, password: password}, function (err, docs) {
         if (err || docs.length == 0) {
             console.log("Error or Not found");
