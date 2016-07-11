@@ -8,3 +8,6 @@ exports.createUser = function(data, callback){
     dbObj.insertDocuments(data, callback);
     //console.log("createUser***"+data);
 };
+exports.searchUser = function(filters, callback){
+    dbObj.findDocuments(filters, callback);
+};

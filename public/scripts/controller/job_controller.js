@@ -9,9 +9,25 @@ angular.module('jobController', ['jobService']).controller('NavController', func
         login: '登录',
         register: '注册'
     }
-}).controller('LoginController', function ($scope, $location) {
+}).controller('LoginController', function ($scope, userSvc) {
+    $scope.init = function () {
+        $scope.user = {};
+        console.log('init login');
+    };
 
-}).controller('RegisterController', ['$scope','userSvc', function ($scope,userSvc) {
+    $scope.loginAction = function () {
+        if (angular.isUndefined($scope.user.email) || angular.isUndefined($scope.user.password)) {
+            console.log("Need fill all inputs");
+        } else {
+            //Need register service to handle it.
+            userSvc.loginUser($scope.user);
+        }
+
+    };
+    $scope.init();
+
+
+}).controller('RegisterController', ['$scope', 'userSvc', function ($scope, userSvc) {
 
     $scope.init = function () {
         $scope.user = {};

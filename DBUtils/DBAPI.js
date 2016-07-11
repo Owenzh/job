@@ -58,8 +58,7 @@ MGDAO.prototype.findDocuments = function () {
     } else {
         throw 'DBAPI arguments error.';
     }
-    var mgdao = this;
-    mgdao.openDB();
+    this.openDB();
     this.db.then(function (_db) {
         var cursor = _db.collection(collectionName).find(filters);
         cursor.toArray(function (err, docs) {
@@ -69,7 +68,6 @@ MGDAO.prototype.findDocuments = function () {
                 callback(err, docs);
                 console.info(msgPreFix + "Query documents from " + collectionName);
             }
-            mgdao.closeDB();
         });
     });
 };
@@ -88,14 +86,12 @@ MGDAO.prototype.insertDocuments = function () {
     } else {
         throw 'DBAPI arguments error.';
     }
-    var mgdao = this;
-    mgdao.openDB();
+    this.openDB();
     this.db.then(function (_db) {
         var col = _db.collection(collectionName);
         col.insertMany(dataArr).then(function (r) {
             callback(r);
             console.info(msgPreFix + "Insert documents into " + collectionName);
-            mgdao.closeDB();
         });
     });
 };
@@ -119,14 +115,12 @@ MGDAO.prototype.updateOneDocument = function () {
     } else {
         throw 'DBAPI arguments error.';
     }
-    var mgdao = this;
-    mgdao.openDB();
+    this.openDB();
     this.db.then(function (_db) {
         var col = _db.collection(collectionName);
         col.updateOne(filter, update, options, function (err, r) {
             callback(err, r);
             console.info(msgPreFix + "Update one document from " + collectionName);
-            mgdao.closeDB();
         });
     });
 };
@@ -150,14 +144,12 @@ MGDAO.prototype.updateManyDocuments = function () {
     } else {
         throw 'DBAPI arguments error.';
     }
-    var mgdao = this;
-    mgdao.openDB();
+    this.openDB();
     this.db.then(function (_db) {
         var col = _db.collection(collectionName);
         col.updateMany(filter, update, options, function (err, r) {
             callback(err, r);
             console.info(msgPreFix + "Update many documents from " + collectionName);
-            mgdao.closeDB();
         });
     });
 };
@@ -179,14 +171,12 @@ MGDAO.prototype.deleteOneDocument = function () {
     } else {
         throw 'DBAPI arguments error.';
     }
-    var mgdao = this;
-    mgdao.openDB();
+    this.openDB();
     this.db.then(function (_db) {
         var col = _db.collection(collectionName);
         col.deleteOne(filter, options, function (err, r) {
             callback(err, r);
             console.info(msgPreFix + "Delete one document from " + collectionName);
-            mgdao.closeDB();
         });
     });
 };
@@ -208,14 +198,12 @@ MGDAO.prototype.deleteManyDocuments = function () {
     } else {
         throw 'DBAPI arguments error.';
     }
-    var mgdao = this;
-    mgdao.openDB();
+    this.openDB();
     this.db.then(function (_db) {
         var col = _db.collection(collectionName);
         col.deleteMany(filter, options, function (err, r) {
             callback(err, r);
             console.info(msgPreFix + "Delete many documents from " + collectionName);
-            mgdao.closeDB();
         });
     });
 };
