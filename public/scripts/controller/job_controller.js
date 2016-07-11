@@ -8,7 +8,7 @@ angular.module('jobController', ['jobService']).controller('NavController', func
         enterprise: '公司',
         login: '登录',
         register: '注册',
-        logout: '登出',
+        logout: '退出',
         setting: '个人中心'
     };
 
@@ -28,15 +28,17 @@ angular.module('jobController', ['jobService']).controller('NavController', func
         } else {
             //Need register service to handle it.
             userSvc.loginUser($scope.user).then(function (result) {
-                console.dir(result);
-                $scope.$emit('loginSuccess', result)
-                //$scope.isUserLogin = true;
+                //console.dir(result);
+                $scope.$emit('loginSuccess', result);
             });
         }
 
     };
     $scope.init();
 
+
+}).controller('LogoutController', function ($scope) {
+    $scope.$emit('logoutlUser', null);
 
 }).controller('RegisterController', ['$scope', 'userSvc', function ($scope, userSvc) {
 

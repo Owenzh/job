@@ -27,7 +27,7 @@ svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location,
     function loginUser(user) {
         var req = {
             method: 'GET',
-            url: '/api/v1/user/' + user.email + '/' + md5.createHash(user.password)+'/'+user.key
+            url: '/api/v1/user/' + user.email + '/' + md5.createHash(user.password) + '/' + user.key
         };
         return $http(req).then(function successCallback(res) {
             console.log("login success :: " + res.data.s);
@@ -39,10 +39,11 @@ svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location,
             } else {
                 $location.path("/login");
             }
-            return {ST:"OK"};
+            return {data: res.data.d};
         }, function errorCallback(res) {
             $location.path("/login");
             console.log("@Error@");
+            return {data: res.data.d};
         });
     }
 
