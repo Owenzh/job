@@ -9,7 +9,7 @@ angular.module('jobController', ['jobService']).controller('NavController', func
         login: '登录',
         register: '注册',
         logout: '退出',
-        setting: '个人中心'
+        setting: '用户中心'
     };
 
 }).controller('LoginController', function ($scope, userSvc) {
@@ -59,7 +59,9 @@ angular.module('jobController', ['jobService']).controller('NavController', func
     };
     $scope.init();
 
-}]).controller('JobItemController', function ($scope, $location) {
+}]).controller('SettingController', function ($scope, $location) {
+
+}).controller('JobItemController', function ($scope, $location) {
 
 }).controller('EnterpriseController', function ($scope, $location) {
 

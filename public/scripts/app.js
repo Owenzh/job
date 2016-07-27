@@ -23,6 +23,9 @@ angular.module('jobApp', ['ngRoute', 'jobController']).config(function ($routePr
     }).when('/register', {
         templateUrl: '/ui/index/register.html',
         controller: 'RegisterController as register'
+    }).when('/setting', {
+        templateUrl: '/ui/index/setting.html',
+        controller: 'SettingController as setting'
     }).when('/privacy', {
         templateUrl: '/ui/index/privacy.html'
     }).otherwise({
