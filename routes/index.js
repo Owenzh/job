@@ -25,13 +25,8 @@ router.post('/api/v1/user', function (req, res, next) {
 router.get('/api/v1/user/:email/:pwd/:keyID', function (req, res, next) {
     var email = req.params.email;
     var password = req.params.pwd;
-    var keyID = req.params.keyID;
+    //var keyID = req.params.keyID;
     console.log(email + "#" + password);
-    console.log("#" + keyID);
-    console.log("#" + appKey);
-    if (keyID != appKey) {
-        return;
-    }
     userModule.searchUser({email: email, password: password}, function (err, docs) {
         if (err || docs.length == 0) {
             console.log("Error or Not found");

@@ -21,7 +21,7 @@ svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location,
         }, function errorCallback(res) {
             console.log("@Error@");
         });
-        console.log('registerUser SVC ' + user.email);
+        //console.log('registerUser SVC ' + user.email);
     }
 
     function loginUser(user) {
