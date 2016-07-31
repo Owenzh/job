@@ -27,7 +27,7 @@ MGDAO.prototype.openDB = function () {
 MGDAO.prototype.closeDB = function () {
     var mgdao = this;
     if (this.db) {
-        this.db.then(function (_db) {
+        this.db.then(function (_error,_db) {
             _db.close();
             console.info(msgPreFix + "MongoDB Instance close!");
             mgdao.db = null;
@@ -63,10 +63,10 @@ MGDAO.prototype.findDocuments = function () {
         var cursor = _db.collection(collectionName).find(filters);
         cursor.toArray(function (err, docs) {
             if (err) {
-                console.info(msgPreFix + "Query documents error>>> " + err.toString());
+                console.log(msgPreFix + "Query documents error>>> " + err.toString());
             } else {
                 callback(err, docs);
-                console.info(msgPreFix + "Query documents from " + collectionName);
+                console.log(msgPreFix + "Query documents from " + collectionName);
             }
         });
     });
@@ -91,7 +91,7 @@ MGDAO.prototype.insertDocuments = function () {
         var col = _db.collection(collectionName);
         col.insertMany(dataArr).then(function (r) {
             callback(r);
-            console.info(msgPreFix + "Insert documents into " + collectionName);
+            console.log(msgPreFix + "Insert documents into " + collectionName);
         });
     });
 };
@@ -120,7 +120,7 @@ MGDAO.prototype.updateOneDocument = function () {
         var col = _db.collection(collectionName);
         col.updateOne(filter, update, options, function (err, r) {
             callback(err, r);
-            console.info(msgPreFix + "Update one document from " + collectionName);
+            console.log(msgPreFix + "Update one document from " + collectionName);
         });
     });
 };
@@ -149,7 +149,7 @@ MGDAO.prototype.updateManyDocuments = function () {
         var col = _db.collection(collectionName);
         col.updateMany(filter, update, options, function (err, r) {
             callback(err, r);
-            console.info(msgPreFix + "Update many documents from " + collectionName);
+            console.log(msgPreFix + "Update many documents from " + collectionName);
         });
     });
 };
@@ -176,7 +176,7 @@ MGDAO.prototype.deleteOneDocument = function () {
         var col = _db.collection(collectionName);
         col.deleteOne(filter, options, function (err, r) {
             callback(err, r);
-            console.info(msgPreFix + "Delete one document from " + collectionName);
+            console.log(msgPreFix + "Delete one document from " + collectionName);
         });
     });
 };
@@ -203,7 +203,7 @@ MGDAO.prototype.deleteManyDocuments = function () {
         var col = _db.collection(collectionName);
         col.deleteMany(filter, options, function (err, r) {
             callback(err, r);
-            console.info(msgPreFix + "Delete many documents from " + collectionName);
+            console.log(msgPreFix + "Delete many documents from " + collectionName);
         });
     });
 };

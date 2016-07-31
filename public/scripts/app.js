@@ -32,9 +32,7 @@ angular.module('jobApp', ['ngRoute', 'jobController']).config(function ($routePr
         templateUrl: '/ui/index/main.html'
     });
 }).controller('appController', ['$scope', '$timeout', '$window', function ($scope, $timeout, $window) {
-    $scope.appKey = document.getElementById("appkey").value;
 
-    console.log("$scope.appKey==" + $scope.appKey);
     $scope.checkUserLogin = function () {
         var storage = $window.localStorage;
         var local_user = storage.getItem("ers_user");
@@ -60,7 +58,7 @@ angular.module('jobApp', ['ngRoute', 'jobController']).config(function ($routePr
         var userStr = user._id + "#" + user.email;
         $scope.updateLocalUser(userStr);
     });
-    $scope.$on('logoutlUser', function (event, args) {
+    $scope.$on('logoutUser', function (event, args) {
         $scope.removeLocalUser();
         $scope.isUserLogin = false;
     });
