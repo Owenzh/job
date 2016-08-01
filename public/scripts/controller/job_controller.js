@@ -33,14 +33,31 @@ angular.module('jobController', ['jobService']).controller('NavController', func
     $scope.init();
 
 
-}).controller('LogoutController', function ($scope) {
+}).controller('LogoutController', function ($scope, userSvc) {
     $scope.$emit('logoutUser', null);
+    $scope.init = function () {
+        $scope.user = {};
+        console.log('init login ');
+    };
+
+    $scope.loginAction = function () {
+        if (angular.isUndefined($scope.user.email) || angular.isUndefined($scope.user.password)) {
+            console.log("Need fill all inputs");
+        } else {
+            //Need register service to handle it.
+            userSvc.loginUser($scope.user).then(function (result) {
+                //console.dir(result);
+                $scope.$emit('loginSuccess', result);
+            });
+        }
+
+    };
+    $scope.init();
 
 }).controller('RegisterController', ['$scope', 'userSvc', function ($scope, userSvc) {
 
     $scope.init = function () {
         $scope.user = {};
-        console.log('init register ' + $scope.TestApp + "##" + $scope.APPK);
     };
 
     $scope.registerAction = function () {

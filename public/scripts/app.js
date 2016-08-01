@@ -55,7 +55,8 @@ angular.module('jobApp', ['ngRoute', 'jobController']).config(function ($routePr
         console.dir(args.data);
         var user = args.data[0];
         $scope.isUserLogin = true;
-        var userStr = user._id + "#" + user.email;
+        (user.type==1)? $scope.isPersonalUser = true:$scope.isPersonalUser = false;
+        var userStr = user._id + "#" + user.email + "#" + user.password + "#" + user.type;
         $scope.updateLocalUser(userStr);
     });
     $scope.$on('logoutUser', function (event, args) {
