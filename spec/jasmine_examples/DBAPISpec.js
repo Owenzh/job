@@ -1,4 +1,4 @@
-describe("Player", function() {
+describe("DBAPI", function() {
     var DB = require('../../DBUtils/DBAPI.js').MGDAO;
     var dbObj = null;
     //Clear tb_test
