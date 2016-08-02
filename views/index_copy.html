@@ -28,32 +28,32 @@
 <div class="container-fluid">
     <!-- Stack the columns on mobile by making one full-width and the other half-width -->
     <div data-ng-controller="NavController" class="row header">
-        <div class="col-xs-12 col-sm-4 col-md-4 logo" ui-sref="index">
-            <a href="" data-ng-bind="headerText.sys"></a>
+        <div class="col-xs-12 col-sm-4 col-md-4 logo">
+            <a href="#/index" data-ng-bind="headerText.sys"></a>
         </div>
-        <div class="col-xs-3 col-sm-2 col-md-2 home" ui-sref="index">
-            <a href="" data-ng-bind="headerText.index"></a>
+        <div class="col-xs-3 col-sm-2 col-md-2 home">
+            <a href="#/index" data-ng-bind="headerText.index"></a>
         </div>
-        <div class="col-xs-3 col-sm-3 col-md-3 com" ui-sref="enterprise">
-            <a href="" data-ng-bind="headerText.enterprise"></a>
+        <div class="col-xs-3 col-sm-3 col-md-3 com">
+            <a href="#/enterprise" data-ng-bind="headerText.enterprise"></a>
         </div>
-        <div class="col-xs-3 col-sm-1 col-md-1 col-sm-offset-1 col-md-offset-1" ui-sref="login"  ng-hide="isUserLogin">
-            <a href="" data-ng-bind="headerText.login"></a>
+        <div class="col-xs-3 col-sm-1 col-md-1 col-sm-offset-1 col-md-offset-1" ng-hide="isUserLogin">
+            <a href="#/login" data-ng-bind="headerText.login"></a>
         </div>
-        <div class="col-xs-3 col-sm-1 col-md-1" ui-sref="register" ng-hide="isUserLogin">
-            <a href="" data-ng-bind="headerText.register"></a>
+        <div class="col-xs-3 col-sm-1 col-md-1" ng-hide="isUserLogin">
+            <a href="#/register" data-ng-bind="headerText.register"></a>
         </div>
-        <div class="col-xs-3 col-sm-1 col-md-1" ui-sref="setting" ng-show="isUserLogin">
-            <a href="" data-ng-bind="headerText.setting"></a>
+        <div class="col-xs-3 col-sm-1 col-md-1" ng-show="isUserLogin">
+            <a href="#/setting" data-ng-bind="headerText.setting"></a>
         </div>
-        <div class="col-xs-3 col-sm-1 col-md-1 col-sm-offset-1 col-md-offset-1" ui-sref="logout" ng-show="isUserLogin">
-            <a href="" data-ng-bind="headerText.logout"></a>
+        <div class="col-xs-3 col-sm-1 col-md-1 col-sm-offset-1 col-md-offset-1" ng-show="isUserLogin">
+            <a href="#/logout" data-ng-bind="headerText.logout"></a>
         </div>
 
         <!--<input type="text" data-ng-model="headerText.sys"/>-->
     </div>
     <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
-    <div ui-view></div>
+    <div data-ng-view></div>
 
     <!-- Columns are always 50% wide, on mobile and desktop -->
     <div class="footer-span"></div>

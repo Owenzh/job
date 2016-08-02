@@ -269,6 +269,13 @@ a:link, a:visited {
 }
 /*login page */
 
+/*setting*/
+.left-slide {
+    height: auto;
+    line-height: 5em;
+    background-color: #fff7db;
+}
+/*setting*/
 
 
 @media (max-width: 768px) {
