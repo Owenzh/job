@@ -27,20 +27,56 @@ angular.module('jobApp', ['ui.router', 'jobController']).config(['$stateProvider
             templateUrl: '/ui/index/register.html',
             controller: 'RegisterController as register'
         })
-        .state("setting", {
-            url: "/setting",
-            templateUrl: '/ui/index/setting.html',
-            controller: 'SettingController as setting'
-        }).state("setting.userInfo", {
-            url: "/user_info",
-            templateUrl: '/ui/index/setting_user_info.html'
-            //controller: 'SettingController as setting'
-        }).state("setting.position", {
+        .state("center", {
+            url: "/center",
+            templateUrl: '/ui/index/center.html',
+            controller: 'CenterController as center'
+        }).state("center.user-info", {//user
+            url: "/user-info",
+            templateUrl: '/ui/user/ct_u_user_info.html'
+        }).state("center.resume-center", {
+            url: "/resume-center",
+            templateUrl: '/ui/user/ct_u_resume_center.html'
+        }).state("center.position-request", {
+            url: "/position-request",
+            templateUrl: '/ui/user/ct_u_position_request.html'
+        }).state("center.position-collection", {
+            url: "/position-collection",
+            templateUrl: '/ui/user/ct_u_position_collection.html'
+        }).state("center.position-book", {
+            url: "/position-book",
+            templateUrl: '/ui/user/ct_u_position_book.html'
+        }).state("center.user-msg-box", {
+            url: "/user-msg-box",
+            templateUrl: '/ui/user/ct_u_user_msg_box.html'
+        }).state("center.user-setting", {
+            url: "/user-setting",
+            templateUrl: '/ui/user/ct_u_user_setting.html'
+        }).state("center.enterprise-info", {//enterprise
+            url: "/enterprise-info",
+            templateUrl: '/ui/enterprise/ct_e_enterprise_info.html'
+        }).state("center.position-add", {
+            url: "/position-add",
+            templateUrl: '/ui/enterprise/ct_e_position_add.html'
+        }).state("center.position-manage", {
+            url: "/position-manage",
+            templateUrl: '/ui/enterprise/ct_e_position_manage.html'
+        }).state("center.position", {
             url: "/position",
-            templateUrl: '/ui/index/setting_position.html'
-            //controller: 'SettingController as setting'
-        })
-        .state("privacy", {
+            templateUrl: '/ui/enterprise/ct_e_center_position.html'
+        }).state("center.job-hunters", {
+            url: "/job-hunters",
+            templateUrl: '/ui/enterprise/ct_e_job_hunters.html'
+        }).state("center.talent-search", {
+            url: "/talent-search",
+            templateUrl: '/ui/enterprise/ct_e_talent_search.html'
+        }).state("center.enterprise-msg-box", {
+            url: "/enterprise-msg-box",
+            templateUrl: '/ui/enterprise/ct_e_enterprise_msg_box.html'
+        }).state("center.enterprise-setting", {
+            url: "/enterprise-setting",
+            templateUrl: '/ui/enterprise/ct_e_enterprise_setting.html'
+        }).state("privacy", {
             url: "/privacy",
             templateUrl: '/ui/index/privacy.html'
         })
