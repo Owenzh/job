@@ -1,13 +1,34 @@
+/**
+ * @file index.js
+ * @author owen
+ * @desc for restful api
+ * @date 2016/08/05
+ * @version 1.0
+ * */
 var express = require('express');
 var router = express.Router();
 var userModule = require('../modules/userModule');
-/* GET home page. */
+
+/*
+* RestFul API Base Guide.
+* Verbs: GET,POST,PUT,DELETE
+*       -GET:               Read resources.
+*       -POST:              Create a new resource.
+*       -PUT:               Update exited resources by Unique ID.
+*       -DELETE:            Delete resources.
+*
+* */
+/**
+ * GET home page.
+ * */
 router.get('/', function (req, res, next) {
     res.render('index', {title: 'ERS-Home'});
 });
 
 
-/*  */
+/**
+ * create user with user object (json format).
+ * */
 router.post('/api/v1/user', function (req, res, next) {
     console.log("/api/v1/user.....");
     userModule.createUser(req.body, function (err, result) {
@@ -19,7 +40,9 @@ router.post('/api/v1/user', function (req, res, next) {
     });
 });
 
-/**/
+/**
+ * read user via email and password.
+ * */
 router.get('/api/v1/user/:email/:pwd', function (req, res, next) {
     var email = req.params.email;
     var password = req.params.pwd;
@@ -35,26 +58,13 @@ router.get('/api/v1/user/:email/:pwd', function (req, res, next) {
     });
 });
 
-/*
- router.get('/api/users', function (reg, res, next) {
- userModule.findAllUsers(function (err, docs) {
- res.send(docs);
- });
- });
- */
-/*
- router.delete('/v1/charts', function (reg, res, next) {
- chartModule.clearCollection(function (err, result) {
- res.status(204).send('No Content');
- });
- });
- router.delete('/v1/charts/:id', function (req, res, next) {
- let id = req.params.id;
+/**
+ * Update user by user email
+ * */
+router.put('/api/v1/user/:email',function(req, res, next){
+    console.log("update user");
+});
 
- chartModule.remove(id, function (err, result) {
- console.log("Delete one chart,Result is:" + result);
- res.send(result);
- });
- });*/
+
 
 module.exports = router;
