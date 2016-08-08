@@ -81,7 +81,7 @@ angular.module('jobApp', ['ui.router', 'jobController']).config(['$stateProvider
             templateUrl: '/ui/index/privacy.html'
         })
     $urlRouterProvider.otherwise("/index");
-}]).controller('appController', ['$scope', '$timeout', '$window', function ($scope, $timeout, $window) {
+}]).controller('appController', ['$rootScope','$scope', '$timeout', '$window', function ($rootScope,$scope, $timeout, $window) {
 
     $scope.checkUserLogin = function () {
         var storage = $window.localStorage;
@@ -91,7 +91,6 @@ angular.module('jobApp', ['ui.router', 'jobController']).config(['$stateProvider
         } else {
             $scope.isUserLogin = false;
         }
-        console.log("local_user==" + local_user);
     };
     $scope.updateLocalUser = function (userStr) {
         var storage = $window.localStorage;
@@ -105,6 +104,7 @@ angular.module('jobApp', ['ui.router', 'jobController']).config(['$stateProvider
         console.dir(args.data);
         var user = args.data[0];
         $scope.isUserLogin = true;
+        $rootScope.userData = user;
         (user.type == 1) ? $scope.isPersonalUser = true : $scope.isPersonalUser = false;
         var userStr = user._id + "#" + user.email + "#" + user.password + "#" + user.type;
         $scope.updateLocalUser(userStr);

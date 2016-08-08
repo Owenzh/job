@@ -1,86 +1,89 @@
 var express = require('express');
 var router = express.Router();
-var MGDAO = require("../DBUtils/DBAPI.js").MGDAO;
-var util = require("util");
+//var userModule = require('../modules/userModule');
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
     res.render('admin_index', {title: "招聘后台"});
 });
-router.post('/user/add', function (req, res) {
 
-    //var MongoClient = require('mongodb').MongoClient;
-    //var assert = require('assert');
-    //var url = 'mongodb://localhost:27017/job';
-    //MongoClient.connect(url, function (err, db) {
-    //    assert.equal(null, err);
-    //    console.log("Connected correctly to db server.");
-    //    db.close();
-    //});
-    //MongoClient.connect(url).then(function(db){
-    //   console.log("Promise db connect!");
-    //    db.close();
-    //});
+//****************************Operation parts api****************************//
 
-    var dbObj = new MGDAO();
-    dbObj.forceClose();
-    //dbObj.insertDocument()
-    console.log(req.body.u_name);
-    //console.log(util.inspect(req.body));
-    res.send("add User...");
+/**
+ * Create admin user
+ * */
+router.post('/api/v1/admin',function(req, res, next){
+    console.log("create admin");
 });
 
-/* GET for debug. */
-router.get('/debug', function (req, res, next) {
-    var tb = 'tb_test';
-    var testData = [
-        {
-            timeTick: new Date().getTime(),
-            debug: 'y',
-            author: 'owen'
-        },
-        {
-            timeTick: new Date().getTime(),
-            debug: 'y',
-            author: 'tester'
-        }
-    ];
-    var dao = new MGDAO();
-
-    //dao.insertDocuments(tb, testData, function (r) {
-    //    //console.log(util.inspect(r));
-    //    dao.findDocuments(tb, {}, function (err, docs) {
-    //        console.log(docs.length);
-    //        dao.closeDB();
-    //        res.send("debug");
-    //    })
-    //
-    //});
-
-    //dao.deleteOneDocument(tb, {author: 'tester'}, null, function (err, r) {
-    //    console.log(r);
-    //    dao.closeDB();
-    //    res.send("debug");
-    //});
-
-    //dao.deleteManyDocuments(tb, {author: 'tester'}, null, function (err, r) {
-    //    console.log(r);
-    //    dao.closeDB();
-    //    res.send("debug");
-    //});
-
-    //dao.updateOneDocument(tb, {author: 'owen'}, {$set:{debug:'LALA'}}, null, function (err, r) {
-    //    console.log(r);
-    //    dao.closeDB();
-    //    res.send("debug");
-    //});
-
-    dao.updateManyDocuments(tb, {author: 'owen'}, {$set:{debug:'LALA'}}, null, function (err, r) {
-        console.log(r);
-        dao.closeDB();
-        res.send("debug");
-    });
-
+/**
+ * read admin via email and password.
+ * */
+router.get('/api/v1/admin/:email/:pwd', function (req, res, next) {
+    console.log("login admin");
 });
+
+
+/**
+ * get all enterprise users
+ * */
+router.get('/api/v1/enterprises', function (req, res, next) {
+    console.log("get all enterprise");
+});
+/**
+ * get all enterprise users that not pass verify by admin
+ * */
+router.get('/api/v1/enterprises/unchecked', function (req, res, next) {
+    console.log("get all enterprise");
+});
+/**
+ * pass check enterprise users
+ * */
+router.put('/api/v1/enterprises/checked', function (req, res, next) {
+    console.log("pass check for enterprise");
+});
+
+/**
+ * Create system information
+ * */
+router.post('/api/v1/system/information',function(req, res, next){
+    console.log("create system information");
+});
+
+/**
+ * Update system information
+ * */
+router.put('/api/v1/system/information', function (req, res, next) {
+    console.log("update system information");
+});
+
+//****************************Admin parts api****************************//
+
+/**
+ * update enterprise users
+ * */
+router.put('/api/v1/enterprise/:id', function (req, res, next) {
+    console.log("update enterprise");
+});
+/**
+ * delete enterprise users
+ * */
+router.delete('/api/v1/enterprise/:id', function (req, res, next) {
+    console.log("delete enterprise");
+});
+
+/**
+ * get all operation users.
+ * */
+router.get('/api/v1/admin/operations', function (req, res, next) {
+    console.log("get operation");
+});
+/**
+ * delete operation user.
+ * */
+router.delete('/api/v1/admin/operation/:email', function (req, res, next) {
+    console.log("delete operation");
+});
+
 
 module.exports = router;
