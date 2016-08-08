@@ -75,6 +75,16 @@ angular.module('jobController', ['jobService']).controller('NavController', func
 }]).controller('CenterController', function ($scope, $location) {
     console.log($scope.userData);
 
+}).controller('UserInfoController', function ($scope, $location) {
+    //console.log($scope.userData);
+    $scope.init = function () {
+        $scope.userInfo = {};
+    };
+
+    $scope.updateUserInfo = function(){
+        console.log($scope.userInfo);
+    }
+
 }).controller('JobItemController', function ($scope, $location) {
 
 }).controller('EnterpriseController', function ($scope, $location) {

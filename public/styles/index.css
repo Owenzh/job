@@ -26,7 +26,7 @@ a:link, a:visited {
     /*overflow:scroll;*/
 }
 .logo,.home,.com,.lgi,.rgr,.ctr,.lgt{
-    font-size: 1.6em;
+    font-size: 1.1em;
 }
 .logo {
     padding-left: 9em;
@@ -280,7 +280,7 @@ a:link, a:visited {
     margin-left:auto;
     margin-right:auto;
     width: 96%;
-    font-size: 1.5em;
+    font-size: 1em;
 }
 /*setting*/
 

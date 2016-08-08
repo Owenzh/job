@@ -10,30 +10,31 @@ angular.module('jobApp', ['ui.router', 'jobController']).config(['$stateProvider
         .state("enterprise", {
             url: "/enterprise",
             templateUrl: '/ui/index/enterprise.html',
-            controller: 'EnterpriseController as enterprise'
+            controller: 'EnterpriseController as Enterprise'
         })
         .state("login", {
             url: "/login",
             templateUrl: '/ui/index/login.html',
-            controller: 'LoginController as login'
+            controller: 'LoginController as Login'
         })
         .state("logout", {
             url: "/logout",
             templateUrl: '/ui/index/login.html',
-            controller: 'LogoutController as logout'
+            controller: 'LogoutController as Logout'
         })
         .state("register", {
             url: "/register",
             templateUrl: '/ui/index/register.html',
-            controller: 'RegisterController as register'
+            controller: 'RegisterController as Register'
         })
         .state("center", {
             url: "/center",
             templateUrl: '/ui/index/center.html',
-            controller: 'CenterController as center'
+            controller: 'CenterController as Center'
         }).state("center.user-info", {//user
             url: "/user-info",
-            templateUrl: '/ui/user/ct_u_user_info.html'
+            templateUrl: '/ui/user/ct_u_user_info.html',
+            controller: 'UserInfoController as UserInfo'
         }).state("center.resume-center", {
             url: "/resume-center",
             templateUrl: '/ui/user/ct_u_resume_center.html'
@@ -108,6 +109,7 @@ angular.module('jobApp', ['ui.router', 'jobController']).config(['$stateProvider
             user.type = userArr[3];
             user.typeName = userArr[3] == 1 ? '求职者' : '企业';
         }
+        (user.type == 1) ? $rootScope.isPersonalUser = true : $rootScope.isPersonalUser = false;
         $rootScope.userData = user;
     };
     $scope.removeLocalUser = function () {
@@ -118,7 +120,7 @@ angular.module('jobApp', ['ui.router', 'jobController']).config(['$stateProvider
         console.dir(args.data);
         var user = args.data[0];
         $scope.isUserLogin = true;
-        (user.type == 1) ? $scope.isPersonalUser = true : $scope.isPersonalUser = false;
+        //(user.type == 1) ? $rootScope.isPersonalUser = true : $rootScope.isPersonalUser = false;
         var userStr = user._id + "#" + user.email + "#" + user.password + "#" + user.type;
         $scope.updateLocalUser(userStr);
     });

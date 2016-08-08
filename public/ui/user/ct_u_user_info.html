@@ -1,1 +1,83 @@
+<!--
 <h3>ct_u_user_info</h3>
+
+<pre>
+列名	类型	说明
+u_id	string	求职者ID唯一
+u_name	string	用户名或者登录名称
+u_realName	string	真实姓名
+u_gender	string	性别
+u_phoneNumber	string	手机号（可登陆）
+u_password	string	密码
+u_email	string	绑定邮箱
+r_id	string	简历ID
+u_address	string	常住地址
+u_industry	string	行业
+u_profession	string	职能
+u_postionTitle	string	当前职位名称
+u_company	string	当前就职公司
+u_workDate	string	参加工作时间
+u_nickName	string	当前昵称
+u_status	string	目前状态（在职，离职、看机会）
+u_offResume	string	是否关闭简历默认是false
+password_question	string	密码找回问题
+password_answer	string	密码找回答案
+</pre>
+-->
+
+<form class="form-horizontal" role="form">
+    <div class="form-group">
+        <label for="nick_name" class="col-sm-2 control-label">昵称</label>
+
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="nick_name" ng-model="userInfo.nick_name"
+                   placeholder="请输入昵称">
+        </div>
+        <!--</div>-->
+        <!--<div class="form-group">-->
+        <label for="real_name" class="col-sm-2 control-label">真实姓名</label>
+
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="real_name" ng-model="userInfo.real_name"
+                   placeholder="请输入名字">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="nick_name" class="col-sm-2 control-label">性别</label>
+
+        <div class="col-sm-4">
+            <select class="form-control" id="gender" ng-model="userInfo.gender">
+                <option value="male">男</option>
+                <option value="female">女</option>
+            </select>
+        </div>
+        <!--</div>-->
+        <!--<div class="form-group">-->
+        <label for="real_name" class="col-sm-2 control-label">出生年月</label>
+
+        <div class="col-sm-4 input-append date form_datetime">
+            <input size="16" class="form-control" id="birthday" ng-model="userInfo.birthday" type="text" value=""
+                   readonly>
+            <span class="add-on"><i class="icon-th"></i></span>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-6 col-sm-offset-3">
+            <button type="submit" class="btn btn-primary btn-block" ng-click="updateUserInfo();">保存</button>
+        </div>
+    </div>
+</form>
+
+
+<script type="text/javascript">
+    $(".form_datetime").datetimepicker({
+        language: 'zh-CN',
+        format: "yyyy-mm-dd",
+        autoclose: true,
+        todayBtn: true,
+        minView: 'month',
+        viewSelect: 'month'
+    });
+</script>
