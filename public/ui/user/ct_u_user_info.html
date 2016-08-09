@@ -47,7 +47,7 @@ password_answer	string	密码找回答案
         
         <div class="col-sm-4">
             <select class="form-control" id="gender" ng-model="userInfo.gender">
-                <option value="male">男</option>
+                <option value="male" ng-selected="true">男</option>
                 <option value="female">女</option>
             </select>
         </div>
@@ -55,8 +55,29 @@ password_answer	string	密码找回答案
         <!--<div class="form-group">-->
         <label for="real_name" class="col-sm-2 control-label">出生年月</label>
 
-        <div class="col-sm-4 input-append date form_datetime">
+        <div class="col-sm-4 input-append date form_datetime" data-min-view="month" data-date-format="yyyy-mm-dd">
             <input size="16" class="form-control" id="birthday" ng-model="userInfo.birthday" type="text" value=""
+                   readonly>
+            <span class="add-on"><i class="icon-th"></i></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="status" class="col-sm-2 control-label">目前状态</label>
+
+        <div class="col-sm-4">
+            <select class="form-control" id="status" ng-model="userInfo.status">
+                <option value = "0" ng-selected="true">求职</option>
+                <option value = "1">在职</option>
+                <option value = "2">离职</option>
+            </select>
+        </div>
+        <!--</div>-->
+        <!--<div class="form-group">-->
+        <label for="graduate_day" class="col-sm-2 control-label">毕业时间</label>
+
+        <div class="col-sm-4 input-append date form_datetime" data-min-view="year" data-date-format="yyyy-mm">
+            <input size="16" class="form-control" id="graduate_day" ng-model="userInfo.graduate_day" type="text" value=""
                    readonly>
             <span class="add-on"><i class="icon-th"></i></span>
         </div>
@@ -74,9 +95,9 @@ password_answer	string	密码找回答案
 <script type="text/javascript">
     $(".form_datetime").datetimepicker({
         language: 'zh-CN',
-        format: "yyyy-mm-dd",
+        //format: "yyyy-mm-dd",
         autoclose: true,
-        todayBtn: true,
-        minView: 'month'
+        todayBtn: true
+        //minView: 'month'
     });
 </script>
