@@ -72,19 +72,25 @@ angular.module('jobController', ['jobService']).controller('NavController', func
     };
     $scope.init();
 
-}]).controller('CenterController', function ($scope, $location) {
+}]).controller('CenterController', function ($scope, userSvc) {
     console.log($scope.userData);
 
-}).controller('UserInfoController', function ($scope, $location) {
-    //console.log($scope.userData);
+}).controller('UserInfoController', function ($scope, userSvc) {
     $scope.init = function () {
+        userSvc.loadAddress();
         $scope.userInfo = {};
     };
-
+    $scope.$on('addressReady',function (event, args) {
+        initAddress(args);
+    });
+    function initAddress(address){
+        $scope.addressJSON = address;
+        console.dir($scope.addressJSON);
+    }
     $scope.updateUserInfo = function(){
         console.log($scope.userInfo);
-    }
-
+    };
+    $scope.init();
 }).controller('JobItemController', function ($scope, $location) {
 
 }).controller('EnterpriseController', function ($scope, $location) {
