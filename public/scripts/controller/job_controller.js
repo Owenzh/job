@@ -75,19 +75,72 @@ angular.module('jobController', ['jobService']).controller('NavController', func
 }]).controller('CenterController', function ($scope, userSvc) {
     console.log($scope.userData);
 
-}).controller('UserInfoController', function ($scope, userSvc) {
+}).controller('UserInfoController', function ($scope, $document, userSvc) {
     $scope.init = function () {
-        userSvc.loadAddress();
+        userSvc.loadAddress(initAddress);
         $scope.userInfo = {};
     };
-    $scope.$on('addressReady',function (event, args) {
-        initAddress(args);
-    });
-    function initAddress(address){
+
+    function initAddress(address) {
         $scope.addressJSON = address;
-        console.dir($scope.addressJSON);
+        $scope.loadProvince();
     }
-    $scope.updateUserInfo = function(){
+
+    $scope.loadProvince = function () {
+        var address = $scope.addressJSON;
+        var province = $document.find("#province");
+        province.html("");
+        for (var i = 0; address[i]; i++) {
+            province.append("<option>" + address[i]["name"] + "</option>");
+        }
+    };
+    $scope.loadCity = function () {
+        var address = $scope.addressJSON;
+        var city = $document.find("#city");
+        var district = $document.find("#district");
+        city.html("");
+        district.show();
+        district.html('<option value="">请选择</option>');
+        var province = $scope.userInfo.province;
+        if (province != "") {
+            for (var i = 1; address[i]; i++) {
+                if (province == address[i]["name"]) {
+                    var cityArr = address[i]["sub"];
+                    for (var j = 0; cityArr[j]; j++) {
+                        city.append("<option>" + cityArr[j]["name"] + "</option>");
+                    }
+                }
+            }
+        }
+    };
+    $scope.loadDistrict = function () {
+        var address = $scope.addressJSON;
+        var district = $document.find("#district");
+        district.html('');
+        var province = $scope.userInfo.province;
+        var city = $scope.userInfo.city;
+        if (province != "" && city != "") {
+            for (var i = 1; address[i]; i++) {
+                if (province == address[i]["name"]) {
+                    var cityArr = address[i]["sub"];
+                    for (var j = 0; cityArr[j]; j++) {
+                        if (city == cityArr[j]["name"]) {
+                            var districtArr = cityArr[j]["sub"];
+                            if (districtArr) {
+                                for (var k = 0; districtArr[k]; k++) {
+                                    district.append("<option>" + districtArr[k]["name"] + "</option>");
+                                }
+                            } else {
+                                district.hide();
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+    };
+    $scope.updateUserInfo = function () {
         console.log($scope.userInfo);
     };
     $scope.init();

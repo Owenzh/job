@@ -2,8 +2,8 @@
  * Created by Owen on 5/24/2016.
  */
 
-var svc = angular.module('jobService', ['$scope','angular-md5']);
-svc.factory('userSvc', ['$http', '$location', 'md5','$scope', function ($http, $location, md5, $scope) {
+var svc = angular.module('jobService', ['angular-md5']);
+svc.factory('userSvc', ['$http', '$location', 'md5',function ($http, $location, md5) {
 
     function registerUser(user) {
         user.password = md5.createHash(user.password);
@@ -47,21 +47,18 @@ svc.factory('userSvc', ['$http', '$location', 'md5','$scope', function ($http, $
         });
     }
 
-    function loadAddress() {
+    function loadAddress(callback) {
         var req = {
             method: 'GET',
             url: '/api/v1/address'
         };
         return $http(req).then(function successCallback(res) {
             console.log("address success :: " + res.data.s);
-            //console.dir(res);
             if (res.data.s) {
-                console.log("address: " + res.data.d);
+                callback(res.data.d);
+                //console.log("address: " + res.data.d);
             }
-            $scope.$emit('addressReady', res.data.d);
-            return {data: res.data.d};
-        }, function errorCallback(res) {
-            return {data: res.data.d};
+            //return {data: res.data.d};
         });
     }
 
