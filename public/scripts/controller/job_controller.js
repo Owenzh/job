@@ -73,18 +73,30 @@ angular.module('jobController', ['jobService']).controller('NavController', func
     $scope.init();
 
 }]).controller('CenterController', function ($scope, userSvc) {
-    console.log($scope.userData);
+    //console.log($scope.userData);
 
 }).controller('UserInfoController', function ($scope, $document, userSvc) {
     $scope.init = function () {
         userSvc.loadAddress(initAddress);
-        $scope.userInfo = {};
+        $scope.userInfo = angular.copy($scope.userData);
+        initUserInfo();
     };
+
+    function initUserInfo() {
+        userSvc.getUserInfo({id: $scope.userData.id}, function (info) {
+            var dataObj = info;
+            if (dataObj.s == 1) {
+                console.log("initUserInfo");
+                $scope.userInfo = angular.copy(dataObj.d);
+            }
+        });
+    }
 
     function initAddress(address) {
         $scope.addressJSON = address;
         $scope.loadProvince();
     }
+
 
     $scope.loadProvince = function () {
         var address = $scope.addressJSON;
@@ -142,6 +154,9 @@ angular.module('jobController', ['jobService']).controller('NavController', func
     };
     $scope.updateUserInfo = function () {
         console.log($scope.userInfo);
+        userSvc.updateUserInfo($scope.userInfo, function (r) {
+            console.log("Finish updateUserInfo " + r);
+        });
     };
     $scope.init();
 }).controller('JobItemController', function ($scope, $location) {

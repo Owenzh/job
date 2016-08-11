@@ -82,52 +82,53 @@ angular.module('jobApp', ['ui.router', 'jobController']).config(['$stateProvider
             templateUrl: '/ui/index/privacy.html'
         })
     $urlRouterProvider.otherwise("/index");
-}]).controller('appController', ['$rootScope', '$scope', '$timeout', '$window', function ($rootScope, $scope, $timeout, $window) {
+}]).controller('appController', ['$rootScope', '$scope', '$timeout', '$window',
+    function ($rootScope, $scope, $timeout, $window) {
 
-    $scope.checkUserLogin = function () {
-        var storage = $window.localStorage;
-        var local_user = storage.getItem("ers_user");
-        if (local_user && local_user.indexOf("#") != -1) {
+        $scope.checkUserLogin = function () {
+            var storage = $window.localStorage;
+            var local_user = storage.getItem("ers_user");
+            if (local_user && local_user.indexOf("#") != -1) {
+                $scope.isUserLogin = true;
+                $scope.updateUserForApp(local_user);
+            } else {
+                $scope.isUserLogin = false;
+            }
+        };
+        $scope.updateLocalUser = function (userStr) {
+            var storage = $window.localStorage;
+            storage.setItem("ers_user", userStr);
+            $scope.updateUserForApp(userStr);
+        };
+        $scope.updateUserForApp = function (userStr) {
+            var userArr = userStr.split("#");
+            var user = {};
+            if (userArr.length > 0) {
+                user.id = userArr[0];
+                user.email = userArr[1];
+                user.password = userArr[2];
+                user.type = userArr[3];
+                user.typeName = userArr[3] == 1 ? '求职者' : '企业';
+            }
+            (user.type == 1) ? $rootScope.isPersonalUser = true : $rootScope.isPersonalUser = false;
+            $rootScope.userData = user;
+        };
+        $scope.removeLocalUser = function () {
+            var storage = $window.localStorage;
+            storage.removeItem("ers_user");
+        };
+        $scope.$on('loginSuccess', function (event, args) {
+            console.dir(args.data);
+            var user = args.data[0];
             $scope.isUserLogin = true;
-            $scope.updateUserForApp(local_user);
-        } else {
+            //(user.type == 1) ? $rootScope.isPersonalUser = true : $rootScope.isPersonalUser = false;
+            var userStr = user._id + "#" + user.email + "#" + user.password + "#" + user.type;
+            $scope.updateLocalUser(userStr);
+        });
+        $scope.$on('logoutUser', function (event, args) {
+            $scope.removeLocalUser();
             $scope.isUserLogin = false;
-        }
-    };
-    $scope.updateLocalUser = function (userStr) {
-        var storage = $window.localStorage;
-        storage.setItem("ers_user", userStr);
-        $scope.updateUserForApp(userStr);
-    };
-    $scope.updateUserForApp = function (userStr) {
-        var userArr = userStr.split("#");
-        var user = {};
-        if (userArr.length > 0) {
-            user.id = userArr[0];
-            user.email = userArr[1];
-            user.password = userArr[2];
-            user.type = userArr[3];
-            user.typeName = userArr[3] == 1 ? '求职者' : '企业';
-        }
-        (user.type == 1) ? $rootScope.isPersonalUser = true : $rootScope.isPersonalUser = false;
-        $rootScope.userData = user;
-    };
-    $scope.removeLocalUser = function () {
-        var storage = $window.localStorage;
-        storage.removeItem("ers_user");
-    };
-    $scope.$on('loginSuccess', function (event, args) {
-        console.dir(args.data);
-        var user = args.data[0];
-        $scope.isUserLogin = true;
-        //(user.type == 1) ? $rootScope.isPersonalUser = true : $rootScope.isPersonalUser = false;
-        var userStr = user._id + "#" + user.email + "#" + user.password + "#" + user.type;
-        $scope.updateLocalUser(userStr);
-    });
-    $scope.$on('logoutUser', function (event, args) {
-        $scope.removeLocalUser();
-        $scope.isUserLogin = false;
-    });
-    $scope.checkUserLogin();
+        });
+        $scope.checkUserLogin();
 
-}]);
+    }]);
