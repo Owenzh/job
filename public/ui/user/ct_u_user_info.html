@@ -25,20 +25,22 @@ password_answer	string	密码找回答案
 </pre>
 -->
 
-<form class="form-horizontal" role="form">
+<form class="form-horizontal" role="form" name="userInfoForm" novalidate>
     <div class="form-group">
         <label for="nick_name" class="col-sm-2 control-label">昵称</label>
 
         <div class="col-sm-4">
-            <input type="text" class="form-control" id="nick_name" ng-model="userInfo.nick_name"
-                   placeholder="请输入昵称">
+            <input type="text" class="form-control" id="nick_name" name="nick_name" ng-model="userInfo.nick_name"
+                   placeholder="请输入昵称" required>
+
+            <!--<span ng-show="userInfoForm.nick_name.$error.required">请输入昵称</span>-->
         </div>
         <!--</div>-->
         <!--<div class="form-group">-->
         <label for="real_name" class="col-sm-2 control-label">真实姓名</label>
 
         <div class="col-sm-4">
-            <input type="text" class="form-control" id="real_name" ng-model="userInfo.real_name"
+            <input type="text" class="form-control" id="real_name" name="real_name" ng-model="userInfo.real_name"
                    placeholder="请输入名字">
         </div>
     </div>
@@ -46,7 +48,7 @@ password_answer	string	密码找回答案
         <label for="gender" class="col-sm-2 control-label">性别</label>
 
         <div class="col-sm-4">
-            <select class="form-control" id="gender" ng-model="userInfo.gender">
+            <select class="form-control" id="gender" name="gender" ng-model="userInfo.gender">
                 <option value="male" ng-selected="true">男</option>
                 <option value="female">女</option>
             </select>
@@ -56,7 +58,8 @@ password_answer	string	密码找回答案
         <label for="birthday" class="col-sm-2 control-label">出生年月</label>
 
         <div class="col-sm-4 input-append date form_datetime" data-min-view="month" data-date-format="yyyy-mm-dd">
-            <input size="16" class="form-control" id="birthday" ng-model="userInfo.birthday" type="text" value=""
+            <input size="16" class="form-control" id="birthday" name="birthday" ng-model="userInfo.birthday" type="text"
+                   value=""
                    readonly>
             <span class="add-on"><i class="icon-th"></i></span>
         </div>
@@ -65,30 +68,31 @@ password_answer	string	密码找回答案
         <label for="phone" class="col-sm-2 control-label">手机号</label>
 
         <div class="col-sm-4">
-            <input type="text" class="form-control" id="phone" ng-model="userInfo.phone"/>
+            <input type="text" class="form-control" id="phone" name="phone" ng-model="userInfo.phone"/>
         </div>
 
         <label for="email" class="col-sm-2 control-label">邮箱</label>
 
         <div class="col-sm-4">
-            <input type="text" class="form-control" id="email" ng-model="userInfo.email"/>
+            <input type="text" class="form-control" id="email" name="email" ng-model="userInfo.email"/>
         </div>
     </div>
     <div class="form-group">
         <label for="province" class="col-sm-2 control-label">省市区</label>
 
         <div class="col-sm-4">
-            <select id="province" class="form-control" ng-model="userInfo.province" ng-change="loadCity();">
+            <select id="province" name="province" class="form-control" ng-model="userInfo.province"
+                    ng-change="loadCity();">
                 <option value="">请选择</option>
             </select>
         </div>
         <div class="col-sm-3">
-            <select id="city" class="form-control" ng-model="userInfo.city" ng-change="loadDistrict();">
+            <select id="city" name="city" class="form-control" ng-model="userInfo.city" ng-change="loadDistrict();">
                 <option value="">请选择</option>
             </select>
         </div>
         <div class="col-sm-3">
-            <select id="district" class="form-control" ng-model="userInfo.district">
+            <select id="district" name="district" class="form-control" ng-model="userInfo.district">
                 <option value="">请选择</option>
             </select>
 
@@ -98,15 +102,16 @@ password_answer	string	密码找回答案
         <label for="address_detail" class="col-sm-2 control-label">详细地址</label>
 
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="address_detail" ng-model="userInfo.address_detail"
-                   placeholder="请输入详细地址">
+            <input type="text" class="form-control" id="address_detail" name="address_detail"
+                   ng-model="userInfo.address_detail"
+                   placeholder="请输入小区街道地址">
         </div>
     </div>
     <div class="form-group">
         <label for="status" class="col-sm-2 control-label">目前状态</label>
 
         <div class="col-sm-4">
-            <select class="form-control" id="status" ng-model="userInfo.status">
+            <select class="form-control" id="status" name="status" ng-model="userInfo.status">
                 <option value="0" ng-selected="true">求职</option>
                 <option value="1">在职</option>
                 <option value="2">离职</option>
@@ -117,13 +122,32 @@ password_answer	string	密码找回答案
         <label for="graduate_day" class="col-sm-2 control-label">毕业时间</label>
 
         <div class="col-sm-4 input-append date form_datetime" data-min-view="year" data-date-format="yyyy-mm">
-            <input size="16" class="form-control" id="graduate_day" ng-model="userInfo.graduate_day" type="text"
+            <input size="16" class="form-control" id="graduate_day" name="graduate_day" ng-model="userInfo.graduate_day"
+                   type="text"
                    value=""
                    readonly>
             <span class="add-on"><i class="icon-th"></i></span>
         </div>
     </div>
+    <div class="form-group">
+        <label for="position_title" class="col-sm-2 control-label">职位名称</label>
 
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="position_title" name="position_title"
+                   ng-model="userInfo.position_title" placeholder="请输入职位名称">
+        </div>
+
+        <label for="work_years" class="col-sm-2 control-label">工作年限</label>
+
+        <div class="col-sm-4">
+            <select class="form-control" id="work_years" name="work_years" ng-model="userInfo.work_years">
+                <option value="1" ng-selected="true">一年以上</option>
+                <option value="3">三年以上</option>
+                <option value="5">五年以上</option>
+                <option value="10">十年以上</option>
+            </select>
+        </div>
+    </div>
 
     <!---->
     <div class="form-group">
