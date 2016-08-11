@@ -65,7 +65,7 @@ svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location,
     function loadAddress(callback) {
         var req = mapRequest('GET', {url: '/api/v1/address'});
         return $http(req).then(function successCallback(res) {
-            console.log("address success :: " + res.data.s);
+            //console.log("address success :: " + res.data.s);
             if (res.data.s) {
                 callback(res.data.d);
             }
@@ -73,8 +73,9 @@ svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location,
     }
 
     function getUserInfo(data, callback) {
-        var _url = '/api/v1/user/info/' + data.id;
+        var _url = '/api/v1/user_info/' + data.id;
         var req = mapRequest('GET', {url: _url});
+        console.log("URL="+_url);
         return $http(req).then(function successCallback(res) {
             //if (res.data.s) {
                 console.log("get user info success.");
@@ -86,7 +87,7 @@ svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location,
     }
 
     function updateUserInfo(data, callback) {
-        var req = mapRequest('PUT', {url: '/api/v1/user/info', data: data});
+        var req = mapRequest('PUT', {url: '/api/v1/user_info', data: data});
         return $http(req).then(function successCallback(res) {
             console.log("updateUserInfo success :: " + res.data.s);
             callback && callback(res.data);

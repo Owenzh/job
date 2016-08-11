@@ -29,12 +29,11 @@ angular.module('jobApp', ['ui.router', 'jobController']).config(['$stateProvider
         })
         .state("center", {
             url: "/center",
-            templateUrl: '/ui/index/center.html',
-            controller: 'CenterController as Center'
+            templateUrl: '/ui/index/center.html'
         }).state("center.user-info", {//user
-            url: "/user-info",
+            url: "/user-info/",
             templateUrl: '/ui/user/ct_u_user_info.html',
-            controller: 'UserInfoController as UserInfo'
+            controller: 'UserInfoController'
         }).state("center.resume-center", {
             url: "/resume-center",
             templateUrl: '/ui/user/ct_u_resume_center.html'

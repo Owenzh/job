@@ -51,7 +51,7 @@ router.post('/api/v1/user', function (req, res, next) {
 router.get('/api/v1/user/:email/:pwd', function (req, res, next) {
     var email = req.params.email;
     var password = req.params.pwd;
-    console.log(email + "#" + password);
+    //console.log(email + "#" + password);
     userModule.findUser({email: email, password: password}, function (err, docs) {
         if (err || docs.length == 0) {
             console.log("Error or Not found");
@@ -65,8 +65,8 @@ router.get('/api/v1/user/:email/:pwd', function (req, res, next) {
 /**
  * update user information.
  * */
-router.put('/api/v1/user/info', function (req, res, next) {
-    console.log("/api/v1/user/info.....");
+router.put('/api/v1/user_info', function (req, res, next) {
+    //console.log("/api/v1/user/info.....");
     //filter, update, options, callback
     var requestData = req.body;
     userModule.updateUserInfo(requestData, function (err, result) {
@@ -82,22 +82,17 @@ router.put('/api/v1/user/info', function (req, res, next) {
 /**
  * read user info via email and password.
  * */
-router.get('/api/v1/user/info/:id', function (req, res, next) {
-    var id = req.params.id;
-    console.log(id);
-    userModule.findUserInfoById(id, function (err, docs) {
+router.get('/api/v1/user_info/:uid', function (req, res, next) {
+    var uid = req.params.uid;
+    console.log("uid==="+uid);
+    userModule.findUserInfoById(uid, function (err, docs) {
         if (err || docs.length == 0) {
-            console.log("Error or Not found");
+            console.log("Error or Not found#####");
             res.send({s: 0, d: []});
         } else {
-            console.log("Found User");
+            console.log("Found User&&&&&&");
             res.send({s: 1, d: docs[0]});
-            /*
-            if (docs[0].has_info) {
-                res.send({s: 1, d: docs[0]});
-            } else {
-                res.send({s: -1, d: docs[0]});
-            }*/
+
         }
     });
 });

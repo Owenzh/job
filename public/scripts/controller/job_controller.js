@@ -72,29 +72,32 @@ angular.module('jobController', ['jobService']).controller('NavController', func
     };
     $scope.init();
 
-}]).controller('CenterController', function ($scope, userSvc) {
-    //console.log($scope.userData);
+}]).controller('UserInfoController', function ($scope, $document, userSvc) {
 
-}).controller('UserInfoController', function ($scope, $document, userSvc) {
-    $scope.init = function () {
-        userSvc.loadAddress(initAddress);
-        $scope.userInfo = angular.copy($scope.userData);
+    function init() {
+        console.log("INIT^*");
         initUserInfo();
-    };
+    }
 
     function initUserInfo() {
         userSvc.getUserInfo({id: $scope.userData.id}, function (info) {
             var dataObj = info;
             if (dataObj.s == 1) {
                 console.log("initUserInfo");
+                console.dir(dataObj.d);
                 $scope.userInfo = angular.copy(dataObj.d);
+            } else {
+                $scope.userInfo = angular.copy($scope.userData);
             }
+            userSvc.loadAddress(initAddress);
         });
     }
 
     function initAddress(address) {
         $scope.addressJSON = address;
         $scope.loadProvince();
+        $scope.loadCity();
+        $scope.loadDistrict();
     }
 
 
@@ -105,6 +108,7 @@ angular.module('jobController', ['jobService']).controller('NavController', func
         for (var i = 0; address[i]; i++) {
             province.append("<option>" + address[i]["name"] + "</option>");
         }
+        province.val($scope.userInfo.province);
     };
     $scope.loadCity = function () {
         var address = $scope.addressJSON;
@@ -123,6 +127,7 @@ angular.module('jobController', ['jobService']).controller('NavController', func
                     }
                 }
             }
+            city.val($scope.userInfo.city);
         }
     };
     $scope.loadDistrict = function () {
@@ -150,6 +155,7 @@ angular.module('jobController', ['jobService']).controller('NavController', func
                     }
                 }
             }
+            district.val($scope.userInfo.district);
         }
     };
     $scope.updateUserInfo = function () {
@@ -158,7 +164,8 @@ angular.module('jobController', ['jobService']).controller('NavController', func
             console.log("Finish updateUserInfo " + r);
         });
     };
-    $scope.init();
+    init();
+
 }).controller('JobItemController', function ($scope, $location) {
 
 }).controller('EnterpriseController', function ($scope, $location) {
