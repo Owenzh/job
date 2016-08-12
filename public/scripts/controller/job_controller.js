@@ -72,7 +72,7 @@ angular.module('jobController', ['jobService']).controller('NavController', func
     };
     $scope.init();
 
-}]).controller('UserInfoController', function ($scope, $document, userSvc) {
+}]).controller('UserInfoController', function ($scope, $location, $document, userSvc) {
 
     function init() {
         console.log("INIT^*");
@@ -161,6 +161,7 @@ angular.module('jobController', ['jobService']).controller('NavController', func
     $scope.updateUserInfo = function () {
         console.log($scope.userInfo);
         userSvc.updateUserInfo($scope.userInfo, function (r) {
+            $location.path("/center");
             console.log("Finish updateUserInfo " + r);
         });
     };

@@ -1,7 +1,7 @@
 /**
  * Created by Owen on 4/6/2016.
  */
-angular.module('jobApp', ['ui.router', 'jobController']).config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+angular.module('jobApp', ['ngAnimate','ui.router', 'jobController']).config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state("index", {  //路由状态
             url: "/index",  //路由路径
@@ -33,7 +33,6 @@ angular.module('jobApp', ['ui.router', 'jobController']).config(['$stateProvider
                 "user": {templateUrl: '/ui/index/center_u.html'},
                 "enterprise": {templateUrl: '/ui/index/center_e.html'}
             }
-            //templateUrl: '/ui/index/center.html'
         }).state("center.user-info", {//user
             url: "/user-info/",
             templateUrl: '/ui/user/ct_u_user_info.html',
