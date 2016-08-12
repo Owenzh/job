@@ -36,7 +36,6 @@ router.get('/api/v1/address', function (req, res, next) {
  * create user with user object (json format).
  * */
 router.post('/api/v1/user', function (req, res, next) {
-    console.log("/api/v1/user.....");
     userModule.createUser(req.body, function (err, result) {
         if (err) {
             res.send(err.message);
@@ -51,7 +50,6 @@ router.post('/api/v1/user', function (req, res, next) {
 router.get('/api/v1/user/:email/:pwd', function (req, res, next) {
     var email = req.params.email;
     var password = req.params.pwd;
-    //console.log(email + "#" + password);
     userModule.findUser({email: email, password: password}, function (err, docs) {
         if (err || docs.length == 0) {
             console.log("Error or Not found");
@@ -66,8 +64,6 @@ router.get('/api/v1/user/:email/:pwd', function (req, res, next) {
  * update user information.
  * */
 router.put('/api/v1/user_info', function (req, res, next) {
-    //console.log("/api/v1/user/info.....");
-    //filter, update, options, callback
     var requestData = req.body;
     userModule.updateUserInfo(requestData, function (err, result) {
         if (err) {
@@ -87,10 +83,8 @@ router.get('/api/v1/user_info/:uid', function (req, res, next) {
     console.log("uid==="+uid);
     userModule.findUserInfoById(uid, function (err, docs) {
         if (err || docs.length == 0) {
-            console.log("Error or Not found#####");
             res.send({s: 0, d: []});
         } else {
-            console.log("Found User&&&&&&");
             res.send({s: 1, d: docs[0]});
 
         }

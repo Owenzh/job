@@ -20,7 +20,7 @@ angular.module('jobApp', ['ngAnimate','ui.router', 'jobController']).config(['$s
         .state("logout", {
             url: "/logout",
             templateUrl: '/ui/index/login.html',
-            controller: 'LogoutController as Logout'
+            controller: 'LoginController as Login'
         })
         .state("register", {
             url: "/register",
@@ -95,6 +95,7 @@ angular.module('jobApp', ['ngAnimate','ui.router', 'jobController']).config(['$s
                 $scope.updateUserForApp(local_user);
             } else {
                 $scope.isUserLogin = false;
+                $rootScope.userType = "unknown";
             }
         };
         $scope.updateLocalUser = function (userStr) {
@@ -119,11 +120,9 @@ angular.module('jobApp', ['ngAnimate','ui.router', 'jobController']).config(['$s
             var storage = $window.localStorage;
             storage.removeItem("ers_user");
         };
-        $scope.$on('loginSuccess', function (event, args) {
-            console.dir(args.data);
-            var user = args.data[0];
+        $scope.$on('loginSuccess', function (event, data) {
+            var user = data[0];
             $scope.isUserLogin = true;
-            //(user.type == 1) ? $rootScope.isPersonalUser = true : $rootScope.isPersonalUser = false;
             var userStr = user._id + "#" + user.email + "#" + user.password + "#" + user.type;
             $scope.updateLocalUser(userStr);
         });
