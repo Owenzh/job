@@ -39,7 +39,7 @@ svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location,
         $http(req).then(function successCallback(res) {
             callback && callback();
         }, function errorCallback(res) {
-            console.log("@Error@");
+            console.error("[registerUser] error");
         });
     }
 
@@ -49,6 +49,7 @@ svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location,
         return $http(req).then(function successCallback(res) {
             callback && callback(res);
         }, function errorCallback(res) {
+            console.error("[loginUser] error");
         });
     }
 
@@ -58,6 +59,8 @@ svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location,
             if (res.data.s) {
                 callback(res.data.d);
             }
+        }, function errorCallback(res) {
+            console.error("[loadAddress] error");
         });
     }
 
@@ -67,7 +70,7 @@ svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location,
         return $http(req).then(function successCallback(res) {
             callback && callback(res.data);
         }, function errorCallback(res) {
-
+            console.error("[getUserInfo] error");
         });
     }
 
@@ -76,7 +79,7 @@ svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location,
         return $http(req).then(function successCallback(res) {
             callback && callback(res.data);
         }, function errorCallback(res) {
-            console.log(res.data.s);
+            console.error("[updateUserInfo] error");
         });
     }
 
