@@ -29,7 +29,11 @@ angular.module('jobApp', ['ui.router', 'jobController']).config(['$stateProvider
         })
         .state("center", {
             url: "/center",
-            templateUrl: '/ui/index/center.html'
+            views: {
+                "user": {templateUrl: '/ui/index/center_u.html'},
+                "enterprise": {templateUrl: '/ui/index/center_e.html'}
+            }
+            //templateUrl: '/ui/index/center.html'
         }).state("center.user-info", {//user
             url: "/user-info/",
             templateUrl: '/ui/user/ct_u_user_info.html',
@@ -109,7 +113,7 @@ angular.module('jobApp', ['ui.router', 'jobController']).config(['$stateProvider
                 user.type = userArr[3];
                 user.typeName = userArr[3] == 1 ? '求职者' : '企业';
             }
-            (user.type == 1) ? $rootScope.isPersonalUser = true : $rootScope.isPersonalUser = false;
+            (user.type == 1) ? $rootScope.userType = "user" : $rootScope.userType = "enterprise";
             $rootScope.userData = user;
         };
         $scope.removeLocalUser = function () {

@@ -44,7 +44,7 @@ exports.updateUserInfo = function (data, callback) {
      position_title
      work_years
      */
-    var test = {
+    var setObj = {
         has_info: 1,
         type: data.type,
         typeName: data.typeName,
@@ -62,27 +62,9 @@ exports.updateUserInfo = function (data, callback) {
         position_title: data.position_title,
         work_years: data.work_years
     };
-    console.dir(test);
     var filter = {"_id": ObjectId(data._id)};
     var update = {
-        $set: {
-            has_info: 1,
-            type: data.type,
-            typeName: data.typeName,
-            province: data.province,
-            city: data.city,
-            district: data.district,
-            address_detail: data.address_detail,
-            nick_name: data.nick_name,
-            real_name: data.real_name,
-            birthday: data.birthday,
-            phone: data.phone,
-            email: data.email,
-            status: data.status,
-            graduate_day: data.graduate_day,
-            position_title: data.position_title,
-            work_years: data.work_years
-        }
+        $set: setObj
     };
     var options = {upsert: false};
     dbObj.updateOneDocument(filter, update, options, callback);

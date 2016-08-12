@@ -1,0 +1,23 @@
+<!--{{isPersonalUser}}-->
+<div class="row main">
+    <!--左边菜单-->
+    <div class="col-xs-2 col-sm-2 col-md-2 left-slide">
+        <div ui-sref=".user-info"><a href="">基本信息</a></div>
+        <div ui-sref=".resume-center"><a href="">简历中心</a></div>
+        <div ui-sref=".position-request"><a href="">职位申请</a></div>
+        <div ui-sref=".position-collection"><a href="">职位收藏</a></div>
+        <div ui-sref=".position-book"><a href="">职位订阅</a></div>
+        <div ui-sref=".user-msg-box"><a href="">消息中心</a></div>
+        <div ui-sref=".user-setting"><a href="">设置</a></div>
+    </div>
+
+    <!--内容-->
+    <div class="col-xs-8 col-sm-8 col-md-8">
+        <div ui-view>
+            <div class="center">
+                <div>尊敬的 {{userData.email}}, 你好！</div>
+            </div>
+        </div>
+    </div>
+
+</div>
