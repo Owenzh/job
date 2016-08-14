@@ -1,1 +1,173 @@
-<h3>ct_e_enterprise_info</h3>
+
+<!--
+
+<pre>
+列名	类型	说明
+e_id	string	企业会员ID 唯一
+e_name	string	登录名称
+e_password	string	密码
+e_realName	string	企业全称
+e_registerNumber	string	注册号
+e_type	string	企业类型
+e_person	string	法人代表
+e_assets	int	注册资本
+e_scale	string	企业规模（50-99）
+e_establishmentDate	string	成立日期
+e_address	string	地址
+e_businessDeadline	string	营业期限
+e_businessScope	string	经营范围
+e_registerOrgan	string	登记机构
+e_approvedDate	string	核准日期
+e_status	string	登记状态（在营、开业、在册、存续）
+e_cultrue	string	企业文化介绍
+e_email	string	绑定邮箱（推送简历）
+e_VIP	string	是否为VIP 默认false
+e_district	object	区域
+password_question	string	密码找回问题
+password_answer	string	密码找回答案
+
+</pre>
+-->
+
+<form class="form-horizontal" role="form" name="enterpriseInfoForm" novalidate>
+    <div class="form-group">
+        <label for="e_realName" class="col-sm-2 control-label">企业全称</label>
+
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="e_realName" name="e_realName" ng-model="enterpriseInfo.e_realName"
+                   placeholder="请输入企业全称" required>
+        </div>
+        <!--</div>-->
+        <!--<div class="form-group">-->
+        <label for="e_person" class="col-sm-2 control-label">法人代表</label>
+
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="e_person" name="e_person" ng-model="enterpriseInfo.e_person"
+                   placeholder="请输入名字">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="gender" class="col-sm-2 control-label">性别</label>
+
+        <div class="col-sm-4">
+            <select class="form-control" id="gender" name="gender" ng-model="userInfo.gender">
+                <option value="male" ng-selected="true">男</option>
+                <option value="female">女</option>
+            </select>
+        </div>
+        <!--</div>-->
+        <!--<div class="form-group">-->
+        <label for="birthday" class="col-sm-2 control-label">出生年月</label>
+
+        <div class="col-sm-4 input-append date form_datetime" data-min-view="month" data-date-format="yyyy-mm-dd">
+            <input size="16" class="form-control" id="birthday" name="birthday" ng-model="userInfo.birthday" type="text"
+                   value=""
+                   readonly>
+            <span class="add-on"><i class="icon-th"></i></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="phone" class="col-sm-2 control-label">手机号</label>
+
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="phone" name="phone" ng-model="userInfo.phone"/>
+        </div>
+
+        <label for="email" class="col-sm-2 control-label">邮箱</label>
+
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="email" name="email" ng-model="userInfo.email"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="province" class="col-sm-2 control-label">省市区</label>
+
+        <div class="col-sm-4">
+            <select id="province" name="province" class="form-control" ng-model="userInfo.province"
+                    ng-change="loadCity();">
+                <option value="">请选择</option>
+            </select>
+        </div>
+        <div class="col-sm-3">
+            <select id="city" name="city" class="form-control" ng-model="userInfo.city" ng-change="loadDistrict();">
+                <option value="">请选择</option>
+            </select>
+        </div>
+        <div class="col-sm-3">
+            <select id="district" name="district" class="form-control" ng-model="userInfo.district">
+                <option value="">请选择</option>
+            </select>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="address_detail" class="col-sm-2 control-label">详细地址</label>
+
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="address_detail" name="address_detail"
+                   ng-model="userInfo.address_detail"
+                   placeholder="请输入小区街道地址">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="status" class="col-sm-2 control-label">目前状态</label>
+
+        <div class="col-sm-4">
+            <select class="form-control" id="status" name="status" ng-model="userInfo.status">
+                <option value="0" ng-selected="true">求职</option>
+                <option value="1">在职</option>
+                <option value="2">离职</option>
+            </select>
+        </div>
+        <!--</div>-->
+        <!--<div class="form-group">-->
+        <label for="graduate_day" class="col-sm-2 control-label">毕业时间</label>
+
+        <div class="col-sm-4 input-append date form_datetime" data-min-view="year" data-date-format="yyyy-mm">
+            <input size="16" class="form-control" id="graduate_day" name="graduate_day" ng-model="userInfo.graduate_day"
+                   type="text"
+                   value=""
+                   readonly>
+            <span class="add-on"><i class="icon-th"></i></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="position_title" class="col-sm-2 control-label">职位名称</label>
+
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="position_title" name="position_title"
+                   ng-model="userInfo.position_title" placeholder="请输入职位名称">
+        </div>
+
+        <label for="work_years" class="col-sm-2 control-label">工作年限</label>
+
+        <div class="col-sm-4">
+            <select class="form-control" id="work_years" name="work_years" ng-model="userInfo.work_years">
+                <option value="1" ng-selected="true">一年以上</option>
+                <option value="3">三年以上</option>
+                <option value="5">五年以上</option>
+                <option value="10">十年以上</option>
+            </select>
+        </div>
+    </div>
+
+    <!---->
+    <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-6 col-sm-offset-3">
+            <button type="submit" class="btn btn-primary btn-block" ng-click="updateUserInfo();">保存</button>
+        </div>
+    </div>
+
+
+</form>
+
+
+<script type="text/javascript">
+    $(".form_datetime").datetimepicker({
+        language: 'zh-CN',
+        //format: "yyyy-mm-dd",
+        autoclose: true,
+        todayBtn: true
+        //minView: 'month'
+    });
+</script>

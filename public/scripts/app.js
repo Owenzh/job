@@ -57,7 +57,8 @@ angular.module('jobApp', ['ngAnimate','ui.router', 'jobController']).config(['$s
             templateUrl: '/ui/user/ct_u_user_setting.html'
         }).state("center.enterprise-info", {//enterprise
             url: "/enterprise-info",
-            templateUrl: '/ui/enterprise/ct_e_enterprise_info.html'
+            templateUrl: '/ui/enterprise/ct_e_enterprise_info.html',
+            controller: 'EnterpriseInfoController'
         }).state("center.position-add", {
             url: "/position-add",
             templateUrl: '/ui/enterprise/ct_e_position_add.html'
