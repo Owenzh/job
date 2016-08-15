@@ -132,6 +132,89 @@ angular.module('jobController', ['jobService']).controller('NavController', func
     .controller('JobItemController', function ($scope, $location) {
 
     })
-    .controller('EnterpriseController', function ($scope, $location) {
-        $scope.enterprise = {};
+    .controller('EnterpriseInfoController', function ($scope, $location, $document, userSvc) {
+        function initEnterpriseInfo() {
+            userSvc.getEnterpriseInfo({id: $scope.userData.id}, function (result) {
+                var dataObj = result;
+                if (dataObj.s == 1) {
+                    $scope.enterpriseInfo = angular.copy(dataObj.d);
+                } else {
+                    $scope.enterpriseInfo = angular.copy($scope.userData);
+                }
+                userSvc.loadAddress(initAddress);
+            });
+        }
+
+        function initAddress(address) {
+            $scope.addressJSON = address;
+            $scope.loadProvince();
+            $scope.loadCity();
+            $scope.loadDistrict();
+        }
+
+        $scope.loadProvince = function () {
+            var address = $scope.addressJSON;
+            var province = $document.find("#province");
+            province.html("");
+            for (var i = 0; address[i]; i++) {
+                province.append("<option>" + address[i]["name"] + "</option>");
+            }
+            province.val($scope.enterpriseInfo.province);
+        };
+        $scope.loadCity = function () {
+            var address = $scope.addressJSON;
+            var city = $document.find("#city");
+            var district = $document.find("#district");
+            city.html("");
+            district.show();
+            district.html('<option value="">请选择</option>');
+            var province = $scope.enterpriseInfo.province;
+            if (province != "") {
+                for (var i = 1; address[i]; i++) {
+                    if (province == address[i]["name"]) {
+                        var cityArr = address[i]["sub"];
+                        for (var j = 0; cityArr[j]; j++) {
+                            city.append("<option>" + cityArr[j]["name"] + "</option>");
+                        }
+                    }
+                }
+                city.val($scope.userInfo.city);
+            }
+        };
+        $scope.loadDistrict = function () {
+            var address = $scope.addressJSON;
+            var district = $document.find("#district");
+            district.html('');
+            var province = $scope.enterpriseInfo.province;
+            var city = $scope.enterpriseInfo.city;
+            if (province != "" && city != "") {
+                for (var i = 1; address[i]; i++) {
+                    if (province == address[i]["name"]) {
+                        var cityArr = address[i]["sub"];
+                        for (var j = 0; cityArr[j]; j++) {
+                            if (city == cityArr[j]["name"]) {
+                                var districtArr = cityArr[j]["sub"];
+                                if (districtArr) {
+                                    for (var k = 0; districtArr[k]; k++) {
+                                        district.append("<option>" + districtArr[k]["name"] + "</option>");
+                                    }
+                                } else {
+                                    district.hide();
+                                }
+                            }
+
+                        }
+                    }
+                }
+                district.val($scope.enterpriseInfo.district);
+            }
+        };
+
+        $scope.updateEnterpriseInfo = function () {
+            console.log($scope.enterpriseInfo);
+            userSvc.updateEnterpriseInfo($scope.enterpriseInfo, function (result) {
+                $location.path("/center");
+            });
+        };
+        initEnterpriseInfo();
     });

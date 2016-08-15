@@ -162,10 +162,34 @@ router.get('/api/v1/enterprise/:email/:pwd', function (req, res, next) {
 });
 
 /**
- * Update enterprise user information
+ * update enterprise information.
  * */
-router.put('/api/v1/enterprise', function (req, res, next) {
-    console.log("update enterprise");
+router.put('/api/v1/enterprise_info', function (req, res, next) {
+    var requestData = req.body;
+    userModule.updateUserInfo(requestData, function (err, result) {
+        if (err) {
+            res.send({s: 0, d: err.message});
+        } else {
+            res.send({s: 1, d: result});
+        }
+    });
+});
+
+
+/**
+ * read enterprise info via id.
+ * */
+router.get('/api/v1/enterprise_info/:uid', function (req, res, next) {
+    var uid = req.params.uid;
+    console.log("uid==="+uid);
+    userModule.findUserInfoById(uid, function (err, docs) {
+        if (err || docs.length == 0) {
+            res.send({s: 0, d: []});
+        } else {
+            res.send({s: 1, d: docs[0]});
+
+        }
+    });
 });
 
 /**

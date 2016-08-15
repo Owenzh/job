@@ -83,11 +83,32 @@ svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location,
         });
     }
 
+    function getEnterpriseInfo(data, callback) {
+        var _url = '/api/v1/enterprise_info/' + data.id;
+        var req = mapRequest('GET', {url: _url});
+        return $http(req).then(function successCallback(res) {
+            callback && callback(res.data);
+        }, function errorCallback(res) {
+            console.error("[getEnterpriseInfo] error");
+        });
+    }
+
+    function updateEnterpriseInfo(data, callback) {
+        var req = mapRequest('PUT', {url: '/api/v1/enterprise_info', data: data});
+        return $http(req).then(function successCallback(res) {
+            callback && callback(res.data);
+        }, function errorCallback(res) {
+            console.error("[updateEnterpriseInfo] error");
+        });
+    }
+
     return {
         registerUser: registerUser,
         loginUser: loginUser,
         loadAddress: loadAddress,
         updateUserInfo: updateUserInfo,
-        getUserInfo: getUserInfo
+        getUserInfo: getUserInfo,
+        updateEnterpriseInfo: updateEnterpriseInfo,
+        getEnterpriseInfo: getEnterpriseInfo
     };
 }]);
