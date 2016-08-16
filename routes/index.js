@@ -30,6 +30,11 @@ router.get('/api/v1/address', function (req, res, next) {
     res.send({s: 1, d: addressJSON});
 });
 
+router.get('/api/v1/category', function (req, res, next) {
+    var categoryJSON = require('../resources/static/category.json');
+    res.send({s: 1, d: categoryJSON});
+});
+
 //****************************User parts api****************************//
 
 /**

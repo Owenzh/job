@@ -139,9 +139,11 @@ angular.module('jobController', ['jobService']).controller('NavController', func
                 if (dataObj.s == 1) {
                     $scope.enterpriseInfo = angular.copy(dataObj.d);
                 } else {
+                    console.log("userData");
                     $scope.enterpriseInfo = angular.copy($scope.userData);
                 }
                 userSvc.loadAddress(initAddress);
+                userSvc.loadCategory(initCategory);
             });
         }
 
@@ -209,7 +211,41 @@ angular.module('jobController', ['jobService']).controller('NavController', func
                 district.val($scope.enterpriseInfo.district);
             }
         };
+        function initCategory(category) {
+            console.dir(category);
+            $scope.categoryJSON = category;
+            $scope.loadCategory();
+            $scope.loadCategorySub();
+        }
 
+        $scope.loadCategory = function () {
+            var category = $scope.categoryJSON;
+            var categoryHtml = $document.find("#e_businessCategoryMain");
+            categoryHtml.html("");
+            for (var i = 0; category[i]; i++) {
+                categoryHtml.append('<option value="' + category[i]["short"] + '">' + category[i]["title"] + '</option>');
+            }
+            categoryHtml.val($scope.enterpriseInfo.e_businessCategoryMain);
+        };
+        $scope.loadCategorySub = function () {
+            var category = $scope.categoryJSON;
+            var main = $document.find("#e_businessCategoryMain");
+            var sub = $document.find("#e_businessCategorySub");
+            sub.html("");
+            //sub.html('<option value="">请选择</option>');
+            var main = $scope.enterpriseInfo.e_businessCategoryMain;
+            if (main != "") {
+                for (var i = 0; category[i]; i++) {
+                    if (main == category[i]["short"]) {
+                        var mainArr = category[i]["value"];
+                        for (var j = 0; mainArr[j]; j++) {
+                            sub.append('<option value="' + mainArr[j]["k"] + '">' + mainArr[j]["v"] + '</option>');
+                        }
+                    }
+                }
+                sub.val($scope.enterpriseInfo.e_businessCategorySub);
+            }
+        };
         $scope.updateEnterpriseInfo = function () {
             console.log($scope.enterpriseInfo);
             userSvc.updateEnterpriseInfo($scope.enterpriseInfo, function (result) {

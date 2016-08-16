@@ -63,6 +63,16 @@ svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location,
             console.error("[loadAddress] error");
         });
     }
+    function loadCategory(callback) {
+        var req = mapRequest('GET', {url: '/api/v1/category'});
+        return $http(req).then(function successCallback(res) {
+            if (res.data.s) {
+                callback(res.data.d);
+            }
+        }, function errorCallback(res) {
+            console.error("[loadCategory] error");
+        });
+    }
 
     function getUserInfo(data, callback) {
         var _url = '/api/v1/user_info/' + data.id;
@@ -109,6 +119,7 @@ svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location,
         updateUserInfo: updateUserInfo,
         getUserInfo: getUserInfo,
         updateEnterpriseInfo: updateEnterpriseInfo,
-        getEnterpriseInfo: getEnterpriseInfo
+        getEnterpriseInfo: getEnterpriseInfo,
+        loadCategory: loadCategory
     };
 }]);
