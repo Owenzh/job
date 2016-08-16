@@ -33,6 +33,8 @@ angular.module('jobController', ['jobService']).controller('NavController', func
     })
     .controller('RegisterController', ['$scope', '$location', 'userSvc', function ($scope, $location, userSvc) {
         $scope.user = {};
+        $scope.user.isNew = true;
+        $scope.user.detail = null;
         $scope.registerAction = function () {
             if (!(angular.isUndefined($scope.user.email) || angular.isUndefined($scope.user.password) || angular.isUndefined($scope.user.type) || angular.isUndefined($scope.user.policy))) {
                 userSvc.registerUser($scope.user, function () {
@@ -46,11 +48,12 @@ angular.module('jobController', ['jobService']).controller('NavController', func
         function initUserInfo() {
             userSvc.getUserInfo({id: $scope.userData.id}, function (result) {
                 var dataObj = result;
+                $scope.userInfo = angular.copy($scope.userData);
+                //console.dir($scope.userInfo);
                 if (dataObj.s == 1) {
-                    $scope.userInfo = angular.copy(dataObj.d);
-                } else {
-                    $scope.userInfo = angular.copy($scope.userData);
+                    angular.extend($scope.userInfo, dataObj.d);
                 }
+                //console.dir($scope.userInfo);
                 userSvc.loadAddress(initAddress);
             });
         }

@@ -41,7 +41,8 @@ router.get('/api/v1/category', function (req, res, next) {
  * create user with user object (json format).
  * */
 router.post('/api/v1/user', function (req, res, next) {
-    userModule.createUser(req.body, function (err, result) {
+    var data = req.body;
+    userModule.createUser(data, function (err, result) {
         if (err) {
             res.send(err.message);
         } else {
@@ -85,12 +86,18 @@ router.put('/api/v1/user_info', function (req, res, next) {
  * */
 router.get('/api/v1/user_info/:uid', function (req, res, next) {
     var uid = req.params.uid;
-    console.log("uid==="+uid);
+    console.log("uid===" + uid);
     userModule.findUserInfoById(uid, function (err, docs) {
         if (err || docs.length == 0) {
             res.send({s: 0, d: []});
         } else {
-            res.send({s: 1, d: docs[0]});
+            var resultObj = docs[0];
+            if (!resultObj.isNew) {
+                res.send({s: 1, d: docs[0]["detail"]});
+            } else {
+                res.send({s: 0, d: docs[0]});
+            }
+
 
         }
     });
@@ -171,7 +178,7 @@ router.get('/api/v1/enterprise/:email/:pwd', function (req, res, next) {
  * */
 router.put('/api/v1/enterprise_info', function (req, res, next) {
     var requestData = req.body;
-    userModule.updateUserInfo(requestData, function (err, result) {
+    userModule.updateEnterpriseInfo(requestData, function (err, result) {
         if (err) {
             res.send({s: 0, d: err.message});
         } else {
@@ -186,12 +193,12 @@ router.put('/api/v1/enterprise_info', function (req, res, next) {
  * */
 router.get('/api/v1/enterprise_info/:uid', function (req, res, next) {
     var uid = req.params.uid;
-    console.log("uid==="+uid);
+    console.log("uid===" + uid);
     userModule.findUserInfoById(uid, function (err, docs) {
         if (err || docs.length == 0) {
             res.send({s: 0, d: []});
         } else {
-            res.send({s: 1, d: docs[0]});
+            res.send({s: 1, d: docs[0]["detail"]});
 
         }
     });
