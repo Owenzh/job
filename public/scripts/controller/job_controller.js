@@ -134,6 +134,8 @@ angular.module('jobController', ['jobService']).controller('NavController', func
     })
     .controller('JobItemController', function ($scope, $location) {
 
+    }).controller('EnterpriseController', function ($scope, $location) {
+
     })
     .controller('EnterpriseInfoController', function ($scope, $location, $document, userSvc) {
         function initEnterpriseInfo() {
