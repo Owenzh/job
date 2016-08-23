@@ -136,6 +136,17 @@ angular.module('jobController', ['jobService']).controller('NavController', func
 
     }).controller('EnterpriseController', function ($scope, $location) {
 
+    }).controller('PositionController', function ($scope, $location, $document, userSvc) {
+        $scope.positionInfo = {};
+        $scope.requiredArr = [];
+        $scope.addRequired = function () {
+            var r = $scope.positionInfo.p_required;
+            if(r){
+                $scope.requiredArr.push(r);
+            }
+            console.log(r);
+            $scope.positionInfo.p_required = '';
+        }
     })
     .controller('EnterpriseInfoController', function ($scope, $location, $document, userSvc) {
         function initEnterpriseInfo() {
