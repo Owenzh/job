@@ -1,3 +1,12 @@
+<style>
+    .requiredItems {
+        margin-bottom: 0.5em;
+    }
+
+    .removeItem {
+        float:right;
+    }
+</style>
 <h3>ct_e_position_add</h3>
 <pre>
     职位名称、职位描述、职位基本要求、职位的有效期限、职位的招聘人数
@@ -7,7 +16,7 @@
     <div class="form-group">
         <label for="p_name" class="col-sm-2 control-label">职位名称</label>
 
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <input type="text" class="form-control" id="p_name" name="p_name"
                    ng-model="positionInfo.p_name"
                    placeholder="请输入职位名称" required>
@@ -18,7 +27,7 @@
     <div class="form-group">
         <label for="p_desc" class="col-sm-2 control-label">职位描述</label>
 
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <textarea rows="7" class="form-control" id="p_desc" name="p_desc"
                       ng-model="positionInfo.p_desc" placeholder="请输入职位描述"></textarea>
         </div>
@@ -27,22 +36,27 @@
     <div class="form-group">
         <label for="p_required" class="col-sm-2 control-label">职位基本要求</label>
 
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <input type="text" class="form-control" id="p_required" name="p_required"
                    ng-model="positionInfo.p_required"
                    placeholder="请输入职位要求" required>
         </div>
         <div class="col-sm-1">
-            <button type="button" class="btn btn-default" ng-click="addRequired();">添加</button>
+            <button type="button" class="btn btn-default" data-ng-click="addRequired();">添加</button>
         </div>
     </div>
 
     <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-4">
-            <ol class="list-group" >
-                <li class="list-group-item" data-ng-repeat="item in requiredArr">{{item}}</li>
-            </ol>
+        <div class="col-sm-offset-2 col-sm-6">
+            <ol class="list-group">
+                <li class="list-group-item requiredItems" data-ng-repeat="item in requiredArr track by $index">
+                    <span>{{$index+1}}. {{item}}
+                        <a href="javascript:void(0);" class="removeItem" data-ng-click="removeRequiredItem($index);">移除</a>
+                    </span>
 
+                </li>
+
+            </ol>
         </div>
 
     </div>

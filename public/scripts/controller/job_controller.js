@@ -146,7 +146,11 @@ angular.module('jobController', ['jobService']).controller('NavController', func
             }
             console.log(r);
             $scope.positionInfo.p_required = '';
-        }
+        };
+        $scope.removeRequiredItem = function(indx){
+            delete $scope.requiredArr[indx];
+            console.log(indx);
+        };
     })
     .controller('EnterpriseInfoController', function ($scope, $location, $document, userSvc) {
         function initEnterpriseInfo() {
