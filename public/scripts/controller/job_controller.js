@@ -144,12 +144,23 @@ angular.module('jobController', ['jobService']).controller('NavController', func
             if(r){
                 $scope.requiredArr.push(r);
             }
-            console.log(r);
             $scope.positionInfo.p_required = '';
         };
         $scope.removeRequiredItem = function(indx){
-            delete $scope.requiredArr[indx];
-            console.log(indx);
+            $scope.requiredArr.splice(indx,1);//删除当前元素
+        };
+        $scope.addPositionInfo = function(){
+            $scope.positionInfo.p_requirements = $scope.requiredArr;
+            delete $scope.positionInfo.p_required;
+            //console.dir($scope.positionInfo);
+            console.dir($scope.userData);
+            $scope.positionInfo.p_create_date = new Date().getTime();
+            $scope.positionInfo.e_id = $scope.userData.id;
+            console.dir($scope.positionInfo);
+
+            userSvc.addPosition([$scope.positionInfo], function (result) {
+                $location.path("/center");
+            });
         };
     })
     .controller('EnterpriseInfoController', function ($scope, $location, $document, userSvc) {

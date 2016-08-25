@@ -8,6 +8,7 @@
 var express = require('express');
 var router = express.Router();
 var userModule = require('../modules/userModule');
+var positionModule = require('../modules/positionModule');
 
 /*
  * RestFul API Base Guide.
@@ -141,6 +142,14 @@ router.get('/api/v1/positions', function (req, res, next) {
  * */
 router.post('/api/v1/position_request', function (req, res, next) {
     console.log("create position_request");
+    var requestData = req.body;
+    userModule.updateUserInfo(requestData, function (err, result) {
+        if (err) {
+            res.send({s: 0, d: err.message});
+        } else {
+            res.send({s: 1, d: result});
+        }
+    });
 });
 
 /**
@@ -208,7 +217,15 @@ router.get('/api/v1/enterprise_info/:uid', function (req, res, next) {
  * Create position
  * */
 router.post('/api/v1/position', function (req, res, next) {
-    console.log("create position");
+    console.log("create position####");
+    var requestData = req.body;
+    positionModule.createPosition(requestData, function (err, result) {
+        if (err) {
+            res.send({s: 0, d: err.message});
+        } else {
+            res.send({s: 1, d: result});
+        }
+    });
 });
 
 /**

@@ -111,7 +111,14 @@ svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location,
             console.error("[updateEnterpriseInfo] error");
         });
     }
-
+    function addPositionInfo(data,callback){
+        var req = mapRequest('POST', {url: '/api/v1/position', data: data});
+        return $http(req).then(function successCallback(res) {
+            callback && callback(res.data);
+        }, function errorCallback(res) {
+            console.error("[addPositionInfo] error");
+        });
+    }
     return {
         registerUser: registerUser,
         loginUser: loginUser,
@@ -120,6 +127,7 @@ svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location,
         getUserInfo: getUserInfo,
         updateEnterpriseInfo: updateEnterpriseInfo,
         getEnterpriseInfo: getEnterpriseInfo,
-        loadCategory: loadCategory
+        loadCategory: loadCategory,
+        addPosition: addPositionInfo
     };
 }]);

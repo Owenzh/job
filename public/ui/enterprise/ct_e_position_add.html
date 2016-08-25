@@ -4,14 +4,9 @@
     }
 
     .removeItem {
-        float:right;
+        float: right;
     }
 </style>
-<h3>ct_e_position_add</h3>
-<pre>
-    职位名称、职位描述、职位基本要求、职位的有效期限、职位的招聘人数
-</pre>
-
 <form class="form-horizontal" role="form" name="enterpriseInfoForm" novalidate>
     <div class="form-group">
         <label for="p_name" class="col-sm-2 control-label">职位名称</label>
@@ -34,7 +29,7 @@
 
     </div>
     <div class="form-group">
-        <label for="p_required" class="col-sm-2 control-label">职位基本要求</label>
+        <label for="p_required" class="col-sm-2 control-label">基本要求</label>
 
         <div class="col-sm-6">
             <input type="text" class="form-control" id="p_required" name="p_required"
@@ -51,7 +46,8 @@
             <ol class="list-group">
                 <li class="list-group-item requiredItems" data-ng-repeat="item in requiredArr track by $index">
                     <span>{{$index+1}}. {{item}}
-                        <a href="javascript:void(0);" class="removeItem" data-ng-click="removeRequiredItem($index);">移除</a>
+                        <a href="javascript:void(0);" class="removeItem"
+                           data-ng-click="removeRequiredItem($index);">移除</a>
                     </span>
 
                 </li>
@@ -60,10 +56,47 @@
         </div>
 
     </div>
+    <div class="form-group">
+        <label for="p_deadline" class="col-sm-2 control-label">有效日期</label>
+
+        <div class="col-sm-6 input-append date form_datetime" data-min-view="month" data-date-format="yyyy-mm-dd">
+            <input size="16" class="form-control" id="p_deadline" name="p_deadline" ng-model="positionInfo.p_deadline"
+                   type="text" value="" readonly>
+            <span class="add-on"><i class="icon-th"></i></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="p_hired_count" class="col-sm-2 control-label">招聘人数</label>
+
+        <div class="col-sm-6">
+            <select class="form-control" id="p_hired_count" name="p_hired_count" ng-model="positionInfo.p_hired_count">
+                <option>1</option>
+                <option ng-selected="true">2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="p_status" class="col-sm-2 control-label">职位状态</label>
+
+        <div class="col-sm-6">
+            <select class="form-control" id="p_status" name="p_status" ng-model="positionInfo.p_status">
+                <option value="0">冻结</option>
+                <option value="1" ng-selected="true">活跃</option>
+            </select>
+        </div>
+    </div>
     <!---->
     <div class="form-group">
-        <div class="col-sm-offset-3 col-sm-6 col-sm-offset-3">
-            <button type="submit" class="btn btn-primary btn-block" ng-click="updateEnterpriseInfo();">保存</button>
+        <div class="col-sm-offset-2 col-sm-6">
+            <button type="submit" class="btn btn-primary btn-block" ng-click="addPositionInfo();">保存</button>
         </div>
     </div>
 
