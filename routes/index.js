@@ -5,6 +5,7 @@
  * @date 2016/08/05
  * @version 1.0
  * */
+
 var express = require('express');
 var router = express.Router();
 var userModule = require('../modules/userModule');
@@ -71,7 +72,9 @@ router.get('/api/v1/user/:email/:pwd', function (req, res, next) {
  * update user information.
  * */
 router.put('/api/v1/user_info', function (req, res, next) {
-    var requestData = req.body;
+    var requestData = decodeURI(req.body);
+    console.dir(req);
+    //console.dir(requestData);
     userModule.updateUserInfo(requestData, function (err, result) {
         if (err) {
             res.send({s: 0, d: err.message});
