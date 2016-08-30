@@ -17,7 +17,7 @@ svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location,
                 request.method = 'POST';
                 request.url = config.url;
                 request.headers = {
-                    'Content-type': 'application/json'
+                    'Content-type': 'application/json; charset=UTF-8'
                 };
                 request.data = angular.toJson(config.data);
                 break;
@@ -25,7 +25,7 @@ svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location,
                 request.method = 'PUT';
                 request.url = config.url;
                 request.headers = {
-                    'Content-type': 'application/json'
+                    'Content-type': 'application/json; charset=UTF-8'
                 };
                 request.data = angular.toJson(config.data);
                 break;
