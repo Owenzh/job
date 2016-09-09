@@ -141,15 +141,15 @@ angular.module('jobController', ['jobService']).controller('NavController', func
         $scope.requiredArr = [];
         $scope.addRequired = function () {
             var r = $scope.positionInfo.p_required;
-            if(r){
+            if (r) {
                 $scope.requiredArr.push(r);
             }
             $scope.positionInfo.p_required = '';
         };
-        $scope.removeRequiredItem = function(indx){
-            $scope.requiredArr.splice(indx,1);//删除当前元素
+        $scope.removeRequiredItem = function (indx) {
+            $scope.requiredArr.splice(indx, 1);//删除当前元素
         };
-        $scope.addPositionInfo = function(){
+        $scope.addPositionInfo = function () {
             $scope.positionInfo.p_requirements = $scope.requiredArr;
             delete $scope.positionInfo.p_required;
             //console.dir($scope.positionInfo);
@@ -284,4 +284,45 @@ angular.module('jobController', ['jobService']).controller('NavController', func
             });
         };
         initEnterpriseInfo();
+    }).controller('PositionBookController', function ($scope, $location, $document, userSvc) {
+        function initCategory(category) {
+            console.dir(category);
+            $scope.categoryJSON = category;
+            $scope.loadCategory();
+            $scope.loadCategorySub();
+        }
+
+        $scope.loadCategory = function () {
+            var category = $scope.categoryJSON;
+            var categoryHtml = $document.find("#e_businessCategoryMain");
+            categoryHtml.html("");
+            for (var i = 0; category[i]; i++) {
+                categoryHtml.append('<option value="' + category[i]["short"] + '">' + category[i]["title"] + '</option>');
+            }
+            categoryHtml.val($scope.bookInfo.e_businessCategoryMain);
+        };
+        $scope.loadCategorySub = function () {
+            var category = $scope.categoryJSON;
+            var main = $document.find("#e_businessCategoryMain");
+            var sub = $document.find("#e_businessCategorySub");
+            sub.html("");
+            //sub.html('<option value="">请选择</option>');
+            var main = $scope.bookInfo.e_businessCategoryMain;
+            if (main != "") {
+                for (var i = 0; category[i]; i++) {
+                    if (main == category[i]["short"]) {
+                        var mainArr = category[i]["value"];
+                        for (var j = 0; mainArr[j]; j++) {
+                            sub.append('<option value="' + mainArr[j]["k"] + '">' + mainArr[j]["v"] + '</option>');
+                        }
+                    }
+                }
+                sub.val($scope.bookInfo.e_businessCategorySub);
+            }
+        };
+        function init(){
+            $scope.bookInfo = {};
+            userSvc.loadCategory(initCategory);
+        }
+        init();
     });

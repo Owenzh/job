@@ -48,7 +48,8 @@ angular.module('jobApp', ['ngAnimate','ui.router', 'jobController']).config(['$s
             templateUrl: '/ui/user/ct_u_position_collection.html'
         }).state("center.position-book", {
             url: "/position-book",
-            templateUrl: '/ui/user/ct_u_position_book.html'
+            templateUrl: '/ui/user/ct_u_position_book.html',
+            controller:'PositionBookController'
         }).state("center.user-msg-box", {
             url: "/user-msg-box",
             templateUrl: '/ui/user/ct_u_user_msg_box.html'

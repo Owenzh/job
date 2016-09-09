@@ -1,1 +1,66 @@
-<h3>ct_u_position_book</h3>
+<style>
+    .book_position {
+        margin-top: 5em;
+    }
+    .book_position .create_btn{
+        margin-top: 3em;
+    }
+</style>
+<div class="panel panel-success book_position">
+    <div class="panel-heading">
+        <h3 class="panel-title">职位订阅器</h3>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal" role="form" name="bookInfoForm" novalidate>
+            <div class="form-group">
+                <label for="book_name" class="col-sm-2 control-label">订阅器名</label>
+
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" id="book_name" name="book_name"
+                           ng-model="bookInfo.book_name"
+                           placeholder="订阅器名称" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="position_name" class="col-sm-2 control-label">职位名称</label>
+
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="position_name" name="position_name"
+                           ng-model="bookInfo.position_name"
+                           placeholder="职位名称" required>
+                </div>
+                <label for="enterprise_name" class="col-sm-2 control-label">企业名称</label>
+
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="enterprise_name" name="enterprise_name"
+                           ng-model="bookInfo.enterprise_name"
+                           placeholder="企业名称" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="e_businessCategoryMain" class="col-sm-2 control-label">行业分类</label>
+
+                <div class="col-sm-5">
+                    <select class="form-control" id="e_businessCategoryMain" name="e_businessCategoryMain"
+                            ng-change="loadCategorySub();" ng-model="bookInfo.e_businessCategoryMain">
+                        <option value="">请选择</option>
+                    </select>
+                </div>
+                <div class="col-sm-5">
+                    <select class="form-control" id="e_businessCategorySub" name="e_businessCategorySub"
+                            ng-model="bookInfo.e_businessCategorySub">
+                        <option value="">请选择</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group create_btn">
+                <div class="col-sm-offset-1 col-sm-2">
+                    <button type="submit" class="btn btn-primary btn-block" ng-click="createBookInfo();">创建订阅器</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="panel-footer">每位求职者最多可以创建5个职位订阅器</div>
+</div>
