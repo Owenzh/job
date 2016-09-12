@@ -36,11 +36,13 @@ svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location,
     function registerUser(user, callback) {
         user.password = md5.createHash(user.password);
         var req = mapRequest("POST", {url: '/api/v1/user', data: [user]});
+        console.dir(user);
+        /*
         $http(req).then(function successCallback(res) {
             callback && callback();
         }, function errorCallback(res) {
             console.error("[registerUser] error");
-        });
+        });*/
     }
 
     function loginUser(user, callback) {

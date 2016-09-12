@@ -3,24 +3,10 @@
  */
 var ObjectId = require('mongodb').ObjectId;
 var DB = require('../DBUtils/DBAPI').MGDAO;
-var dbObj = new DB('tb_user');
-exports.createUser = function (data, callback) {
-    try {
-        dbObj.insertDocuments(data, callback);
-    } catch (e) {
-        console.log(e);
-    }
-};
-exports.findUser = function (filters, callback) {
-    dbObj.findDocuments(filters, callback);
-};
+var moment = require('moment');
+//var dbObj = new DB('tb_user');
+var dbObj = new DB('tb_auths');
 
-exports.findUserInfoById = function (uid, callback) {
-    dbObj.findDocuments({"_id": ObjectId(uid)}, callback);
-};
-
-
-exports.updateUserInfo = function (data, callback) {
     /*
      type
      typeName
@@ -41,34 +27,7 @@ exports.updateUserInfo = function (data, callback) {
      position_title
      work_years
      */
-    var setObj = {
-        has_info: 1,
-        type: data.type,
-        typeName: data.typeName,
-        province: data.province,
-        city: data.city,
-        district: data.district,
-        address_detail: data.address_detail,
-        nick_name: data.nick_name,
-        real_name: data.real_name,
-        birthday: data.birthday,
-        phone: data.phone,
-        email: data.email,
-        status: data.status,
-        graduate_day: data.graduate_day,
-        position_title: data.position_title,
-        work_years: data.work_years
-    };
-    var filter = {"_id": ObjectId(data.id)};
-    var update = {
-        $set: {isNew: false, detail: setObj}
-    };
-    var options = {upsert: false};
-    dbObj.updateOneDocument(filter, update, options, callback);
-};
-
-
-exports.updateEnterpriseInfo = function (data, callback) {
+     
     /*
      _id: "57b30527d7f9838c0bce460c"
      address_detail
@@ -88,6 +47,52 @@ exports.updateEnterpriseInfo = function (data, callback) {
      province
      type
      */
+exports.createUser = function (data, callback) {
+    try {
+        dbObj.insertDocuments(data, callback);
+    } catch (e) {
+        console.log(e);
+    }
+};
+exports.findUser = function (filters, callback) {
+    dbObj.findDocuments(filters, callback);
+};
+
+exports.findUserInfoById = function (uid, callback) {
+    dbObj.findDocuments({"_id": ObjectId(uid)}, callback);
+};
+
+
+exports.updateUserInfo = function (data, callback) {
+    var setObj = {
+        has_info: 1,
+        type: data.type,
+        typeName: data.typeName,
+        province: data.province,
+        city: data.city,
+        district: data.district,
+        address_detail: data.address_detail,
+        nick_name: data.nick_name,
+        real_name: data.real_name,
+        birthday: data.birthday,
+        phone: data.phone,
+        email: data.email,
+        status: data.status,
+        graduate_day: data.graduate_day,
+        position_title: data.position_title,
+        work_years: data.work_years
+    };
+    var updateDate = new Date().getTime();
+    var filter = {"_id": ObjectId(data.id)};
+    var update = {
+        $set: {isNew: false, info: setObj,updateDate:updateDate}
+    };
+    var options = {upsert: false};
+    dbObj.updateOneDocument(filter, update, options, callback);
+};
+
+
+exports.updateEnterpriseInfo = function (data, callback) {
     var setObj = {
         has_info: 1,
         type: data.type,
@@ -105,9 +110,10 @@ exports.updateEnterpriseInfo = function (data, callback) {
         e_realName: data.e_realName,
         e_registerNumber: data.e_registerNumber
     };
+    var updateDate = new Date().getTime();
     var filter = {"_id": ObjectId(data.id)};
     var update = {
-        $set: {"isNew": false, "detail": setObj}
+        $set: {isNew: false, info: setObj,updateDate:updateDate}
     };
     var options = {upsert: false};
     dbObj.updateOneDocument(filter, update, options, callback);
