@@ -38,6 +38,8 @@ angular.module('jobController', ['jobService']).controller('NavController', func
         $scope.user.info = null;
         $scope.user.createDate = currentTime;
         $scope.user.updateDate = currentTime;
+        $scope.user.test = '中文测试';
+
         $scope.registerAction = function () {
             if (!(angular.isUndefined($scope.user.email) || angular.isUndefined($scope.user.password) || angular.isUndefined($scope.user.type) || angular.isUndefined($scope.user.policy))) {
                 userSvc.registerUser($scope.user, function () {

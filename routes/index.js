@@ -44,6 +44,7 @@ router.get('/api/v1/category', function (req, res, next) {
  * */
 router.post('/api/v1/user', function (req, res, next) {
     var data = req.body;
+    console.log(data);
     userModule.createUser(data, function (err, result) {
         if (err) {
             res.send(err.message);
@@ -72,9 +73,8 @@ router.get('/api/v1/user/:email/:pwd', function (req, res, next) {
  * update user information.
  * */
 router.put('/api/v1/user_info', function (req, res, next) {
-    var requestData = decodeURI(req.body);
-    console.dir(req);
-    //console.dir(requestData);
+    var requestData = (req.body);
+    //console.log(requestData);
     userModule.updateUserInfo(requestData, function (err, result) {
         if (err) {
             res.send({s: 0, d: err.message});
@@ -97,7 +97,7 @@ router.get('/api/v1/user_info/:uid', function (req, res, next) {
         } else {
             var resultObj = docs[0];
             if (!resultObj.isNew) {
-                res.send({s: 1, d: docs[0]["detail"]});
+                res.send({s: 1, d: docs[0]["info"]});
             } else {
                 res.send({s: 0, d: docs[0]});
             }

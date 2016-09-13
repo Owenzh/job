@@ -4,49 +4,60 @@
 var ObjectId = require('mongodb').ObjectId;
 var DB = require('../DBUtils/DBAPI').MGDAO;
 var moment = require('moment');
+var iconv = require('iconv-lite');
 //var dbObj = new DB('tb_user');
 var dbObj = new DB('tb_auths');
 
-    /*
-     type
-     typeName
+function decodeParameters(obj) {
+    var _tmp = obj;
+    for (var i in _tmp) {
+        _tmp[i] = decodeURIComponent(_tmp[i]);
+        //_tmp[i] = unescape(_tmp[i]);
+        console.log(_tmp[i]);
+    }
+    return _tmp;
+}
 
-     province
-     city
-     district
-     address_detail
+/*
+ type
+ typeName
 
-     nick_name
-     real_name
-     birthday
-     phone
-     email
+ province
+ city
+ district
+ address_detail
 
-     status
-     graduate_day
-     position_title
-     work_years
-     */
-     
-    /*
-     _id: "57b30527d7f9838c0bce460c"
-     address_detail
-     city
-     district
-     e_assets
-     e_businessCategoryMain
-     e_businessCategorySub
-     e_culture
-     e_establishmentDate
-     e_person
-     e_realName
-     e_registerNumber
-     email
-     password
-     policy
-     province
-     type
-     */
+ nick_name
+ real_name
+ birthday
+ phone
+ email
+
+ status
+ graduate_day
+ position_title
+ work_years
+ */
+
+/*
+ _id: "57b30527d7f9838c0bce460c"
+ address_detail
+ city
+ district
+ e_assets
+ e_businessCategoryMain
+ e_businessCategorySub
+ e_culture
+ e_establishmentDate
+ e_person
+ e_realName
+ e_registerNumber
+ email
+ password
+ policy
+ province
+ type
+ */
 exports.createUser = function (data, callback) {
     try {
         dbObj.insertDocuments(data, callback);
@@ -64,6 +75,7 @@ exports.findUserInfoById = function (uid, callback) {
 
 
 exports.updateUserInfo = function (data, callback) {
+    var data = decodeParameters(data);
     var setObj = {
         has_info: 1,
         type: data.type,
@@ -85,9 +97,15 @@ exports.updateUserInfo = function (data, callback) {
     var updateDate = new Date().getTime();
     var filter = {"_id": ObjectId(data.id)};
     var update = {
-        $set: {isNew: false, info: setObj,updateDate:updateDate}
+        $set: {isNew: false, info: setObj, updateDate: updateDate}
     };
     var options = {upsert: false};
+    console.log("............Update AUth tb_user........");
+    //var buf = iconv.encode(data.province,'utf-8');
+    //console.log(iconv.decode(new Buffer(buf),'utf-8'));
+    //console.log(iconv.encode(data.province,'utf-8'));
+    console.log((data.province));
+    //console.dir(setObj);
     dbObj.updateOneDocument(filter, update, options, callback);
 };
 
@@ -113,7 +131,7 @@ exports.updateEnterpriseInfo = function (data, callback) {
     var updateDate = new Date().getTime();
     var filter = {"_id": ObjectId(data.id)};
     var update = {
-        $set: {isNew: false, info: setObj,updateDate:updateDate}
+        $set: {isNew: false, info: setObj, updateDate: updateDate}
     };
     var options = {upsert: false};
     dbObj.updateOneDocument(filter, update, options, callback);
