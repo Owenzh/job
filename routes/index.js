@@ -190,6 +190,7 @@ router.get('/api/v1/enterprise/:email/:pwd', function (req, res, next) {
  * */
 router.put('/api/v1/enterprise_info', function (req, res, next) {
     var requestData = req.body;
+    console.dir(requestData);
     userModule.updateEnterpriseInfo(requestData, function (err, result) {
         if (err) {
             res.send({s: 0, d: err.message});
@@ -210,7 +211,7 @@ router.get('/api/v1/enterprise_info/:uid', function (req, res, next) {
         if (err || docs.length == 0) {
             res.send({s: 0, d: []});
         } else {
-            res.send({s: 1, d: docs[0]["detail"]});
+            res.send({s: 1, d: docs[0]["info"]});
 
         }
     });

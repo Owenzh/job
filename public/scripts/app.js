@@ -1,7 +1,7 @@
 /**
  * Created by Owen on 4/6/2016.
  */
-angular.module('jobApp', ['ngAnimate','ui.router', 'jobController']).config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+angular.module('jobApp', ['ngAnimate', 'ui.router', 'jobController']).config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state("index", {  //路由状态
             url: "/index",  //路由路径
@@ -49,7 +49,7 @@ angular.module('jobApp', ['ngAnimate','ui.router', 'jobController']).config(['$s
         }).state("center.position-book", {
             url: "/position-book",
             templateUrl: '/ui/user/ct_u_position_book.html',
-            controller:'PositionBookController'
+            controller: 'PositionBookController'
         }).state("center.user-msg-box", {
             url: "/user-msg-box",
             templateUrl: '/ui/user/ct_u_user_msg_box.html'
@@ -63,10 +63,11 @@ angular.module('jobApp', ['ngAnimate','ui.router', 'jobController']).config(['$s
         }).state("center.position-add", {
             url: "/position-add",
             templateUrl: '/ui/enterprise/ct_e_position_add.html',
-            controller: 'PositionController'
+            controller: 'PositionAddController'
         }).state("center.position-manage", {
             url: "/position-manage",
-            templateUrl: '/ui/enterprise/ct_e_position_manage.html'
+            templateUrl: '/ui/enterprise/ct_e_position_manage.html',
+            controller: 'PositionManageController'
         }).state("center.position", {
             url: "/position",
             templateUrl: '/ui/enterprise/ct_e_center_position.html'
@@ -101,12 +102,14 @@ angular.module('jobApp', ['ngAnimate','ui.router', 'jobController']).config(['$s
                 $rootScope.userType = "unknown";
             }
         };
-        $scope.updateLocalUser = function (userStr) {
+        $scope.updateLocalUser = function (userStr, info) {
             var storage = $window.localStorage;
             storage.setItem("ers_user", userStr);
-            $scope.updateUserForApp(userStr);
+            console.log(angular.toJson(info));
+            storage.setItem("ers_user_info", angular.toJson(info));
+            $scope.updateUserForApp(userStr, info);
         };
-        $scope.updateUserForApp = function (userStr) {
+        $scope.updateUserForApp = function (userStr, info) {
             var userArr = userStr.split("#");
             var user = {};
             if (userArr.length > 0) {
@@ -116,7 +119,12 @@ angular.module('jobApp', ['ngAnimate','ui.router', 'jobController']).config(['$s
                 user.type = userArr[3];
                 user.typeName = userArr[3] == 1 ? '求职者' : '企业';
             }
-            (user.type == 1) ? $rootScope.userType = "user" : $rootScope.userType = "enterprise";
+            if (user.type == 1) {
+                $rootScope.userType = "user";
+            } else {
+                $rootScope.userType = "enterprise";
+            }
+            user.info = info;
             $rootScope.userData = user;
         };
         $scope.removeLocalUser = function () {
@@ -127,7 +135,8 @@ angular.module('jobApp', ['ngAnimate','ui.router', 'jobController']).config(['$s
             var user = data[0];
             $scope.isUserLogin = true;
             var userStr = user._id + "#" + user.email + "#" + user.password + "#" + user.type;
-            $scope.updateLocalUser(userStr);
+            $scope.updateLocalUser(userStr, user.info);
+
         });
         $scope.$on('logoutUser', function (event, args) {
             $scope.removeLocalUser();

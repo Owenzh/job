@@ -4,14 +4,6 @@
 
 var svc = angular.module('jobService', ['angular-md5']);
 svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location, md5) {
-    function appendTransform(defaults, transform) {
-
-        // We can't guarantee that the default transformation is an array
-        defaults = angular.isArray(defaults) ? defaults : [defaults];
-
-        // Append the new transformation to the defaults
-        return defaults.concat(transform);
-    }
     function mapRequest(method, config) {
         var request = {};
         method = String(method).toUpperCase();
@@ -25,20 +17,15 @@ svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location,
                 request.method = 'POST';
                 request.url = config.url;
                 request.headers = {
-                    //'Content-type': 'application/json; charset=UTF-8'
-                    'Content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+                    'Content-type': 'application/json;charset=utf-8'
                 };
-                //request.data = angular.toJson(config.data);
-                request.data = config.data;
-                request.transformResponse = appendTransform($http.defaults.transformResponse, function(value) {
-                    return doTransform(value);
-                });
+                request.data = angular.toJson(config.data);
                 break;
             case "PUT":
                 request.method = 'PUT';
                 request.url = config.url;
                 request.headers = {
-                    'Content-type': 'application/json; charset=UTF-8'
+                    'Content-type': 'application/json;charset=utf-8'
                 };
                 request.data = (angular.toJson(config.data));
                 break;
@@ -107,7 +94,7 @@ svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location,
     }
 
     function updateUserInfo(data, callback) {
-        var req = mapRequest('PUT', {url: '/api/v1/user_info', data: encodeParameters(data)});
+        var req = mapRequest('PUT', {url: '/api/v1/user_info', data: data});
         return $http(req).then(function successCallback(res) {
             callback && callback(res.data);
         }, function errorCallback(res) {
@@ -126,7 +113,7 @@ svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location,
     }
 
     function updateEnterpriseInfo(data, callback) {
-        var req = mapRequest('PUT', {url: '/api/v1/enterprise_info', data: encodeParameters(data)});
+        var req = mapRequest('PUT', {url: '/api/v1/enterprise_info', data: data});
         return $http(req).then(function successCallback(res) {
             callback && callback(res.data);
         }, function errorCallback(res) {

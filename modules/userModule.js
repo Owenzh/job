@@ -75,7 +75,6 @@ exports.findUserInfoById = function (uid, callback) {
 
 
 exports.updateUserInfo = function (data, callback) {
-    var data = decodeParameters(data);
     var setObj = {
         has_info: 1,
         type: data.type,
@@ -100,12 +99,6 @@ exports.updateUserInfo = function (data, callback) {
         $set: {isNew: false, info: setObj, updateDate: updateDate}
     };
     var options = {upsert: false};
-    console.log("............Update AUth tb_user........");
-    //var buf = iconv.encode(data.province,'utf-8');
-    //console.log(iconv.decode(new Buffer(buf),'utf-8'));
-    //console.log(iconv.encode(data.province,'utf-8'));
-    console.log((data.province));
-    //console.dir(setObj);
     dbObj.updateOneDocument(filter, update, options, callback);
 };
 

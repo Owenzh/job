@@ -24,6 +24,8 @@ angular.module('jobController', ['jobService']).controller('NavController', func
                     } else {
                         $location.path("/login");
                     }
+                    console.log("login user");
+                    console.dir(result.data.d);
                     $scope.$emit('loginSuccess', result.data.d);
                 });
             }
@@ -54,11 +56,9 @@ angular.module('jobController', ['jobService']).controller('NavController', func
             userSvc.getUserInfo({id: $scope.userData.id}, function (result) {
                 var dataObj = result;
                 $scope.userInfo = angular.copy($scope.userData);
-                //console.dir($scope.userInfo);
                 if (dataObj.s == 1) {
                     angular.extend($scope.userInfo, dataObj.d);
                 }
-                //console.dir($scope.userInfo);
                 userSvc.loadAddress(initAddress);
             });
         }
@@ -128,7 +128,7 @@ angular.module('jobController', ['jobService']).controller('NavController', func
             }
         };
         $scope.updateUserInfo = function () {
-            console.log($scope.userInfo);
+            //console.log($scope.userInfo);
             userSvc.updateUserInfo($scope.userInfo, function (result) {
                 $location.path("/center");
             });
@@ -141,7 +141,7 @@ angular.module('jobController', ['jobService']).controller('NavController', func
 
     }).controller('EnterpriseController', function ($scope, $location) {
 
-    }).controller('PositionController', function ($scope, $location, $document, userSvc) {
+    }).controller('PositionAddController', function ($scope, $location, $document, userSvc) {
         $scope.positionInfo = {};
         $scope.requiredArr = [];
         $scope.addRequired = function () {
@@ -161,6 +161,8 @@ angular.module('jobController', ['jobService']).controller('NavController', func
             console.dir($scope.userData);
             $scope.positionInfo.p_create_date = new Date().getTime();
             $scope.positionInfo.e_id = $scope.userData.id;
+            $scope.positionInfo.e_name = $scope.userData.info.e_realName;
+            $scope.positionInfo.e_city = $scope.userData.info.city;
             console.dir($scope.positionInfo);
 
             userSvc.addPosition([$scope.positionInfo], function (result) {
@@ -172,11 +174,9 @@ angular.module('jobController', ['jobService']).controller('NavController', func
         function initEnterpriseInfo() {
             userSvc.getEnterpriseInfo({id: $scope.userData.id}, function (result) {
                 var dataObj = result;
+                $scope.enterpriseInfo = angular.copy($scope.userData);
                 if (dataObj.s == 1) {
-                    $scope.enterpriseInfo = angular.copy(dataObj.d);
-                } else {
-                    console.log("userData");
-                    $scope.enterpriseInfo = angular.copy($scope.userData);
+                    angular.extend($scope.enterpriseInfo,dataObj.d);
                 }
                 userSvc.loadAddress(initAddress);
                 userSvc.loadCategory(initCategory);
@@ -216,7 +216,7 @@ angular.module('jobController', ['jobService']).controller('NavController', func
                         }
                     }
                 }
-                city.val($scope.userInfo.city);
+                city.val($scope.enterpriseInfo.city);
             }
         };
         $scope.loadDistrict = function () {
@@ -248,7 +248,7 @@ angular.module('jobController', ['jobService']).controller('NavController', func
             }
         };
         function initCategory(category) {
-            console.dir(category);
+            //console.dir(category);
             $scope.categoryJSON = category;
             $scope.loadCategory();
             $scope.loadCategorySub();
@@ -283,12 +283,18 @@ angular.module('jobController', ['jobService']).controller('NavController', func
             }
         };
         $scope.updateEnterpriseInfo = function () {
-            console.log($scope.enterpriseInfo);
+            //console.log($scope.enterpriseInfo);
             userSvc.updateEnterpriseInfo($scope.enterpriseInfo, function (result) {
                 $location.path("/center");
             });
         };
         initEnterpriseInfo();
+    }).controller('PositionManageController', function ($scope, $location, $document, userSvc) {
+        //TODO
+        //fun01-search position list under this enterprise
+        //fun02- edit position
+        //fun03- invalid/valid position
+        //fun04- delete position
     }).controller('PositionBookController', function ($scope, $location, $document, userSvc) {
         function initCategory(category) {
             console.dir(category);
