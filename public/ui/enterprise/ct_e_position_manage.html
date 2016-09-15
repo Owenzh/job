@@ -1,8 +1,13 @@
-<h3>ct_e_position_manage</h3>
-
+<!--<h3>ct_e_position_manage</h3>-->
+<style>
+    .table > tbody > tr > td.top_padding{
+        padding-left: 6px;
+        padding-top: 9px;
+    }
+</style>
 <div class="table-responsive">
     <table class="table">
-        <caption>职位信息表</caption>
+        <!--<caption>职位信息表</caption>-->
         <thead>
         <tr>
             <th>职位名称</th>
@@ -22,11 +27,12 @@
 
         <!--</li>-->
         <tr data-ng-repeat="p in positionArr track by $index">
-            <td>{{p.p_name}}</td>
-            <td>{{p.p_create_date}}</td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td class="top_padding">{{p.p_name}}</td>
+            <td class="top_padding">{{p.p_create_date}}</td>
+            <td class="top_padding">激活</td>
+            <td><a class="btn btn-default">冻结</a></td>
+            <td><a class="btn btn-success">激活</a></td>
+            <td><a class="btn btn-danger">删除</a></td>
         </tr>
         </tbody>
     </table>
