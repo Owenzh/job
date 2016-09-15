@@ -128,6 +128,17 @@ svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location,
             console.error("[addPositionInfo] error");
         });
     }
+
+
+    function getPositionInfo(eid, callback) {
+        var _url = '/api/v1/position/' + eid;
+        var req = mapRequest('GET', {url: _url});
+        return $http(req).then(function successCallback(res) {
+            callback && callback(res.data);
+        }, function errorCallback(res) {
+            console.error("[getPositionInfo] error");
+        });
+    }
     return {
         registerUser: registerUser,
         loginUser: loginUser,
@@ -137,6 +148,7 @@ svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location,
         updateEnterpriseInfo: updateEnterpriseInfo,
         getEnterpriseInfo: getEnterpriseInfo,
         loadCategory: loadCategory,
-        addPosition: addPositionInfo
+        addPosition: addPositionInfo,
+        getPosition: getPositionInfo
     };
 }]);

@@ -143,6 +143,8 @@ angular.module('jobController', ['jobService']).controller('NavController', func
 
     }).controller('PositionAddController', function ($scope, $location, $document, userSvc) {
         $scope.positionInfo = {};
+        $scope.positionInfo.p_hired_count = "2";
+        $scope.positionInfo.p_status = "1";
         $scope.requiredArr = [];
         $scope.addRequired = function () {
             var r = $scope.positionInfo.p_required;
@@ -176,7 +178,7 @@ angular.module('jobController', ['jobService']).controller('NavController', func
                 var dataObj = result;
                 $scope.enterpriseInfo = angular.copy($scope.userData);
                 if (dataObj.s == 1) {
-                    angular.extend($scope.enterpriseInfo,dataObj.d);
+                    angular.extend($scope.enterpriseInfo, dataObj.d);
                 }
                 userSvc.loadAddress(initAddress);
                 userSvc.loadCategory(initCategory);
@@ -295,6 +297,24 @@ angular.module('jobController', ['jobService']).controller('NavController', func
         //fun02- edit position
         //fun03- invalid/valid position
         //fun04- delete position
+        $scope.positionArr = [];
+        $scope.loadPosition = function () {
+            var e_id = $scope.userData.id;
+            userSvc.getPosition(e_id,function(data){
+
+                if(data.s==0){
+                    console.log("Not data found!");
+                }else{
+                    $scope.positionArr = data.d;
+                    $scope.initPositionTable();
+                }
+            });
+        };
+        $scope.initPositionTable = function(){
+            console.dir($scope.positionArr);
+        };
+        $scope.loadPosition();
+
     }).controller('PositionBookController', function ($scope, $location, $document, userSvc) {
         function initCategory(category) {
             console.dir(category);
@@ -331,9 +351,10 @@ angular.module('jobController', ['jobService']).controller('NavController', func
                 sub.val($scope.bookInfo.e_businessCategorySub);
             }
         };
-        function init(){
+        function init() {
             $scope.bookInfo = {};
             userSvc.loadCategory(initCategory);
         }
+
         init();
     });

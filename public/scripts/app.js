@@ -94,9 +94,10 @@ angular.module('jobApp', ['ngAnimate', 'ui.router', 'jobController']).config(['$
         $scope.checkUserLogin = function () {
             var storage = $window.localStorage;
             var local_user = storage.getItem("ers_user");
+            var local_user_info = storage.getItem("ers_user_info");
             if (local_user && local_user.indexOf("#") != -1) {
                 $scope.isUserLogin = true;
-                $scope.updateUserForApp(local_user);
+                $scope.updateUserForApp(local_user, angular.fromJson(local_user_info));
             } else {
                 $scope.isUserLogin = false;
                 $rootScope.userType = "unknown";

@@ -11,3 +11,7 @@ exports.createPosition = function (data, callback) {
         console.log(e);
     }
 };
+
+exports.findPositionInfoByEId = function (eid, callback) {
+    dbObj.findDocuments({"e_id": eid}, callback);
+};

@@ -140,6 +140,8 @@ router.put('/api/v1/resume/:email', function (req, res, next) {
 router.get('/api/v1/positions', function (req, res, next) {
     console.log("get positions");
 });
+
+
 /**
  * Create position request
  * */
@@ -231,7 +233,22 @@ router.post('/api/v1/position', function (req, res, next) {
         }
     });
 });
+/**
+ * Get all positions by enterprise id
+ * */
+router.get('/api/v1/position/:eid', function (req, res, next) {
+    console.log("get positions");
+    var eid = req.params.eid;
+    console.log("eid===" + eid);
+    positionModule.findPositionInfoByEId(eid, function (err, docs) {
+        if (err || docs.length == 0) {
+            res.send({s: 0, d: []});
+        } else {
+            res.send({s: 1, d: docs});
 
+        }
+    });
+});
 /**
  * Update position
  * */

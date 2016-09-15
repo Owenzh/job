@@ -14,14 +14,20 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>产品1</td>
-            <td>23/11/2013</td>
-            <td>待发货</td></tr>
-        <tr>
-            <td>产品2</td>
-            <td>10/11/2013</td>
-            <td>发货中</td></tr>
+        <!--<li class="list-group-item requiredItems" data-ng-repeat="item in requiredArr track by $index">-->
+                    <!--<span>{{$index+1}}. {{item}}-->
+                        <!--<a href="javascript:void(0);" class="removeItem"-->
+                           <!--data-ng-click="removeRequiredItem($index);">移除</a>-->
+                    <!--</span>-->
+
+        <!--</li>-->
+        <tr data-ng-repeat="p in positionArr track by $index">
+            <td>{{p.p_name}}</td>
+            <td>{{p.p_create_date}}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
         </tbody>
     </table>
 </div>
