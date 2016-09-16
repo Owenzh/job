@@ -291,7 +291,25 @@ angular.module('jobController', ['jobService']).controller('NavController', func
             });
         };
         initEnterpriseInfo();
-    }).controller('PositionManageController', function ($scope, $location, $document, userSvc) {
+    }).controller('PositionDetailController', function ($scope, $location, $document, $stateParams, userSvc) {
+        console.log("PositionDetailController" + $stateParams.id);
+        $scope.positionDetail = {};
+        $scope.getPosition = function () {
+            var p_id = $stateParams.id;
+            userSvc.getPositionDetailByPID(p_id, function (data) {
+                if (data.s == 0) {
+                    console.log("Not data found!");
+                } else {
+                    $scope.positionDetail = data.d;
+                    $scope.loadPositionDetail();
+                }
+            });
+        };
+        $scope.loadPositionDetail = function () {
+            console.dir($scope.positionDetail);
+        };
+        $scope.getPosition();
+    }).controller('PositionManageController', function ($scope, $location, $document, $state, userSvc) {
         //TODO
         //fun01-search position list under this enterprise
         //fun02- edit position
@@ -300,18 +318,45 @@ angular.module('jobController', ['jobService']).controller('NavController', func
         $scope.positionArr = [];
         $scope.loadPosition = function () {
             var e_id = $scope.userData.id;
-            userSvc.getPosition(e_id,function(data){
-
-                if(data.s==0){
+            userSvc.getPosition(e_id, function (data) {
+                if (data.s == 0) {
                     console.log("Not data found!");
-                }else{
+                } else {
                     $scope.positionArr = data.d;
                     $scope.initPositionTable();
                 }
             });
         };
-        $scope.initPositionTable = function(){
+        $scope.initPositionTable = function () {
             console.dir($scope.positionArr);
+        };
+        $scope.goToDetail = function (id) {
+            $state.go('center.position-detail', {id: id});
+        };
+        $scope.freezePosition = function (id) {
+            console.log("freezePosition..." + id);
+        };
+        $scope.unfreezePosition = function (id) {
+            console.log("unfreezePosition..." + id);
+        };
+        $scope.deletePosition = function (id) {
+            console.log("deletePosition..." + id);
+            userSvc.deletePositionByPID(id, function (data) {
+                if (data.s == 0) {
+                    console.log("Delete position error!");
+                } else {
+                    console.log("Delete position success!");
+                    $state.reload();
+                }
+            });
+        };
+        $scope.formatDate = function (timeStr) {
+            //console.log(timeStr);
+            var date = new Date(timeStr);
+            var y = date.getFullYear();
+            var m = date.getMonth() + 1;
+            var d = date.getDate();
+            return y + "-" + m + "-" + d;
         };
         $scope.loadPosition();
 

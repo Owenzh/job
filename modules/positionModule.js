@@ -15,3 +15,9 @@ exports.createPosition = function (data, callback) {
 exports.findPositionInfoByEId = function (eid, callback) {
     dbObj.findDocuments({"e_id": eid}, callback);
 };
+exports.findPositionInfoByPId = function (pid, callback) {
+    dbObj.findDocuments({"_id": ObjectId(pid)}, callback);
+};
+exports.deletePositionByPId = function (pid,options, callback) {
+    dbObj.deleteOneDocument({"_id": ObjectId(pid)},options, callback);
+};

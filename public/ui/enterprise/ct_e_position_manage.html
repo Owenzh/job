@@ -27,12 +27,17 @@
 
         <!--</li>-->
         <tr data-ng-repeat="p in positionArr track by $index">
-            <td class="top_padding">{{p.p_name}}</td>
-            <td class="top_padding">{{p.p_create_date}}</td>
-            <td class="top_padding">激活</td>
-            <td><a class="btn btn-default">冻结</a></td>
-            <td><a class="btn btn-success">激活</a></td>
-            <td><a class="btn btn-danger">删除</a></td>
+            <td class="top_padding">
+                <!--<div ui-sref=".position-detail"><a ng-href="#/center/position-manage/position-detail/{{p._id}}">{{p.p_name}}</a></div>-->
+                <!--<a data-ng-href="#/center/position-manage/position-detail/{{p._id}}">{{p.p_name}}</a>-->
+                <a href="" data-ng-click="goToDetail(p._id);" data-ng-bind="p.p_name"></a>
+            </td>
+            <td class="top_padding" data-ng-bind="formatDate(p.p_create_date);"></td>
+            <td class="top_padding" data-ng-show="{{p.p_status}}">激活</td>
+            <td class="top_padding" data-ng-hide="{{p.p_status}}">冻结</td>
+            <td><a class="btn btn-default" data-ng-click="freezePosition(p._id);">冻结</a></td>
+            <td><a class="btn btn-success" data-ng-click="unfreezePosition(p._id);">激活</a></td>
+            <td><a class="btn btn-danger" data-ng-click="deletePosition(p._id);">删除</a></td>
         </tr>
         </tbody>
     </table>

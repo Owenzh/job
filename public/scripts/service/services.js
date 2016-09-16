@@ -29,6 +29,14 @@ svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location,
                 };
                 request.data = (angular.toJson(config.data));
                 break;
+            case "DELETE":
+                request.method = 'DELETE';
+                request.url = config.url;
+                request.headers = {
+                    'Content-type': 'application/json;charset=utf-8'
+                };
+                request.data = (angular.toJson(config.data));
+                break;
         }
         return request;
     }
@@ -139,6 +147,25 @@ svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location,
             console.error("[getPositionInfo] error");
         });
     }
+
+    function getPositionInfoByPID(pid, callback) {
+        var _url = '/api/v1/position_detail/' + pid;
+        var req = mapRequest('GET', {url: _url});
+        return $http(req).then(function successCallback(res) {
+            callback && callback(res.data);
+        }, function errorCallback(res) {
+            console.error("[getPositionInfoByPID] error");
+        });
+    }
+    function deletePositionByPID(pid, callback) {
+        var _url = '/api/v1/position/' + pid;
+        var req = mapRequest('DELETE', {url: _url});
+        return $http(req).then(function successCallback(res) {
+            callback && callback(res);
+        }, function errorCallback(res) {
+            console.error("[deletePositionByPID] error");
+        });
+    }
     return {
         registerUser: registerUser,
         loginUser: loginUser,
@@ -149,6 +176,8 @@ svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location,
         getEnterpriseInfo: getEnterpriseInfo,
         loadCategory: loadCategory,
         addPosition: addPositionInfo,
-        getPosition: getPositionInfo
+        getPosition: getPositionInfo,
+        getPositionDetailByPID: getPositionInfoByPID,
+        deletePositionByPID: deletePositionByPID
     };
 }]);

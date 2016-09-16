@@ -250,6 +250,39 @@ router.get('/api/v1/position/:eid', function (req, res, next) {
     });
 });
 /**
+ * Get all position detail by position id
+ * */
+router.get('/api/v1/position_detail/:pid', function (req, res, next) {
+    var pid = req.params.pid;
+    positionModule.findPositionInfoByPId(pid, function (err, docs) {
+        if (err || docs.length == 0) {
+            res.send({s: 0, d: []});
+        } else {
+            res.send({s: 1, d: docs[0]});
+
+        }
+    });
+});
+/**
+ * Delete position
+ * */
+router.delete('/api/v1/position/:pid', function (req, res, next) {
+    var pid = req.params.pid;
+    console.log("delete position "+pid);
+    positionModule.deletePositionByPId(pid,{},function(err,result){
+        console.dir(err);
+        //console.dir(result);
+        if (err) {
+            console.log(err);
+            res.send({s: 0});
+        } else {
+            res.send({s: 1});
+
+        }
+    });
+});
+
+/**
  * Update position
  * */
 router.put('/api/v1/position', function (req, res, next) {
