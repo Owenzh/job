@@ -154,6 +154,11 @@ a:link, a:visited {
 .job-req {
     display: inline-block;
 }
+.job-welfare {
+    color: rgba(255, 5, 34, 0.85);
+    font-style: oblique;
+    display: inline-block;
+}
 
 .job-company > a {
     color: #398439;

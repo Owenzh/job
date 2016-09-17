@@ -13,13 +13,13 @@ angular.module('jobController', ['jobService']).controller('NavController', func
     };
 
 })
-    .controller('MainController', function ($scope, $location, userSvc) {
+    .controller('MainController', function ($scope, $location, $state, userSvc) {
         console.log("MainController");
         $scope.allPositions = [];
-        $scope.loadAllPositions = function(){
-            userSvc.getAllPositions(function(data){
-                if (data.s==0) {
-                     console.log("No position found.");
+        $scope.loadAllPositions = function () {
+            userSvc.getAllPositions(function (data) {
+                if (data.s == 0) {
+                    console.log("No position found.");
                 } else {
                     $scope.allPositions = data.d;
                 }
@@ -33,7 +33,27 @@ angular.module('jobController', ['jobService']).controller('NavController', func
             var d = date.getDate();
             return y + "-" + m + "-" + d;
         };
+        $scope.goToDetail = function (id) {
+            $state.go('position-detail', {id: id});
+        };
         $scope.loadAllPositions();
+    })
+    .controller('MainPositionController', function ($scope, $location, $stateParams, userSvc) {
+        $scope.positionDetail = {};
+        $scope.getPosition = function () {
+            var p_id = $stateParams.id;
+            userSvc.getPositionDetailByPID(p_id, function (data) {
+                if (data.s == 0) {
+                    console.log("Not data found!");
+                } else {
+                    $scope.positionDetail = data.d;
+                }
+            });
+        };
+        $scope.createPositionRequest = function(){
+            console.log("createPositionRequest");
+        };
+        $scope.getPosition();
     })
     .controller('LoginController', function ($scope, $location, userSvc) {
         $scope.$emit('logoutUser', null);

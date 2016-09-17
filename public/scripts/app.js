@@ -7,6 +7,16 @@ angular.module('jobApp', ['ngAnimate', 'ui.router', 'jobController']).config(['$
             url: "/index",  //路由路径
             templateUrl: "/ui/index/main.html",  //路由填充的模板
             controller: 'MainController'
+            //views: {
+            //    "positionList": {
+            //        templateUrl: '/ui/index/center_u.html',
+            //        controller: 'MainController'
+            //    },
+            //    "positionDetail": {
+            //        templateUrl: '/ui/index/center_e.html',
+            //        controller: 'MainPositionController'
+            //    }
+            //}
         })
         .state("enterprise", {
             url: "/enterprise",
@@ -27,6 +37,11 @@ angular.module('jobApp', ['ngAnimate', 'ui.router', 'jobController']).config(['$
             url: "/register",
             templateUrl: '/ui/index/register.html',
             controller: 'RegisterController as Register'
+        })
+        .state("position-detail", {
+            url: "/position-detail/:id",
+            templateUrl: '/ui/index/position_detail.html',
+            controller: 'MainPositionController'
         })
         .state("center", {
             url: "/center",
@@ -95,7 +110,7 @@ angular.module('jobApp', ['ngAnimate', 'ui.router', 'jobController']).config(['$
     $urlRouterProvider.otherwise("/index");
 }]).controller('appController', ['$rootScope', '$scope', '$timeout', '$window',
     function ($rootScope, $scope, $timeout, $window) {
-
+        $rootScope.mainType = "positionList";
         $scope.checkUserLogin = function () {
             var storage = $window.localStorage;
             var local_user = storage.getItem("ers_user");
@@ -127,8 +142,10 @@ angular.module('jobApp', ['ngAnimate', 'ui.router', 'jobController']).config(['$
             }
             if (user.type == 1) {
                 $rootScope.userType = "user";
+                $rootScope.canRequest = "1";
             } else {
                 $rootScope.userType = "enterprise";
+                $rootScope.canRequest = "0";
             }
             user.info = info;
             $rootScope.userData = user;

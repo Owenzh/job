@@ -1,0 +1,21 @@
+<!--职位信息列表-->
+<div class="col-xs-12 col-sm-8 col-md-8 content-sec">
+    <div class="row job-item" data-ng-repeat="p in allPositions track by $index">
+        <div class="col-xs-6 col-sm-4 col-md-4">
+                <span class="job-title"><a href="" data-ng-bind="p.p_name"
+                                           data-ng-click="goToDetail(p._id);"></a></span>
+            [<span data-ng-bind="p.e_city"></span>]
+            <div>
+                <span class="job-salary" data-ng-bind="p.p_salary"></span>
+                <span class="job-date" data-ng-bind="formatDate(p.p_create_date);"></span>
+            </div>
+
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-4 col-sm-offset-2">
+            <span class="job-company"><a href="#" data-ng-bind="p.e_name"> </a></span>
+            <!--<span class="job-company-type">移动互联网 / 成熟型(不需要融资)</span>-->
+            <span class="job-welfare" data-ng-bind="p.p_welfare"></span>
+        </div>
+    </div>
+
+</div>
