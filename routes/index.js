@@ -139,6 +139,13 @@ router.put('/api/v1/resume/:email', function (req, res, next) {
  * */
 router.get('/api/v1/positions', function (req, res, next) {
     console.log("get positions");
+    positionModule.getAllPositions(function (err, docs) {
+        if (err) {
+            res.send({s: 0, d: []});
+        } else {
+            res.send({s: 1, d: docs});
+        }
+    });
 });
 
 
@@ -268,8 +275,8 @@ router.get('/api/v1/position_detail/:pid', function (req, res, next) {
  * */
 router.delete('/api/v1/position/:pid', function (req, res, next) {
     var pid = req.params.pid;
-    console.log("delete position "+pid);
-    positionModule.deletePositionByPId(pid,{},function(err,result){
+    console.log("delete position " + pid);
+    positionModule.deletePositionByPId(pid, {}, function (err, result) {
         console.dir(err);
         //console.dir(result);
         if (err) {
@@ -292,13 +299,35 @@ router.put('/api/v1/position', function (req, res, next) {
  * Frozen position
  * */
 router.put('/api/v1/position/frozen', function (req, res, next) {
+    var requestData = req.body;
     console.log("frozen position");
+    positionModule.frozenPosition(requestData, function (err, result) {
+        console.dir(err);
+        if (err) {
+            console.log(err);
+            res.send({s: 0});
+        } else {
+            res.send({s: 1});
+
+        }
+    });
 });
 /**
- * Start position
+ * Unfrozen position
  * */
-router.put('/api/v1/position/start', function (req, res, next) {
-    console.log("start position");
+router.put('/api/v1/position/unfrozen', function (req, res, next) {
+    var requestData = req.body;
+    console.log("unfrozen position");
+    positionModule.unfrozenPosition(requestData, function (err, result) {
+        console.dir(err);
+        if (err) {
+            console.log(err);
+            res.send({s: 0});
+        } else {
+            res.send({s: 1});
+
+        }
+    });
 });
 
 /**

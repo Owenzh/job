@@ -40,19 +40,21 @@ svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location,
         }
         return request;
     }
-    function encodeParameters(obj){
+
+    function encodeParameters(obj) {
         var _tmp = obj;
-        for(var i in _tmp){
+        for (var i in _tmp) {
             _tmp[i] = encodeURIComponent(_tmp[i]);
             //_tmp[i] = escape(_tmp[i]);
         }
         return _tmp;
     }
+
     function registerUser(user, callback) {
         user.password = md5.createHash(user.password);
         var req = mapRequest("POST", {url: '/api/v1/user', data: [user]});
         console.dir(user);
-        
+
         $http(req).then(function successCallback(res) {
             callback && callback();
         }, function errorCallback(res) {
@@ -80,6 +82,7 @@ svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location,
             console.error("[loadAddress] error");
         });
     }
+
     function loadCategory(callback) {
         var req = mapRequest('GET', {url: '/api/v1/category'});
         return $http(req).then(function successCallback(res) {
@@ -128,7 +131,8 @@ svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location,
             console.error("[updateEnterpriseInfo] error");
         });
     }
-    function addPositionInfo(data,callback){
+
+    function addPositionInfo(data, callback) {
         var req = mapRequest('POST', {url: '/api/v1/position', data: data});
         return $http(req).then(function successCallback(res) {
             callback && callback(res.data);
@@ -157,15 +161,44 @@ svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location,
             console.error("[getPositionInfoByPID] error");
         });
     }
+    function getAllPositions(callback) {
+        var _url = '/api/v1/positions/';
+        var req = mapRequest('GET', {url: _url});
+        return $http(req).then(function successCallback(res) {
+            console.dir(res.data);
+            callback && callback(res.data);
+        }, function errorCallback(res) {
+            console.error("[getAllPositions] error");
+        });
+    }
+
     function deletePositionByPID(pid, callback) {
         var _url = '/api/v1/position/' + pid;
         var req = mapRequest('DELETE', {url: _url});
         return $http(req).then(function successCallback(res) {
-            callback && callback(res);
+            callback && callback(res.data);
         }, function errorCallback(res) {
             console.error("[deletePositionByPID] error");
         });
     }
+
+    function frozenPosition(id, callback) {
+        var req = mapRequest('PUT', {url: '/api/v1/position/frozen', data: {id: id}});
+        return $http(req).then(function successCallback(res) {
+            callback && callback(res.data);
+        }, function errorCallback(res) {
+            console.error("[frozenPosition] error");
+        });
+    }
+    function unfrozenPosition(id, callback) {
+        var req = mapRequest('PUT', {url: '/api/v1/position/unfrozen', data: {id: id}});
+        return $http(req).then(function successCallback(res) {
+            callback && callback(res.data);
+        }, function errorCallback(res) {
+            console.error("[frozenPosition] error");
+        });
+    }
+
     return {
         registerUser: registerUser,
         loginUser: loginUser,
@@ -178,6 +211,9 @@ svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location,
         addPosition: addPositionInfo,
         getPosition: getPositionInfo,
         getPositionDetailByPID: getPositionInfoByPID,
-        deletePositionByPID: deletePositionByPID
+        deletePositionByPID: deletePositionByPID,
+        frozenPosition: frozenPosition,
+        unfrozenPosition: unfrozenPosition,
+        getAllPositions: getAllPositions
     };
 }]);

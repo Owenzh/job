@@ -5,7 +5,8 @@ angular.module('jobApp', ['ngAnimate', 'ui.router', 'jobController']).config(['$
     $stateProvider
         .state("index", {  //路由状态
             url: "/index",  //路由路径
-            templateUrl: "/ui/index/main.html"  //路由填充的模板
+            templateUrl: "/ui/index/main.html",  //路由填充的模板
+            controller: 'MainController'
         })
         .state("enterprise", {
             url: "/enterprise",

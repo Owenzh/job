@@ -13,6 +13,28 @@ angular.module('jobController', ['jobService']).controller('NavController', func
     };
 
 })
+    .controller('MainController', function ($scope, $location, userSvc) {
+        console.log("MainController");
+        $scope.allPositions = [];
+        $scope.loadAllPositions = function(){
+            userSvc.getAllPositions(function(data){
+                if (data.s==0) {
+                     console.log("No position found.");
+                } else {
+                    $scope.allPositions = data.d;
+                }
+            });
+        };
+        $scope.formatDate = function (timeStr) {
+            //console.log(timeStr);
+            var date = new Date(timeStr);
+            var y = date.getFullYear();
+            var m = date.getMonth() + 1;
+            var d = date.getDate();
+            return y + "-" + m + "-" + d;
+        };
+        $scope.loadAllPositions();
+    })
     .controller('LoginController', function ($scope, $location, userSvc) {
         $scope.$emit('logoutUser', null);
         $scope.user = {};
@@ -335,9 +357,15 @@ angular.module('jobController', ['jobService']).controller('NavController', func
         };
         $scope.freezePosition = function (id) {
             console.log("freezePosition..." + id);
+            userSvc.frozenPosition(id, function (data) {
+                $state.reload();
+            });
         };
         $scope.unfreezePosition = function (id) {
             console.log("unfreezePosition..." + id);
+            userSvc.unfrozenPosition(id, function (data) {
+                $state.reload();
+            });
         };
         $scope.deletePosition = function (id) {
             console.log("deletePosition..." + id);

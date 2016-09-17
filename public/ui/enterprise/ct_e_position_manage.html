@@ -1,8 +1,15 @@
-<!--<h3>ct_e_position_manage</h3>-->
 <style>
-    .table > tbody > tr > td.top_padding{
+    .table > tbody > tr > td.top_padding {
         padding-left: 6px;
         padding-top: 9px;
+    }
+
+    .frozen {
+        color: #1bbf1f;
+    }
+
+    .unfrozen {
+        color: #ff0d1e;
     }
 </style>
 <div class="table-responsive">
@@ -19,22 +26,13 @@
         </tr>
         </thead>
         <tbody>
-        <!--<li class="list-group-item requiredItems" data-ng-repeat="item in requiredArr track by $index">-->
-                    <!--<span>{{$index+1}}. {{item}}-->
-                        <!--<a href="javascript:void(0);" class="removeItem"-->
-                           <!--data-ng-click="removeRequiredItem($index);">移除</a>-->
-                    <!--</span>-->
-
-        <!--</li>-->
         <tr data-ng-repeat="p in positionArr track by $index">
             <td class="top_padding">
-                <!--<div ui-sref=".position-detail"><a ng-href="#/center/position-manage/position-detail/{{p._id}}">{{p.p_name}}</a></div>-->
-                <!--<a data-ng-href="#/center/position-manage/position-detail/{{p._id}}">{{p.p_name}}</a>-->
                 <a href="" data-ng-click="goToDetail(p._id);" data-ng-bind="p.p_name"></a>
             </td>
             <td class="top_padding" data-ng-bind="formatDate(p.p_create_date);"></td>
-            <td class="top_padding" data-ng-show="{{p.p_status}}">激活</td>
-            <td class="top_padding" data-ng-hide="{{p.p_status}}">冻结</td>
+            <td class="top_padding frozen" data-ng-show="{{p.p_status}}">激活</td>
+            <td class="top_padding unfrozen" data-ng-hide="{{p.p_status}}">冻结</td>
             <td><a class="btn btn-default" data-ng-click="freezePosition(p._id);">冻结</a></td>
             <td><a class="btn btn-success" data-ng-click="unfreezePosition(p._id);">激活</a></td>
             <td><a class="btn btn-danger" data-ng-click="deletePosition(p._id);">删除</a></td>
