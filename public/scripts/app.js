@@ -123,10 +123,20 @@ angular.module('jobApp', ['ngAnimate', 'ui.router', 'jobController']).config(['$
                 $rootScope.userType = "unknown";
             }
         };
+        $scope.synLocalUser = function (newUserData) {
+            var storage = $window.localStorage;
+            var userStr = storage.getItem("ers_user").toString();
+            var info = newUserData.info;
+            for (var t in info) {
+                info[t] = newUserData[t];
+            }
+            storage.setItem("ers_user_info", angular.toJson(info));
+            $scope.updateUserForApp(userStr, info);
+            console.dir($rootScope.userData);
+        };
         $scope.updateLocalUser = function (userStr, info) {
             var storage = $window.localStorage;
             storage.setItem("ers_user", userStr);
-            console.log(angular.toJson(info));
             storage.setItem("ers_user_info", angular.toJson(info));
             $scope.updateUserForApp(userStr, info);
         };
@@ -153,6 +163,8 @@ angular.module('jobApp', ['ngAnimate', 'ui.router', 'jobController']).config(['$
         $scope.removeLocalUser = function () {
             var storage = $window.localStorage;
             storage.removeItem("ers_user");
+            storage.removeItem("ers_user_info");
+            $rootScope.userData = null;
         };
         $scope.$on('loginSuccess', function (event, data) {
             var user = data[0];
@@ -164,6 +176,9 @@ angular.module('jobApp', ['ngAnimate', 'ui.router', 'jobController']).config(['$
         $scope.$on('logoutUser', function (event, args) {
             $scope.removeLocalUser();
             $scope.isUserLogin = false;
+        });
+        $scope.$on('updateUser', function (event, data) {
+            $scope.synLocalUser(data);
         });
         $scope.checkUserLogin();
 
