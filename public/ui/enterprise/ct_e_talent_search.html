@@ -1,1 +1,54 @@
-<h3>ct_e_talent_search</h3>
+<style>
+    .book_position {
+        margin-top: 5em;
+    }
+    .book_position .create_btn{
+        margin-top: 3em;
+    }
+</style>
+<div class="panel panel-success book_position">
+    <div class="panel-heading">
+        <h3 class="panel-title">人才筛选器</h3>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal" role="form" name="bookInfoForm" novalidate>
+            <div class="form-group">
+                <label for="book_name" class="col-sm-2 control-label">订阅器名</label>
+
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="book_name" name="book_name"
+                           ng-model="bookInfo.book_name"
+                           placeholder="订阅器名称" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="position_name" class="col-sm-2 control-label">职位名称</label>
+
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="position_name" name="position_name"
+                           ng-model="bookInfo.position_name"
+                           placeholder="职位名称" required>
+                </div>
+                <label for="work_years" class="col-sm-2 control-label">工作年限</label>
+
+                <div class="col-sm-4">
+                    <select class="form-control" id="work_years" name="work_years"
+                          ng-model="bookInfo.work_years">
+                        <option value="">请选择</option>
+                        <option value="1">1~3年</option>
+                        <option value="5">5年以上</option>
+                        <option value="10">10年以上</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group create_btn">
+                <div class="col-sm-offset-1 col-sm-2">
+                    <button type="submit" class="btn btn-primary btn-block" ng-click="createTalentInfo();">创建人才筛选器</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="panel-footer">最多可以创建10个人才筛选器</div>
+</div>
