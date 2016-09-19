@@ -18,10 +18,12 @@ exports.getAllPositions = function (callback) {
 exports.findPositionRequestByEId = function (eid, callback) {
     dbObj.findDocuments({"e_id": eid}, callback);
 };
-/*
-exports.findPositionInfoByPId = function (pid, callback) {
-    dbObj.findDocuments({"_id": ObjectId(pid)}, callback);
+
+exports.findPositionRequestByRID = function (rid, callback) {
+    dbObj.findDocuments({"_id": ObjectId(rid)}, callback);
 };
+
+/*
 exports.deletePositionByPId = function (pid,options, callback) {
     dbObj.deleteOneDocument({"_id": ObjectId(pid)},options, callback);
 };

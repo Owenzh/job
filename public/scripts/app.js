@@ -93,7 +93,12 @@ angular.module('jobApp', ['ngAnimate', 'ui.router', 'jobController']).config(['$
             templateUrl: '/ui/enterprise/ct_e_center_position.html'
         }).state("center.job-hunters", {
             url: "/job-hunters",
-            templateUrl: '/ui/enterprise/ct_e_job_hunters.html'
+            templateUrl: '/ui/enterprise/ct_e_job_hunters.html',
+            controller: 'PositionRequestController'
+        }).state("center.position-request-detail", {
+            url: "/position-request-detail/:id",
+            templateUrl: '/ui/enterprise/ct_e_position_request.html',
+            controller: 'PositionRequestDetailController'
         }).state("center.talent-search", {
             url: "/talent-search",
             templateUrl: '/ui/enterprise/ct_e_talent_search.html'

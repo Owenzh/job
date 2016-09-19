@@ -28,16 +28,22 @@
         </tr>
         </thead>
         <tbody>
-        <tr data-ng-repeat="p in positionArr track by $index">
+        <tr data-ng-repeat="p in positionRequestArr track by $index">
             <td class="top_padding">
                 <a href="" data-ng-click="goToDetail(p._id);" data-ng-bind="p.p_name"></a>
             </td>
-            <td class="top_padding" data-ng-bind="formatDate(p.p_create_date);"></td>
-            <td class="top_padding frozen" data-ng-show="{{p.p_status}}">激活</td>
-            <td class="top_padding unfrozen" data-ng-hide="{{p.p_status}}">冻结</td>
-            <td><a class="btn btn-default" data-ng-click="freezePosition(p._id);">冻结</a></td>
-            <td><a class="btn btn-success" data-ng-click="unfreezePosition(p._id);">激活</a></td>
-            <td><a class="btn btn-danger" data-ng-click="deletePosition(p._id);">删除</a></td>
+            <td class="top_padding" data-ng-bind="p.u_real_name"></td>
+            <td class="top_padding" data-ng-bind="p.u_phone"></td>
+            <td class="top_padding" data-ng-bind="p.u_position_title"></td>
+            <td class="top_padding" data-ng-bind="formatDate(p.request_time);"></td>
+            <td class="top_padding" data-ng-bind="p.u_work_years"></td>
+            <td class="top_padding" data-ng-bind="p.u_status"></td>
+
+            <!--<td class="top_padding frozen" data-ng-show="{{p.p_status}}">激活</td>-->
+            <!--<td class="top_padding unfrozen" data-ng-hide="{{p.p_status}}">冻结</td>-->
+            <!--<td><a class="btn btn-default" data-ng-click="freezePosition(p._id);">冻结</a></td>-->
+            <!--<td><a class="btn btn-success" data-ng-click="unfreezePosition(p._id);">激活</a></td>-->
+            <!--<td><a class="btn btn-danger" data-ng-click="deletePosition(p._id);">删除</a></td>-->
         </tr>
         </tbody>
     </table>

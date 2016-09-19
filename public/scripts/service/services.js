@@ -206,6 +206,26 @@ svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location,
             console.error("[createPositionRequest] error");
         });
     }
+
+    function getPositionRequest(eid, callback) {
+        var _url = '/api/v1/position_request/' + eid;
+        var req = mapRequest('GET', {url: _url});
+        return $http(req).then(function successCallback(res) {
+            callback && callback(res.data);
+        }, function errorCallback(res) {
+            console.error("[getPositionRequest] error");
+        });
+    }
+
+    function getPositionRequestDetailByRID(rid, callback) {
+        var _url = '/api/v1/position_request_detail/' + rid;
+        var req = mapRequest('GET', {url: _url});
+        return $http(req).then(function successCallback(res) {
+            callback && callback(res.data);
+        }, function errorCallback(res) {
+            console.error("[getPositionRequestDetailByRID] error");
+        });
+    }
     return {
         registerUser: registerUser,
         loginUser: loginUser,
@@ -222,6 +242,8 @@ svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location,
         frozenPosition: frozenPosition,
         unfrozenPosition: unfrozenPosition,
         getAllPositions: getAllPositions,
-        createPositionRequest: createPositionRequest
+        createPositionRequest: createPositionRequest,
+        getPositionRequest: getPositionRequest,
+        getPositionRequestDetailByRID: getPositionRequestDetailByRID
     };
 }]);

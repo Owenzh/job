@@ -1,0 +1,77 @@
+<style>
+    .position_header {
+        background-color: rgb(220, 255, 245);
+        color: #000000;
+        padding: 10px;
+        font-weight: 700;
+        /*max-width: 800px;*/
+    }
+
+    .position_header .position_title {
+        font-size: 1.2em;
+    }
+
+
+    .position_detail {
+        margin-top: 20px;
+        /*border: solid 2px seagreen;*/
+        /*min-height: 500px;*/
+        /*max-width: 800px;*/
+    }
+
+    .position_desc {
+        margin-bottom: 15px;
+    }
+
+    .position_desc label {
+        background-color: rgb(220, 255, 245);
+        color: #000000;
+        padding: 5px;
+    }
+
+    .position_desc label.info {
+        background-color: rgba(211, 255, 252, 0.47);
+        font-size: 0.8em;
+        margin-left: 50px;
+    }
+    .interviewProgress{
+        background-color: rgb(112, 255, 223);
+    }
+</style>
+<div class="position_header">
+    <span class="position_title" data-ng-bind="positionRequestDetail.p_name"></span>
+</div>
+<div class="position_detail">
+    <div class="position_desc">
+        <label>申请人信息</label>
+
+        <div></div>
+
+        <div><label class="info">姓名：</label><span data-ng-bind="positionRequestDetail.u_real_name"></span></div>
+        <div><label class="info">电话：</label><span data-ng-bind="positionRequestDetail.u_phone"></span></div>
+        <div><label class="info">城市：</label><span data-ng-bind="positionRequestDetail.u_city"></span></div>
+        <div><label class="info">邮箱：</label><span data-ng-bind="positionRequestDetail.u_email"></span></div>
+        <div><label class="info">职业：</label><span data-ng-bind="positionRequestDetail.u_position_title"></span></div>
+        <div><label class="info">年限：</label><span data-ng-bind="positionRequestDetail.u_work_years"></span></div>
+    </div>
+    <div class="position_desc">
+        <label>面试状态</label>
+        <span class="info"> 申请面试  </span>
+    </div>
+
+    <div class="position_desc">
+        <label>面试反馈</label>
+
+        <div>
+            <textarea rows="2" cols="50" id="comments" name="comments"
+                      ng-model="positionRequestDetail.comments" placeholder="面试反馈信息"></textarea>
+        </div>
+    </div>
+
+    <div>
+    <button type="submit" class="btn btn-default"  ng-click="createBookInfo();">关闭面试</button>
+    <button type="submit" class="btn btn-info"  ng-click="createBookInfo();">发起面试</button>
+    <button type="submit" class="btn btn-success"  ng-click="createBookInfo();">面试通过</button>
+    <button type="submit" class="btn btn-danger"  ng-click="createBookInfo();">面试失败</button>
+</div>
+</div>

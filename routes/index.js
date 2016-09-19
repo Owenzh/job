@@ -164,6 +164,34 @@ router.post('/api/v1/position_request', function (req, res, next) {
         }
     });
 });
+/**
+ * Get position request by eid
+ * */
+router.get('/api/v1/position_request/:eid', function (req, res, next) {
+    var eid = req.params.eid;
+    console.log("eid===" + eid);
+    positionRequestModule.findPositionRequestByEId(eid, function (err, docs) {
+        if (err || docs.length == 0) {
+            res.send({s: 0, d: []});
+        } else {
+            res.send({s: 1, d: docs});
+        }
+    });
+});
+/**
+ * Get position request by eid
+ * */
+router.get('/api/v1/position_request_detail/:rid', function (req, res, next) {
+    var rid = req.params.rid;
+    console.log("rid===" + rid);
+    positionRequestModule.findPositionRequestByRID(rid, function (err, docs) {
+        if (err || docs.length == 0) {
+            res.send({s: 0, d: []});
+        } else {
+            res.send({s: 1, d: docs});
+        }
+    });
+});
 
 /**
  * Create position collection

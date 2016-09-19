@@ -200,6 +200,7 @@ angular.module('jobController', ['jobService']).controller('NavController', func
         $scope.updateUserInfo = function () {
             //console.log($scope.userInfo);
             userSvc.updateUserInfo($scope.userInfo, function (result) {
+                $scope.$emit('updateUser', $scope.userInfo);
                 $location.path("/center");
             });
         };
@@ -478,4 +479,51 @@ angular.module('jobController', ['jobService']).controller('NavController', func
         }
 
         init();
+    }).controller('PositionRequestController', function ($scope, $location, $document, $state, userSvc) {
+        console.log("PositionRequestController");
+        $scope.positionRequestArr = [];
+        $scope.loadPositionRequest = function () {
+            var e_id = $scope.userData.id;
+            userSvc.getPositionRequest(e_id, function (data) {
+                if (data.s == 0) {
+                    console.log("Not data found!");
+                } else {
+                    $scope.positionRequestArr = data.d;
+                    $scope.initPositionRequestTable();
+                }
+            });
+        };
+        $scope.initPositionRequestTable = function () {
+            console.dir($scope.positionRequestArr);
+        };
+        $scope.goToDetail = function (id) {
+            $state.go('center.position-request-detail', {id: id});
+        };
+        $scope.formatDate = function (timeStr) {
+            //console.log(timeStr);
+            var date = new Date(timeStr);
+            var y = date.getFullYear();
+            var m = date.getMonth() + 1;
+            var d = date.getDate();
+            return y + "-" + m + "-" + d;
+        };
+        $scope.loadPositionRequest();
+    }).controller('PositionRequestDetailController', function ($scope, $location, $document, $stateParams, userSvc) {
+        console.log("PositionRequestDetailController" + $stateParams.id);
+        $scope.positionRequestDetail = {};
+        $scope.getPositionRequest = function () {
+            var r_id = $stateParams.id;
+            userSvc.getPositionRequestDetailByRID(r_id, function (data) {
+                if (data.s == 0) {
+                    console.log("Not data found!");
+                } else {
+                    $scope.positionRequestDetail = data.d[0];
+                    $scope.loadPositionRequestDetail();
+                }
+            });
+        };
+        $scope.loadPositionRequestDetail = function () {
+            console.dir($scope.positionRequestDetail);
+        };
+        $scope.getPositionRequest();
     });
