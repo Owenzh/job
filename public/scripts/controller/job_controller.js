@@ -50,8 +50,37 @@ angular.module('jobController', ['jobService']).controller('NavController', func
                 }
             });
         };
-        $scope.createPositionRequest = function(){
+        $scope.createPositionRequest = function () {
             console.log("createPositionRequest");
+            var posInfo = $scope.positionDetail;
+            var usrInfo = $scope.userData;
+            var reqInfo = {};
+            reqInfo.request_time = new Date().getTime();
+            reqInfo.isNeedInterview = false;
+            reqInfo.isPassInterview = false;
+            reqInfo.isHide = false;
+            reqInfo.p_id = posInfo._id;
+            reqInfo.p_name = posInfo.p_name;
+            reqInfo.p_deadline = posInfo.p_deadline;
+            reqInfo.p_hired_count = posInfo.p_hired_count;
+            reqInfo.e_id = posInfo.e_id;
+            reqInfo.e_name = posInfo.e_name;
+            reqInfo.u_id = usrInfo.id;
+            reqInfo.u_email = usrInfo.email;
+            reqInfo.u_real_name = usrInfo.info.real_name;
+            reqInfo.u_phone = usrInfo.info.phone;
+            reqInfo.u_position_title = usrInfo.info.position_title;
+            reqInfo.u_work_years = usrInfo.info.work_years;
+            reqInfo.u_graduate_day = usrInfo.info.graduate_day;
+            reqInfo.u_province = usrInfo.info.province;
+            reqInfo.u_city = usrInfo.info.city;
+            reqInfo.u_status = usrInfo.info.status;
+            $scope.positionReqInfo = reqInfo;
+
+            console.dir($scope.positionReqInfo);
+            userSvc.createPositionRequest([$scope.positionReqInfo], function (result) {
+                $location.path("/index");
+            });
         };
         $scope.getPosition();
     })

@@ -198,7 +198,14 @@ svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location,
             console.error("[frozenPosition] error");
         });
     }
-
+    function createPositionRequest(data, callback) {
+        var req = mapRequest('POST', {url: '/api/v1/position_request', data: data});
+        return $http(req).then(function successCallback(res) {
+            callback && callback(res.data);
+        }, function errorCallback(res) {
+            console.error("[createPositionRequest] error");
+        });
+    }
     return {
         registerUser: registerUser,
         loginUser: loginUser,
@@ -214,6 +221,7 @@ svc.factory('userSvc', ['$http', '$location', 'md5', function ($http, $location,
         deletePositionByPID: deletePositionByPID,
         frozenPosition: frozenPosition,
         unfrozenPosition: unfrozenPosition,
-        getAllPositions: getAllPositions
+        getAllPositions: getAllPositions,
+        createPositionRequest: createPositionRequest
     };
 }]);

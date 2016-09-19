@@ -10,6 +10,7 @@ var express = require('express');
 var router = express.Router();
 var userModule = require('../modules/userModule');
 var positionModule = require('../modules/positionModule');
+var positionRequestModule = require('../modules/positionRequestModule');
 
 /*
  * RestFul API Base Guide.
@@ -155,7 +156,7 @@ router.get('/api/v1/positions', function (req, res, next) {
 router.post('/api/v1/position_request', function (req, res, next) {
     console.log("create position_request");
     var requestData = req.body;
-    userModule.updateUserInfo(requestData, function (err, result) {
+    positionRequestModule.createPositionRequest(requestData, function (err, result) {
         if (err) {
             res.send({s: 0, d: err.message});
         } else {
